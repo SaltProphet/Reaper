@@ -1,12 +1,10 @@
 {
-  "name": "REAPER Development",
+  "name": "REAPER Development Environment",
   "image": "mcr.microsoft.com/devcontainers/python:3.11",
-  
   "features": {
     "ghcr.io/devcontainers/features/git:1": {},
     "ghcr.io/devcontainers/features/github-cli:1": {}
   },
-  
   "customizations": {
     "vscode": {
       "extensions": [
@@ -15,32 +13,34 @@
         "charliermarsh.ruff",
         "GitHub.copilot",
         "GitHub.copilot-chat",
-        "tamasfe.even-better-toml"
+        "ms-python.debugpy"
       ],
       "settings": {
         "python.defaultInterpreterPath": "/usr/local/bin/python",
         "python.linting.enabled": true,
         "python.linting.ruffEnabled": true,
         "python.formatting.provider": "none",
-        "editor.formatOnSave": true,
-        "editor.codeActionsOnSave": {
-          "source.organizeImports": "explicit"
-        },
         "[python]": {
           "editor.defaultFormatter": "charliermarsh.ruff",
-          "editor.formatOnSave": true
+          "editor.formatOnSave": true,
+          "editor.codeActionsOnSave": {
+            "source.fixAll": "explicit",
+            "source.organizeImports": "explicit"
+          }
+        },
+        "editor.rulers": [100],
+        "files.trimTrailingWhitespace": true,
+        "files.insertFinalNewline": true,
+        "github.copilot.enable": {
+          "*": true,
+          "python": true,
+          "yaml": true,
+          "markdown": true
         }
       }
     }
   },
-  
   "postCreateCommand": "pip install -e '.[dev]'",
-  
-  "postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",
-  
-  "remoteUser": "vscode",
-  
   "forwardPorts": [],
-  
-  "portsAttributes": {}
+  "remoteUser": "vscode"
 }

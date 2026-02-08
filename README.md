@@ -160,34 +160,24 @@ The stubs in `/pipeline/` are reference implementations. To add real functionali
 3. Never hard-code sources or mix pipeline roles
 4. Always use Pydantic models for data validation
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed development guidelines.
+### 📚 Documentation
 
-## Contributing
+- **[Quick Start Guide](QUICKSTART.md)** - Get productive with GitHub Copilot and Codespaces in 15 minutes
+- **[Advanced Tools Guide](GITHUB_ADVANCED_TOOLS.md)** - Comprehensive guide for Copilot, Codespaces, Spark, and automation
+- **[Contributing Guide](CONTRIBUTING.md)** - How to contribute to REAPER
+- **[Copilot Instructions](.github/copilot-instructions.md)** - Project-specific Copilot guidance
 
-We welcome contributions! Here's how to get started:
+### 🚀 GitHub Advanced Tools
 
-1. **Read the Docs**: Start with [Getting Started](public_docs/getting-started.md) and [Architect's Curse](public_docs/architects-curse.md)
-2. **Pick an Issue**: Browse [open issues](https://github.com/SaltProphet/Reaper/issues) or start a [discussion](https://github.com/SaltProphet/Reaper/discussions)
-3. **Submit a Plugin**: Share your plugin via [Plugin Submission](https://github.com/SaltProphet/Reaper/issues/new?template=plugin_submission.yml)
-4. **Improve Docs**: Help make REAPER more accessible
+REAPER is optimized for modern GitHub development tools:
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for complete guidelines.
+- **GitHub Copilot**: AI-powered code suggestions and chat (see [setup guide](QUICKSTART.md))
+- **GitHub Codespaces**: Pre-configured cloud development environment
+- **GitHub Actions**: Automated CI/CD with linting, testing, and plugin validation
+- **Issue Templates**: Structured bug reports and feature requests
+- **PR Templates**: Comprehensive pull request checklists
 
-## Community
-
-- 💬 **[Discussions](https://github.com/SaltProphet/Reaper/discussions)** - Ask questions, share ideas
-- 🐛 **[Issue Tracker](https://github.com/SaltProphet/Reaper/issues)** - Report bugs, request features
-- 🔌 **[Plugin Marketplace](https://github.com/SaltProphet/Reaper/issues?q=label%3Aplugin)** - Discover and share plugins
-- 📚 **[Documentation](public_docs/)** - Comprehensive guides and references
-
-## Quick Links
-
-- [Getting Started Guide](public_docs/getting-started.md) - Your first steps
-- [Plugin Development Guide](public_docs/how-to-create-plugins.md) - Create plugins
-- [Sense Isolation FAQ](public_docs/sense-isolation-faq.md) - Understand boundaries
-- [Operator Console Walkthrough](public_docs/operator-console-walkthrough.md) - Run pipelines
-- [Architect's Curse](public_docs/architects-curse.md) - Philosophy and vision
-- [Examples Directory](examples/) - Real-world examples
+[Learn how to use these tools →](GITHUB_ADVANCED_TOOLS.md)
 
 ## License
 

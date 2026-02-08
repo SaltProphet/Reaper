@@ -1,146 +1,251 @@
 # Contributing to REAPER
 
-Thank you for your interest in contributing to REAPER! We welcome contributions from everyone.
+Thank you for your interest in contributing to REAPER! This guide will help you get started.
 
 ## Table of Contents
 
 - [Code of Conduct](#code-of-conduct)
 - [Getting Started](#getting-started)
-- [How to Contribute](#how-to-contribute)
 - [Development Setup](#development-setup)
-- [Contribution Guidelines](#contribution-guidelines)
-- [Architectural Principles](#architectural-principles)
-- [Pull Request Process](#pull-request-process)
-- [Community](#community)
+- [Making Changes](#making-changes)
+- [Plugin Development](#plugin-development)
+- [Testing](#testing)
+- [Code Style](#code-style)
+- [Submitting Changes](#submitting-changes)
+- [Getting Help](#getting-help)
 
 ## Code of Conduct
 
-Be respectful, inclusive, and constructive. We're building something together.
+Be respectful, inclusive, and considerate. We want to maintain a welcoming environment for all contributors.
 
 ## Getting Started
 
-1. **Read the Documentation**
-   - [Getting Started Guide](public_docs/getting-started.md)
-   - [Architect's Curse](public_docs/architects-curse.md) - Philosophy and principles
-   - [Sense Isolation FAQ](public_docs/sense-isolation-faq.md) - Boundary rules
-
-2. **Explore the Codebase**
-   - Browse `reaper/` for core framework
-   - Check `pipeline/` for reference implementations
-   - Review `tests/` for testing patterns
-   - Look at `examples/` for real-world usage
-
-3. **Pick an Issue**
-   - Browse [open issues](https://github.com/SaltProphet/Reaper/issues)
-   - Look for `good-first-issue` label
-   - Comment on the issue to claim it
-
-## How to Contribute
-
-### Types of Contributions
-
-1. **Code Contributions**
-   - Bug fixes
-   - New features
-   - Performance improvements
-   - Test coverage
-
-2. **Plugin Contributions**
-   - New sense plugins
-   - Scoring algorithms
-   - Action handlers
-   - Submit via [Plugin Submission](https://github.com/SaltProphet/Reaper/issues/new?template=plugin_submission.yml)
-
-3. **Documentation**
-   - Fix typos or errors
-   - Add examples
-   - Improve explanations
-   - Create tutorials
-
-4. **Community Support**
-   - Answer questions in Discussions
-   - Review pull requests
-   - Share your use cases
-   - Report bugs
+1. **Fork the repository** on GitHub
+2. **Clone your fork** locally:
+   ```bash
+   git clone https://github.com/YOUR_USERNAME/Reaper.git
+   cd Reaper
+   ```
+3. **Add upstream remote**:
+   ```bash
+   git remote add upstream https://github.com/SaltProphet/Reaper.git
+   ```
 
 ## Development Setup
 
-### Prerequisites
-
-- Python 3.11 or higher
-- Git
-- pip
-
-### Setup Steps
+### Option 1: Local Development
 
 ```bash
-# Fork and clone the repository
-git clone https://github.com/YOUR_USERNAME/Reaper.git
-cd Reaper
-
-# Create a virtual environment
+# Create virtual environment
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 
-# Install in development mode with dev dependencies
+# Install in development mode
 pip install -e ".[dev]"
 
-# Run tests to ensure everything works
+# Verify installation
 pytest
-
-# Run linter
-ruff check .
+python example_runner.py
 ```
 
-## Contribution Guidelines
+### Option 2: GitHub Codespaces (Recommended)
 
-### Core Principles (Must Follow)
+1. Click "Code" → "Codespaces" → "Create codespace on main"
+2. Wait for environment to build (dependencies auto-installed)
+3. Start coding!
 
-1. **Sense Isolation**
-   - Never mix detection, scoring, and action
-   - Each sense handles only its specific signal type
-   - See [Sense Isolation FAQ](public_docs/sense-isolation-faq.md)
+See [GITHUB_ADVANCED_TOOLS.md](GITHUB_ADVANCED_TOOLS.md) for detailed Codespaces setup.
 
-2. **No Hard-Coding**
-   - Always parameterize sources
-   - Use constructor parameters for configuration
-   - Never hard-code URLs, paths, or credentials
+### Option 3: VS Code Dev Containers
 
-3. **Type Safety**
-   - Use Pydantic models for all data structures
-   - Add type hints to all functions
-   - Validate data at boundaries
+1. Install "Dev Containers" extension
+2. Open repository in VS Code
+3. Command Palette → "Dev Containers: Reopen in Container"
 
-4. **Plugin Pattern**
-   - Use `@hookimpl` decorator
-   - Follow hook specifications in `reaper/hookspecs.py`
-   - Make plugins independently testable
+## Making Changes
 
-### Code Style
+### Branch Naming
 
-We use [Ruff](https://docs.astral.sh/ruff/) for linting and formatting:
+Create a descriptive branch name:
+- `feature/your-feature-name`
+- `bugfix/issue-description`
+- `plugin/plugin-name`
+- `docs/what-you-are-documenting`
 
 ```bash
-# Check code
-ruff check .
-
-# Auto-fix issues
-ruff check --fix .
-
-# Format code
-ruff format .
+git checkout -b feature/github-issue-detector
 ```
 
-**Style Guidelines:**
-- Line length: 100 characters
-- Use descriptive variable names
-- Add docstrings to public methods
-- Include type hints
-- Follow PEP 8
+### Commit Messages
 
-### Testing Requirements
+Follow conventional commit format:
+- `feat: Add GitHub issue detection plugin`
+- `fix: Resolve scoring calculation error`
+- `docs: Update plugin development guide`
+- `test: Add tests for smell pipeline`
+- `refactor: Simplify plugin manager logic`
 
-All code changes must include tests:
+## Plugin Development
+
+### Core Principles
+
+1. **Never hard-code sources** - Always accept source as parameter
+2. **Use Pydantic models** - Signal, ScoredSignal, ActionResult
+3. **Separation of concerns** - Don't mix detection, scoring, and action
+4. **Use Pluggy hookimpl** - All plugins use `@hookimpl` decorator
+
+### Creating a Detection Plugin
+
+```python
+import pluggy
+from reaper.models import Signal, SenseType
+
+hookimpl = pluggy.HookimplMarker("reaper")
+
+class MyDetectionPlugin:
+    """Detects signals from [source description]."""
+    
+    @hookimpl
+    def reaper_sight_detect(self, source: str) -> list[Signal]:
+        """
+        Detect visual signals from the specified source.
+        
+        Args:
+            source: Source identifier (never hard-coded!)
+            
+        Returns:
+            List of Signal objects
+        """
+        # Your detection logic here
+        signals = []
+        
+        # Example signal
+        signals.append(
+            Signal(
+                sense_type=SenseType.SIGHT,
+                source=source,
+                raw_data={"detected": "data"}
+            )
+        )
+        
+        return signals
+```
+
+### Creating a Scoring Plugin
+
+```python
+import pluggy
+from reaper.models import Signal, ScoredSignal
+
+hookimpl = pluggy.HookimplMarker("reaper")
+
+class MyScoringPlugin:
+    """Scores signals based on [criteria]."""
+    
+    @hookimpl
+    def reaper_score_signal(self, signal: Signal) -> ScoredSignal:
+        """
+        Score a signal.
+        
+        Args:
+            signal: Signal to score
+            
+        Returns:
+            ScoredSignal with score between 0.0 and 1.0
+        """
+        # Calculate score (must be 0.0 to 1.0)
+        score = self._calculate_score(signal)
+        
+        return ScoredSignal(
+            signal=signal,
+            score=score,
+            analysis={"method": "description"},
+            tags=["tag1", "tag2"]
+        )
+    
+    def _calculate_score(self, signal: Signal) -> float:
+        # Your scoring logic
+        return 0.5
+```
+
+### Creating an Action Plugin
+
+```python
+import pluggy
+from reaper.models import ScoredSignal, ActionResult
+
+hookimpl = pluggy.HookimplMarker("reaper")
+
+class MyActionPlugin:
+    """Executes actions based on scored signals."""
+    
+    @hookimpl
+    def reaper_execute_action(self, signal: ScoredSignal) -> ActionResult:
+        """
+        Execute action on a scored signal.
+        
+        Args:
+            signal: ScoredSignal to act on
+            
+        Returns:
+            ActionResult with execution status
+        """
+        try:
+            # Your action logic
+            self._execute(signal)
+            
+            return ActionResult(
+                signal=signal,
+                success=True,
+                action_type="my_action",
+                metadata={"details": "success"}
+            )
+        except Exception as e:
+            return ActionResult(
+                signal=signal,
+                success=False,
+                action_type="my_action",
+                metadata={"error": str(e)}
+            )
+```
+
+### Plugin File Location
+
+- Place detection plugins in `pipeline/`
+- Name files descriptively: `github_issues.py`, `slack_messages.py`
+- Update `example_runner.py` if adding new reference plugins
+
+## Testing
+
+### Writing Tests
+
+Create tests in `tests/` directory:
+
+```python
+import pytest
+from reaper.models import Signal, SenseType
+from my_plugin import MyPlugin
+
+def test_detection_returns_signals():
+    """Test that detection returns Signal objects."""
+    plugin = MyPlugin()
+    signals = plugin.reaper_sight_detect(source="test-source")
+    
+    assert len(signals) > 0
+    assert isinstance(signals[0], Signal)
+    assert signals[0].sense_type == SenseType.SIGHT
+    assert signals[0].source == "test-source"
+
+def test_detection_handles_empty_source():
+    """Test that detection handles missing data gracefully."""
+    plugin = MyPlugin()
+    signals = plugin.reaper_sight_detect(source="nonexistent")
+    
+    # Should return empty list, not raise exception
+    assert signals == []
+```
+
+### Running Tests
 
 ```bash
 # Run all tests
@@ -150,190 +255,183 @@ pytest
 pytest --cov=reaper --cov=pipeline
 
 # Run specific test file
-pytest tests/test_models.py
+pytest tests/test_my_plugin.py
+
+# Run specific test
+pytest tests/test_my_plugin.py::test_detection_returns_signals
+
+# Run with verbose output
+pytest -v
 ```
 
-**Testing Guidelines:**
-- Write unit tests for new functions
-- Test edge cases and error conditions
-- Use descriptive test names
-- Keep tests isolated and independent
+### Test Coverage Requirements
+
+- Aim for >80% coverage for new code
+- Test both success and failure cases
+- Test edge cases and validation
 - Mock external dependencies
 
-### Documentation Requirements
+## Code Style
 
-- Add docstrings to all public methods
-- Update relevant documentation in `public_docs/`
-- Include usage examples for new features
-- Update README if adding major features
+### Linting
 
-## Architectural Principles
+REAPER uses [Ruff](https://docs.astral.sh/ruff/) for linting and formatting:
 
-Before contributing, understand these core principles:
+```bash
+# Check for issues
+ruff check .
 
-### 1. Functional Autonomy
+# Auto-fix issues
+ruff check --fix .
 
-Each component should:
-- Have a single, well-defined responsibility
-- Operate independently
-- Not depend on implementation details of other components
-- Be swappable without breaking the system
+# Format code
+ruff format .
 
-### 2. The Biological Worldview
+# Check formatting without changing files
+ruff format --check .
+```
 
-REAPER's architecture mirrors biological systems:
-- **Senses** detect signals (like eyes, ears, etc.)
-- **Scoring** evaluates importance (like a brain)
-- **Actions** respond to signals (like muscles)
+### Style Guidelines
 
-This isn't just a metaphor—it's an architectural constraint.
+- **Line length**: 100 characters maximum
+- **Type hints**: Required for all functions/methods
+- **Docstrings**: Required for public functions/classes
+- **Imports**: Organized (stdlib → third-party → local)
+- **Naming**:
+  - Classes: `PascalCase`
+  - Functions/methods: `snake_case`
+  - Constants: `UPPER_SNAKE_CASE`
 
-### 3. Plugin-First Design
+### Using GitHub Copilot
 
-Everything extends through plugins:
-- Core framework stays minimal
-- Plugins add functionality
-- No hard-coded implementations
-- Clean hook specifications
+If you have GitHub Copilot:
+1. Check `.github/copilot-instructions.md` for project-specific guidance
+2. Use Copilot Chat for plugin generation: `/explain`, `/fix`, `/tests`
+3. Review all suggestions before accepting
 
-### 4. Separation of Concerns
+See [GITHUB_ADVANCED_TOOLS.md](GITHUB_ADVANCED_TOOLS.md) for Copilot setup.
 
-**Detection** → **Scoring** → **Action**
+## Submitting Changes
 
-Never mix these phases:
-- ❌ Don't score in detection
-- ❌ Don't act in scoring
-- ❌ Don't detect in actions
+### Pre-Submission Checklist
 
-See [Sense Isolation FAQ](public_docs/sense-isolation-faq.md) for details.
-
-## Pull Request Process
-
-### Before Submitting
-
-1. **Test Your Changes**
-   ```bash
-   pytest
-   ruff check .
-   ```
-
-2. **Update Documentation**
-   - Add docstrings
-   - Update relevant docs
-   - Add examples if needed
-
-3. **Follow Commit Guidelines**
-   - Use clear, descriptive commit messages
-   - Reference issue numbers: `Fixes #123`
-   - Keep commits atomic and focused
-
-### Submitting a PR
-
-1. **Create a Branch**
-   ```bash
-   git checkout -b feature/my-feature
-   # or
-   git checkout -b fix/my-bugfix
-   ```
-
-2. **Make Your Changes**
-   - Write code
-   - Add tests
-   - Update docs
-
-3. **Push and Open PR**
-   ```bash
-   git push origin feature/my-feature
-   ```
-   Then open a PR on GitHub
-
-4. **Fill Out PR Template**
-   - Describe your changes
-   - Complete all checklists
-   - Link related issues
-   - Add screenshots if UI changes
-
-### PR Review Process
-
-- Maintainers will review your PR
-- Address feedback promptly
-- Keep discussions constructive
-- Be patient—reviews take time
-
-### Checklist for PRs
-
-- [ ] Tests pass
-- [ ] Linter passes
+- [ ] Code passes linting: `ruff check .`
+- [ ] Code is formatted: `ruff format .`
+- [ ] All tests pass: `pytest`
+- [ ] New features have tests
 - [ ] Documentation updated
-- [ ] Sense isolation respected
-- [ ] No hard-coded sources
-- [ ] Pydantic models used
-- [ ] Type hints added
-- [ ] Docstrings included
+- [ ] Commit messages follow convention
+- [ ] PR template filled out completely
 
-## Community
+### Creating a Pull Request
 
-### Communication Channels
+1. **Push your branch**:
+   ```bash
+   git push origin feature/your-feature-name
+   ```
 
-- **GitHub Discussions**: Questions, ideas, architecture discussions
-- **Issues**: Bug reports, feature requests
-- **Pull Requests**: Code contributions
+2. **Open Pull Request** on GitHub:
+   - Use descriptive title
+   - Fill out PR template completely
+   - Link related issues
+   - Select reviewers if known
 
-### Getting Help
+3. **CI Checks**: Ensure all automated checks pass
+   - Tests
+   - Linting
+   - Plugin validation
 
-- Check [documentation](public_docs/)
-- Search [existing issues](https://github.com/SaltProphet/Reaper/issues)
-- Ask in [Discussions](https://github.com/SaltProphet/Reaper/discussions)
-- Review [examples](examples/)
+4. **Address Review Comments**:
+   - Respond to all comments
+   - Make requested changes
+   - Push updates to same branch
 
-### Becoming a Contributor
+5. **Merge**: Maintainer will merge when approved
 
-We appreciate all contributions! Here's how to get more involved:
+## Getting Help
 
-1. **Start Small**: Fix a typo, improve docs, add a test
-2. **Contribute Regularly**: Small, consistent contributions are valued
-3. **Help Others**: Answer questions, review PRs
-4. **Share Knowledge**: Write blog posts, create tutorials
-5. **Maintain a Plugin**: Build and maintain a plugin
+### Resources
 
-### Recognition
+- **Documentation**: [README.md](README.md)
+- **Advanced Tools Guide**: [GITHUB_ADVANCED_TOOLS.md](GITHUB_ADVANCED_TOOLS.md)
+- **Example Code**: [example_runner.py](example_runner.py)
+- **Models Reference**: [reaper/models.py](reaper/models.py)
+- **Hook Specs**: [reaper/hookspecs.py](reaper/hookspecs.py)
 
-Contributors are recognized in:
-- GitHub contributors list
-- Release notes
-- Community showcases
-- Special thanks in major releases
+### Ask Questions
 
-## Plugin Development
+- **GitHub Discussions**: For questions and ideas
+- **Issues**: For bugs and feature requests (use templates)
+- **PR Comments**: For code-specific discussions
 
-### Creating a Plugin
+### Common Issues
 
-See [How to Create Plugins](public_docs/how-to-create-plugins.md) for a comprehensive guide.
+**Q: My plugin isn't being detected**
+- Ensure you're using `@hookimpl` decorator
+- Check hook method name matches hookspec
+- Verify plugin is registered with PluginManager
 
-### Submitting a Plugin
+**Q: Tests failing with Pydantic errors**
+- Use Pydantic v2 models
+- Ensure all required fields provided
+- Check type hints match model definition
 
-1. Develop your plugin in a separate repository
-2. Follow REAPER's plugin contract
-3. Add tests and documentation
-4. Submit via [Plugin Submission template](https://github.com/SaltProphet/Reaper/issues/new?template=plugin_submission.yml)
+**Q: Linting errors**
+- Run `ruff check --fix .` to auto-fix
+- Check line length (<100 chars)
+- Ensure imports are organized
 
-### Plugin Guidelines
+**Q: How do I debug a plugin?**
+- Use Python debugger: `import pdb; pdb.set_trace()`
+- Add print statements (remove before PR)
+- Use VS Code debugger with breakpoints
 
-- Use `@hookimpl` decorator
-- Follow sense isolation rules
-- Parameterize all configuration
-- Use Pydantic models
-- Handle errors gracefully
-- Include comprehensive tests
-- Document usage clearly
+## Project Structure
 
-## Questions?
+```
+Reaper/
+├── .devcontainer/           # Codespaces configuration
+├── .github/
+│   ├── workflows/           # CI/CD workflows
+│   ├── ISSUE_TEMPLATE/      # Issue templates
+│   ├── copilot-instructions.md  # Copilot guidance
+│   └── pull_request_template.md
+├── docs/                    # Additional documentation
+├── examples/                # Example integrations
+├── pipeline/                # Reference plugin implementations
+│   ├── sight.py            # Sight detection stub
+│   ├── hearing.py          # Hearing detection stub
+│   ├── touch.py            # Touch detection stub
+│   ├── taste.py            # Taste detection stub
+│   ├── smell.py            # Smell detection stub
+│   ├── scoring.py          # Scoring stub
+│   └── action.py           # Action stub
+├── reaper/                  # Core framework
+│   ├── models.py           # Pydantic data models
+│   ├── hookspecs.py        # Pluggy hook specifications
+│   └── plugin_manager.py   # Plugin management
+├── tests/                   # Test suite
+│   ├── test_models.py      # Model tests
+│   ├── test_plugin_manager.py
+│   └── test_pipeline_stubs.py
+├── .gitignore
+├── LICENSE
+├── README.md               # Main documentation
+├── CONTRIBUTING.md         # This file
+├── GITHUB_ADVANCED_TOOLS.md  # Advanced tools guide
+├── example_runner.py       # Example usage
+└── pyproject.toml          # Project configuration
+```
 
-- 📚 Check the [documentation](public_docs/)
-- 💬 Ask in [Discussions](https://github.com/SaltProphet/Reaper/discussions)
-- 🐛 Report bugs via [Issues](https://github.com/SaltProphet/Reaper/issues)
-- 📧 Contact maintainers (see repository)
+## Recognition
+
+Contributors will be recognized in:
+- GitHub Contributors page
+- Release notes for significant contributions
+- README acknowledgments (for major features)
 
 ---
 
-**Thank you for contributing to REAPER! Together, we're building a robust, principled signal processing framework.** 🚀
+Thank you for contributing to REAPER! 🎯
+
+For questions, open a [GitHub Discussion](https://github.com/SaltProphet/Reaper/discussions).

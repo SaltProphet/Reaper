@@ -1,78 +1,26 @@
 ## Description
 
-<!-- Provide a brief description of the changes in this PR -->
+<!-- Provide a brief description of your changes -->
 
 ## Type of Change
 
-<!-- Mark the relevant option with an "x" -->
-
-- [ ] Bug fix (non-breaking change which fixes an issue)
-- [ ] New feature (non-breaking change which adds functionality)
-- [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
-- [ ] Documentation update
-- [ ] Plugin addition or modification
-- [ ] Refactoring (no functional changes)
-- [ ] Performance improvement
-- [ ] Test addition or modification
+- [ ] 🐛 Bug fix (non-breaking change which fixes an issue)
+- [ ] ✨ New feature (non-breaking change which adds functionality)
+- [ ] 🔌 New plugin (adds a new detection/scoring/action plugin)
+- [ ] 💥 Breaking change (fix or feature that would cause existing functionality to not work as expected)
+- [ ] 📝 Documentation update
+- [ ] 🔧 Configuration change
+- [ ] ♻️ Refactoring (no functional changes)
+- [ ] 🧪 Test improvement
+- [ ] 🎨 Style/formatting update
 
 ## Changes Made
 
-<!-- List the specific changes made in this PR -->
+<!-- List the specific changes in bullet points -->
 
 - 
 - 
 - 
-
-## Sense Isolation Checklist
-
-<!-- Verify sense boundaries are respected -->
-
-- [ ] Detection plugins only detect signals (no scoring or actions)
-- [ ] Scoring plugins only score signals (no detection or actions)
-- [ ] Action plugins only execute actions (no detection or scoring)
-- [ ] No mixing of sense types within a single detection method
-- [ ] All sources are parameterized (no hard-coded sources)
-
-## Plugin Contract Checklist
-
-<!-- For plugin changes only -->
-
-- [ ] Uses proper `@hookimpl` decorator
-- [ ] Follows hook specification signatures
-- [ ] Uses Pydantic models for all data (Signal, ScoredSignal, ActionResult)
-- [ ] Handles errors gracefully (returns empty lists, not exceptions)
-- [ ] Plugin is independently testable
-- [ ] Configuration is passed via constructor, not hard-coded
-
-## Documentation Checklist
-
-- [ ] Code includes docstrings for public methods
-- [ ] README updated (if needed)
-- [ ] Documentation in `public_docs/` updated (if needed)
-- [ ] Examples updated or added (if needed)
-- [ ] CHANGELOG updated (if applicable)
-
-## Testing
-
-<!-- Describe the tests you've added or run -->
-
-- [ ] Existing tests pass (`pytest`)
-- [ ] New tests added for new functionality
-- [ ] Manual testing performed
-- [ ] Edge cases considered and tested
-
-**Test results:**
-```
-# Paste relevant test output here
-```
-
-## Code Quality
-
-- [ ] Code follows project style guidelines
-- [ ] Linter passes (`ruff check .`)
-- [ ] Type hints added where appropriate
-- [ ] No unnecessary code duplication
-- [ ] Error handling is comprehensive
 
 ## Related Issues
 
@@ -81,19 +29,65 @@
 Closes #
 Related to #
 
+## Testing
+
+<!-- How have you tested these changes? -->
+
+- [ ] All existing tests pass (`pytest`)
+- [ ] Added new tests for changes
+- [ ] Manual testing performed
+- [ ] Linting passes (`ruff check .`)
+- [ ] Formatting is correct (`ruff format .`)
+
+### Test Results
+
+```bash
+# Paste pytest output here
+```
+
+## Plugin-Specific Checklist (if applicable)
+
+- [ ] Uses `@hookimpl` decorator from Pluggy
+- [ ] No hard-coded sources (source parameter used)
+- [ ] Follows separation of concerns (no mixing roles)
+- [ ] Uses Pydantic models for data validation
+- [ ] Includes comprehensive docstrings
+- [ ] Added tests for plugin functionality
+- [ ] Updated example_runner.py if needed
+
+## Code Quality Checklist
+
+- [ ] Code follows project style guidelines (see `.github/copilot-instructions.md`)
+- [ ] Self-review of code completed
+- [ ] Comments added for complex or non-obvious code
+- [ ] Documentation updated (README, docstrings)
+- [ ] No new warnings introduced
+- [ ] Type hints included for all functions/methods
+- [ ] Error handling implemented where appropriate
+
+## Breaking Changes
+
+<!-- If this is a breaking change, describe the impact and migration path -->
+
+## Screenshots (if applicable)
+
+<!-- Add screenshots for UI changes or visual improvements -->
+
 ## Additional Context
 
-<!-- Add any additional context, screenshots, or notes for reviewers -->
+<!-- Add any other context about the pull request here -->
 
-## Reviewer Notes
+## Checklist Before Requesting Review
 
-<!-- Anything specific you want reviewers to focus on? -->
+- [ ] Code is ready for review
+- [ ] All CI checks pass
+- [ ] Documentation is complete
+- [ ] Ready to merge (all comments addressed)
 
 ---
 
-## For Maintainers
-
-- [ ] Changes align with project roadmap
-- [ ] Breaking changes documented
-- [ ] Security implications considered
-- [ ] Performance impact assessed
+**For Reviewers:**
+- Please review the code for correctness, style, and adherence to REAPER principles
+- Check that plugins don't hard-code sources and follow separation of concerns
+- Verify test coverage is adequate
+- Ensure Pydantic models are used correctly

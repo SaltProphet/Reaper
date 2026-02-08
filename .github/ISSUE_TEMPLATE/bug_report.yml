@@ -1,132 +1,105 @@
-name: Bug Report
-description: Report a bug or unexpected behavior
+name: 🐛 Bug Report
+description: Report a bug in REAPER
 title: "[Bug]: "
-labels: ["bug", "needs-triage"]
+labels: ["bug"]
+assignees: []
+
 body:
   - type: markdown
     attributes:
       value: |
-        Thanks for taking the time to report a bug! Please fill out the information below to help us diagnose and fix the issue.
-
+        Thanks for taking the time to report this bug! Please fill out the form below to help us investigate.
+  
   - type: textarea
     id: description
     attributes:
       label: Bug Description
-      description: A clear and concise description of what the bug is.
-      placeholder: When I do X, Y happens instead of Z...
+      description: A clear and concise description of the bug
+      placeholder: Tell us what you see!
     validations:
       required: true
-
-  - type: textarea
-    id: reproduction
-    attributes:
-      label: Steps to Reproduce
-      description: Steps to reproduce the behavior
-      placeholder: |
-        1. Initialize PluginManager with...
-        2. Register SightPlugin...
-        3. Call detect_sight with source='...'
-        4. See error
-    validations:
-      required: true
-
-  - type: textarea
-    id: expected
-    attributes:
-      label: Expected Behavior
-      description: What you expected to happen
-      placeholder: The plugin should return a list of Signal objects...
-    validations:
-      required: true
-
-  - type: textarea
-    id: actual
-    attributes:
-      label: Actual Behavior
-      description: What actually happened
-      placeholder: Instead, it raised a ValidationError...
-    validations:
-      required: true
-
-  - type: textarea
-    id: code
-    attributes:
-      label: Minimal Reproducible Code
-      description: Minimal code that reproduces the issue
-      placeholder: |
-        ```python
-        from reaper import PluginManager
-        # ... minimal reproduction code
-        ```
-      render: python
-    validations:
-      required: false
-
-  - type: textarea
-    id: environment
-    attributes:
-      label: Environment
-      description: Please provide your environment details
-      placeholder: |
-        - REAPER Version: 0.1.0
-        - Python Version: 3.11.5
-        - OS: Ubuntu 22.04
-        - Installation method: pip install -e .
-    validations:
-      required: true
-
-  - type: textarea
-    id: logs
-    attributes:
-      label: Error Messages / Logs
-      description: Any error messages, stack traces, or logs
-      placeholder: Paste error messages or logs here...
-      render: shell
-    validations:
-      required: false
-
+  
   - type: dropdown
     id: component
     attributes:
       label: Component
-      description: Which component is affected?
+      description: Which part of REAPER is affected?
       options:
-        - Core (models, plugin_manager, hookspecs)
-        - Pipeline (sense stubs)
+        - Core Framework
+        - Plugin System
+        - Sight Pipeline
+        - Hearing Pipeline
+        - Touch Pipeline
+        - Taste Pipeline
+        - Smell Pipeline
+        - Scoring
+        - Actions
         - Documentation
-        - Tests
-        - Build/Installation
         - Other
     validations:
       required: true
-
-  - type: checkboxes
-    id: sense-boundaries
+  
+  - type: textarea
+    id: reproduction
     attributes:
-      label: Sense Boundary Related?
-      description: Is this bug related to sense isolation or boundary violations?
-      options:
-        - label: This bug involves mixing of detection/scoring/action concerns
-        - label: This bug involves hard-coded sources
-        - label: This bug involves sense type confusion
-
+      label: Steps to Reproduce
+      description: How can we reproduce this bug?
+      placeholder: |
+        1. Install REAPER with `pip install -e .`
+        2. Run example_runner.py
+        3. See error
+      value: |
+        1. 
+        2. 
+        3. 
+    validations:
+      required: true
+  
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What should happen?
+      placeholder: Describe what you expected to happen
+    validations:
+      required: true
+  
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+      description: What actually happens?
+      placeholder: Describe what actually happened
+    validations:
+      required: true
+  
+  - type: input
+    id: python-version
+    attributes:
+      label: Python Version
+      description: Output of `python --version`
+      placeholder: "3.11.0"
+    validations:
+      required: true
+  
+  - type: input
+    id: os
+    attributes:
+      label: Operating System
+      placeholder: "Ubuntu 22.04, macOS 13, Windows 11"
+    validations:
+      required: true
+  
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: Relevant logs or error messages
+      placeholder: Paste any relevant logs here
+      render: shell
+  
   - type: textarea
     id: additional
     attributes:
       label: Additional Context
-      description: Any additional context, screenshots, or information
-      placeholder: Add any other context about the problem here...
-    validations:
-      required: false
-
-  - type: checkboxes
-    id: checklist
-    attributes:
-      label: Checklist
-      options:
-        - label: I have searched existing issues to ensure this hasn't been reported
-          required: true
-        - label: I have provided a minimal reproducible example
-          required: false
-        - label: I have included relevant error messages/logs
-          required: false
+      description: Any other relevant information (screenshots, environment details, etc.)
