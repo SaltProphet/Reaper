@@ -69,9 +69,9 @@ def main():
         result = pm.execute_action(scored_signal)[0]
         if result.success:
             success_count += 1
-            print(f"    ✓ Action {i+1}: {result.action_type} - {result.details}")
+            print(f"    ✓ Action {i+1}: {result.action_type} - {result.result_data}")
         else:
-            print(f"    ✗ Action {i+1} failed: {result.details}")
+            print(f"    ✗ Action {i+1} failed: {result.result_data}")
 
     # Step 7: Summary
     print("\n" + "=" * 60)
