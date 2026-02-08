@@ -1,0 +1,30 @@
+# REAPER Roadmap
+
+## Phase 1: Core Architecture (“Alpha”)
+- Scaffold the 5-sense pipeline: Sight, Hearing, Touch, Taste, Smell, Action
+- Define `ReaperSignal` and connector contracts (pydantic models)
+- Implement Pluggy-based plugin loader ("Hot-Swap Chassis")
+- Create first example plugins (RedditIngestor, KeywordAnalyzer)
+- Publish Copilot and Philosophy docs
+
+## Phase 2: Pipeline Completion (“Beta”)
+- Complete stubs for all senses
+- Ensure each sense module is isolated and fully documented
+- Bootstrapped end-to-end pipeline test: run mock data through all senses
+- Expand plugin library: more ingestors (Discord, RSS...), analyzers, actions
+- Onboard contributors via Codespaces and clear Copilot/agent automation
+
+## Phase 3: Learning & Operator Experience
+- Implement the Ouroboros Protocol: self-improving filters based on PCI/feedback
+- Add pattern/trend detection (Smell), PCI/ROI scoring (Taste), and alert/export actions (Action)
+- Build operator console: CLI or basic web UI
+- Integrate realtime and batch signal handling
+
+## Phase 4: Quality, Automation, Community
+- Expand test harness: unit, integration, e2e
+- Harden plugin API, add docs for authors/contributors
+- Advanced automation: Spark flows, Copilot-powered PR reviews, changelogs
+- Publicize roadmap, invite plugin/box submissions
+- Prepare for v1.0: security pass, performance tuning, usage docs, launch
+
+> See [README.md](README.md) and open Issues/Projects for live progress and next actions.
