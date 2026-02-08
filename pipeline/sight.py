@@ -4,10 +4,11 @@ Sight Sense Pipeline Stub
 Visual detection of signals.
 Each sense = one job. Never mix pipeline roles.
 """
-import pluggy
 from typing import List
-from reaper.models import Signal, SenseType
 
+import pluggy
+
+from reaper.models import SenseType, Signal
 
 hookimpl = pluggy.HookimplMarker("reaper")
 
@@ -21,7 +22,7 @@ class SightPlugin:
     - Accept source as parameter
     - Return properly validated Signal objects
     """
-    
+
     @hookimpl
     def reaper_sight_detect(self, source: str) -> List[Signal]:
         """

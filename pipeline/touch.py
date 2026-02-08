@@ -4,10 +4,11 @@ Touch Sense Pipeline Stub
 Physical/interaction detection of signals.
 Each sense = one job. Never mix pipeline roles.
 """
-import pluggy
 from typing import List
-from reaper.models import Signal, SenseType
 
+import pluggy
+
+from reaper.models import SenseType, Signal
 
 hookimpl = pluggy.HookimplMarker("reaper")
 
@@ -21,7 +22,7 @@ class TouchPlugin:
     - Accept source as parameter
     - Return properly validated Signal objects
     """
-    
+
     @hookimpl
     def reaper_touch_detect(self, source: str) -> List[Signal]:
         """

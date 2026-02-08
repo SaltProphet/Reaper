@@ -4,10 +4,11 @@ REAPER Plugin Hook Specifications
 Pluggy hook specifications for the 5-sense pipeline.
 Each sense = one job, implemented as a plugin.
 """
-import pluggy
 from typing import List
-from reaper.models import Signal, ScoredSignal, ActionResult
 
+import pluggy
+
+from reaper.models import ActionResult, ScoredSignal, Signal
 
 hookspec = pluggy.HookspecMarker("reaper")
 

@@ -5,8 +5,8 @@ Score detected signals for prioritization.
 Separate from detection - never mix pipeline roles.
 """
 import pluggy
-from reaper.models import Signal, ScoredSignal
 
+from reaper.models import ScoredSignal, Signal
 
 hookimpl = pluggy.HookimplMarker("reaper")
 
@@ -20,7 +20,7 @@ class ScoringPlugin:
     - Implement domain-specific scoring algorithms
     - Return properly validated ScoredSignal objects
     """
-    
+
     @hookimpl
     def reaper_score_signal(self, signal: Signal) -> ScoredSignal:
         """
