@@ -1,0 +1,31 @@
+## Question
+
+<!-- Ask your question clearly and concisely -->
+
+## Context
+
+<!-- Provide context about what you're trying to do -->
+
+## What I've Tried
+
+<!-- Describe what you've already tried or researched -->
+
+## Environment
+
+<!-- If relevant, include Python version, OS, REAPER version/commit -->
+
+- Python Version: 
+- OS: 
+- REAPER Version/Commit: 
+
+## Additional Information
+
+<!-- Any code snippets, error messages, or relevant details -->
+
+```python
+# Paste relevant code here
+```
+
+---
+
+**For Responders**: Please check the [README](../../README.md) and [Roadmap](../../Roadmap) before answering. Link to relevant documentation when possible.

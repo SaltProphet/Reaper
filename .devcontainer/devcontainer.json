@@ -12,35 +12,32 @@
         "ms-python.vscode-pylance",
         "charliermarsh.ruff",
         "GitHub.copilot",
-        "GitHub.copilot-chat",
-        "ms-python.debugpy"
+        "GitHub.copilot-chat"
       ],
       "settings": {
         "python.defaultInterpreterPath": "/usr/local/bin/python",
         "python.linting.enabled": true,
         "python.linting.ruffEnabled": true,
         "python.formatting.provider": "none",
-        "[python]": {
-          "editor.defaultFormatter": "charliermarsh.ruff",
-          "editor.formatOnSave": true,
-          "editor.codeActionsOnSave": {
-            "source.fixAll": "explicit",
-            "source.organizeImports": "explicit"
-          }
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+          "source.organizeImports": "explicit"
         },
-        "editor.rulers": [100],
-        "files.trimTrailingWhitespace": true,
-        "files.insertFinalNewline": true,
-        "github.copilot.enable": {
-          "*": true,
-          "python": true,
-          "yaml": true,
-          "markdown": true
-        }
+        "[python]": {
+          "editor.defaultFormatter": "charliermarsh.ruff"
+        },
+        "python.testing.pytestEnabled": true,
+        "python.testing.unittestEnabled": false,
+        "python.testing.pytestArgs": [
+          "tests"
+        ]
       }
     }
   },
   "postCreateCommand": "pip install -e '.[dev]'",
   "forwardPorts": [],
-  "remoteUser": "vscode"
+  "remoteUser": "vscode",
+  "containerEnv": {
+    "PYTHONPATH": "/workspaces/Reaper"
+  }
 }

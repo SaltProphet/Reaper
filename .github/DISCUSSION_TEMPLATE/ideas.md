@@ -1,0 +1,31 @@
+## Overview
+
+<!-- Briefly describe your idea -->
+
+## Problem/Opportunity
+
+<!-- What problem does this address or what opportunity does it create? -->
+
+## Proposed Approach
+
+<!-- Describe your proposed approach or solution -->
+
+## Impact
+
+<!-- Who would benefit from this? How does it align with REAPER's roadmap? -->
+
+## Discussion Points
+
+<!-- List specific questions or aspects you'd like feedback on -->
+
+- 
+- 
+- 
+
+## Additional Context
+
+<!-- Add any mockups, examples, or references -->
+
+---
+
+**For Contributors**: This discussion is open for collaborative ideation. Feel free to suggest alternatives, improvements, or related ideas!

@@ -160,24 +160,42 @@ The stubs in `/pipeline/` are reference implementations. To add real functionali
 3. Never hard-code sources or mix pipeline roles
 4. Always use Pydantic models for data validation
 
-### 📚 Documentation
+## Contributing
 
-- **[Quick Start Guide](QUICKSTART.md)** - Get productive with GitHub Copilot and Codespaces in 15 minutes
-- **[Advanced Tools Guide](GITHUB_ADVANCED_TOOLS.md)** - Comprehensive guide for Copilot, Codespaces, Spark, and automation
-- **[Contributing Guide](CONTRIBUTING.md)** - How to contribute to REAPER
-- **[Copilot Instructions](.github/copilot-instructions.md)** - Project-specific Copilot guidance
+We welcome contributions! Here's how to get started:
 
-### 🚀 GitHub Advanced Tools
+### Quick Start
 
-REAPER is optimized for modern GitHub development tools:
+**Use GitHub Codespaces** for instant setup:
+1. Click "Code" → "Create codespace"
+2. Everything is pre-configured (Python 3.11, dependencies, tools)
+3. Start coding immediately!
 
-- **GitHub Copilot**: AI-powered code suggestions and chat (see [setup guide](QUICKSTART.md))
-- **GitHub Codespaces**: Pre-configured cloud development environment
-- **GitHub Actions**: Automated CI/CD with linting, testing, and plugin validation
-- **Issue Templates**: Structured bug reports and feature requests
-- **PR Templates**: Comprehensive pull request checklists
+**Or contribute locally**:
+- See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines
+- Check [Roadmap](Roadmap) for current priorities
+- Browse [open issues](https://github.com/SaltProphet/Reaper/issues) for tasks
 
-[Learn how to use these tools →](GITHUB_ADVANCED_TOOLS.md)
+### Ways to Contribute
+
+- 🐛 **Report bugs**: Use our [bug report template](.github/ISSUE_TEMPLATE/bug_report.yml)
+- ✨ **Suggest features**: Use our [feature request template](.github/ISSUE_TEMPLATE/feature_request.yml)
+- 🔌 **Build plugins**: Use our [plugin submission template](.github/ISSUE_TEMPLATE/plugin_submission.yml)
+- 📖 **Improve docs**: Documentation PRs are always welcome
+- 💬 **Join discussions**: Share ideas in [GitHub Discussions](https://github.com/SaltProphet/Reaper/discussions)
+
+### Community & Collaboration
+
+- **Discussions**: Q&A, plugin marketplace, ideas
+- **GitHub Projects**: Track roadmap progress
+- **GitHub Spaces**: Collaborative design sessions
+- **Copilot Integration**: AI-assisted development with project-specific instructions
+
+See our guides:
+- [Projects Guide](.github/PROJECTS_GUIDE.md)
+- [Spaces Guide](.github/SPACES_GUIDE.md)
+- [Spark Automation Guide](.github/SPARK_AUTOMATION_GUIDE.md)
+- [Copilot Instructions](.github/copilot-instructions.md)
 
 ## License
 

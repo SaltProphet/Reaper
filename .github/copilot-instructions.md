@@ -1,217 +1,114 @@
-# GitHub Copilot Instructions for REAPER
+# Copilot Instructions for REAPER
 
-## Project Context
+## Project Philosophy
 
-REAPER is a **modular, plugin-driven pipeline system** for detecting, scoring, and acting on "problem friction" signals. It follows a biological 5-sense architecture.
+REAPER is a modular, biological pipeline for harvesting "problem friction" signals. The system is plugin-driven, type-safe, and operator-ready.
 
-## Core Principles
+### Core Principles
 
-### 1. Plugin Architecture
-- **Always use Pluggy**: All functionality must be implemented as Pluggy plugins
-- **Never hard-code sources**: Sources must always be passed as parameters
-- **Use hookimpl decorator**: `@pluggy.HookimplMarker("reaper")` for all plugin methods
-- **Separation of concerns**: Keep detection, scoring, and action separate
+1. **Plugin-Driven Architecture**: All functionality via Pluggy plugins - never hard-code sources
+2. **Type-Safe Data**: All data structures use Pydantic v2 models with strict validation
+3. **Separation of Concerns**: Never mix pipeline roles (detection, scoring, action)
+4. **No Hard-Coding**: Sources and implementations are never hard-coded in core
+5. **Extensibility First**: Add new plugins without modifying core
 
-### 2. Data Models
-- **Use Pydantic v2**: All data structures must use Pydantic models
-- **Strict validation**: Enable strict mode for type safety
-- **Type hints required**: Always include type hints (Python 3.11+)
-- **Core models**:
-  - `Signal`: Base signal with sense_type, source, raw_data
-  - `ScoredSignal`: Signal with score (0.0-1.0), analysis, tags
-  - `ActionResult`: Action execution result with success status
+## Code Conventions
 
-### 3. Code Style
-- **Linter**: Ruff (E, F, I, N, W rules)
-- **Line length**: 100 characters maximum
-- **Import organization**: Standard library → Third party → Local
-- **Naming conventions**:
-  - Classes: PascalCase
-  - Functions/methods: snake_case
-  - Constants: UPPER_SNAKE_CASE
+### Plugin Development
+- Always use `pluggy.HookimplMarker("reaper")` decorator
+- Never hard-code data sources - accept source as parameter
+- Keep pipeline roles separate: detection, scoring, and action are distinct
+- All plugins must follow hookspecs defined in `reaper/hookspecs.py`
 
-## Plugin Implementation Patterns
+### Data Validation
+- Use Pydantic v2 models for all data structures
+- Enforce strict validation with appropriate field types
+- Signal scores must be in range 0.0-1.0
 
-### Detection Plugin Template
+### Testing
+- Run tests with `pytest -v --cov=reaper --cov=pipeline`
+- Write tests in separate files: `test_models.py`, `test_plugin_manager.py`, `test_pipeline_stubs.py`
+- Maintain 95%+ code coverage
+
+### Linting
+- Repo uses Ruff with rules: E, F, I, N, W
+- Run linting before commits to avoid CI failures
+- Unused imports and formatting issues will fail CI
+
+### CI/CD Security
+- GitHub Actions workflows must have explicit permissions block
+- Use `permissions: contents: read` at workflow and job level
+- Follow principle of least privilege
+
+## Pipeline Architecture
+
+The 5-sense pipeline represents distinct stages:
+
+1. **Sight** - Visual detection of signals
+2. **Hearing** - Audio/textual detection of signals
+3. **Touch** - Physical/interaction detection of signals
+4. **Taste** - Quality/sampling detection of signals
+5. **Smell** - Pattern/anomaly detection of signals
+6. **Action** - Execute actions on scored signals
+
+Each sense is isolated and fully documented in `/pipeline/`.
+
+## Contributing Guidelines
+
+When suggesting code changes:
+1. Respect the plugin architecture - don't violate core principles
+2. Include appropriate Pydantic validation
+3. Add tests for new functionality
+4. Update documentation if adding new features
+5. Follow the roadmap phases (see [Roadmap](../../Roadmap))
+
+## Common Patterns
+
+### Creating a Detection Plugin
 ```python
 import pluggy
 from reaper.models import Signal, SenseType
 
 hookimpl = pluggy.HookimplMarker("reaper")
 
-class MyDetectionPlugin:
+class MyPlugin:
     @hookimpl
-    def reaper_<sense>_detect(self, source: str) -> list[Signal]:
-        # source is NEVER hard-coded
-        # Return list of Signal objects
-        return [
-            Signal(
-                sense_type=SenseType.<SENSE>,
-                source=source,
-                raw_data={"key": "value"}
-            )
-        ]
+    def reaper_sight_detect(self, source: str):
+        return [Signal(
+            sense_type=SenseType.SIGHT,
+            source=source,  # Never hard-code!
+            raw_data={"key": "value"}
+        )]
 ```
 
-### Scoring Plugin Template
+### Creating a Scoring Plugin
 ```python
 import pluggy
 from reaper.models import Signal, ScoredSignal
 
 hookimpl = pluggy.HookimplMarker("reaper")
 
-class MyScoringPlugin:
+class MyScorer:
     @hookimpl
-    def reaper_score_signal(self, signal: Signal) -> ScoredSignal:
-        # Calculate score (must be 0.0 to 1.0)
-        score = self._calculate_score(signal)
-        
+    def reaper_score_signal(self, signal: Signal):
         return ScoredSignal(
             signal=signal,
-            score=score,
-            analysis={"method": "description"},
-            tags=["tag1", "tag2"]
+            score=0.75,  # 0.0-1.0 range
+            analysis={"method": "custom"},
+            tags=["custom"]
         )
 ```
 
-### Action Plugin Template
-```python
-import pluggy
-from reaper.models import ScoredSignal, ActionResult
+## Automation Opportunities
 
-hookimpl = pluggy.HookimplMarker("reaper")
+- **Documentation**: Use GitHub Spark to auto-generate changelogs from commits
+- **PR Reviews**: Leverage Copilot for code review automation
+- **Plugin Testing**: Automate plugin validation against hookspecs
+- **Roadmap Updates**: Keep roadmap in sync with completed milestones
 
-class MyActionPlugin:
-    @hookimpl
-    def reaper_execute_action(self, signal: ScoredSignal) -> ActionResult:
-        # Execute action based on scored signal
-        success = self._execute(signal)
-        
-        return ActionResult(
-            signal=signal,
-            success=success,
-            action_type="action_name",
-            metadata={"details": "info"}
-        )
-```
+## Resources
 
-## Testing Patterns
-
-### Test Structure
-```python
-import pytest
-from reaper.models import Signal, SenseType
-
-def test_plugin_functionality():
-    # Arrange
-    plugin = MyPlugin()
-    
-    # Act
-    result = plugin.method()
-    
-    # Assert
-    assert isinstance(result, ExpectedType)
-    assert result.field == expected_value
-```
-
-### Test Coverage Requirements
-- All new plugins must have tests
-- Aim for >80% coverage
-- Test both success and failure cases
-- Test edge cases and validation
-
-## Common Mistakes to Avoid
-
-1. ❌ **Hard-coding sources**
-   ```python
-   # WRONG
-   def reaper_sight_detect(self, source: str):
-       return detect_from("hardcoded-source")
-   
-   # CORRECT
-   def reaper_sight_detect(self, source: str):
-       return detect_from(source)
-   ```
-
-2. ❌ **Mixing pipeline roles**
-   ```python
-   # WRONG - detection plugin doing scoring
-   def reaper_sight_detect(self, source: str):
-       signals = self._detect(source)
-       scored = self._score(signals)  # Don't do this!
-       return signals
-   
-   # CORRECT - keep separate
-   def reaper_sight_detect(self, source: str):
-       return self._detect(source)
-   ```
-
-3. ❌ **Missing type hints**
-   ```python
-   # WRONG
-   def process_signal(signal):
-       return signal.score
-   
-   # CORRECT
-   def process_signal(signal: Signal) -> float:
-       return signal.score
-   ```
-
-4. ❌ **Not using Pydantic models**
-   ```python
-   # WRONG
-   def create_signal():
-       return {"sense_type": "sight", "source": "test"}
-   
-   # CORRECT
-   def create_signal() -> Signal:
-       return Signal(
-           sense_type=SenseType.SIGHT,
-           source="test",
-           raw_data={}
-       )
-   ```
-
-## Sense Types Reference
-
-- **SIGHT**: Visual detection (UI, displays, dashboards)
-- **HEARING**: Audio/textual detection (logs, messages, notifications)
-- **TOUCH**: Interaction detection (user actions, clicks, API calls)
-- **TASTE**: Quality/sampling detection (metrics, samples, probes)
-- **SMELL**: Pattern/anomaly detection (trends, outliers, alerts)
-
-## Hookspec Reference
-
-Available hooks defined in `reaper/hookspecs.py`:
-- `reaper_sight_detect(source: str) -> list[Signal]`
-- `reaper_hearing_detect(source: str) -> list[Signal]`
-- `reaper_touch_detect(source: str) -> list[Signal]`
-- `reaper_taste_detect(source: str) -> list[Signal]`
-- `reaper_smell_detect(source: str) -> list[Signal]`
-- `reaper_score_signal(signal: Signal) -> ScoredSignal`
-- `reaper_execute_action(signal: ScoredSignal) -> ActionResult`
-
-## Development Workflow
-
-1. **Create plugin** following templates above
-2. **Add tests** in `tests/` directory
-3. **Run linter**: `ruff check .`
-4. **Run tests**: `pytest`
-5. **Verify coverage**: `pytest --cov=reaper --cov=pipeline`
-6. **Update documentation** if adding new features
-
-## Example Use Cases
-
-When generating code, consider these example scenarios:
-- **GitHub Issues**: Detect issues with labels, score by priority, create notifications
-- **Slack Messages**: Listen for keywords, score by sentiment, post responses
-- **API Metrics**: Sample endpoint performance, score by latency, trigger alerts
-- **Log Patterns**: Detect error patterns, score by frequency, create tickets
-- **User Interactions**: Track clicks/actions, score by engagement, update dashboards
-
-## Questions?
-
-- Check `README.md` for architecture overview
-- Review `example_runner.py` for complete pipeline example
-- See `tests/` for testing patterns
-- Refer to `reaper/models.py` for data model definitions
+- [README.md](../../README.md) - Project overview and quick start
+- [Roadmap](../../Roadmap) - Development phases and timeline
+- [CONTRIBUTING.md](../../CONTRIBUTING.md) - Contributor guidelines
+- Issues/Projects - Track progress and next actions

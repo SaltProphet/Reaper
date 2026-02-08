@@ -1,11 +1,8 @@
-blank_issues_enabled: true
+blank_issues_enabled: false
 contact_links:
-  - name: 💬 GitHub Discussions
+  - name: GitHub Discussions
     url: https://github.com/SaltProphet/Reaper/discussions
-    about: Ask questions and discuss ideas with the community
-  - name: 📚 Documentation
+    about: Ask questions, share ideas, or discuss plugin marketplace concepts
+  - name: Documentation
     url: https://github.com/SaltProphet/Reaper/blob/main/README.md
-    about: Read the documentation
-  - name: 🚀 GitHub Advanced Tools Guide
-    url: https://github.com/SaltProphet/Reaper/blob/main/GITHUB_ADVANCED_TOOLS.md
-    about: Learn about Copilot, Codespaces, and Spark
+    about: Check the README and Roadmap for project information

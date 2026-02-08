@@ -1,93 +1,78 @@
 ## Description
 
-<!-- Provide a brief description of your changes -->
+<!-- Provide a brief description of the changes in this PR -->
+
+## Related Issue
+
+<!-- Link to the related issue(s) if applicable -->
+Closes #
 
 ## Type of Change
 
-- [ ] 🐛 Bug fix (non-breaking change which fixes an issue)
-- [ ] ✨ New feature (non-breaking change which adds functionality)
-- [ ] 🔌 New plugin (adds a new detection/scoring/action plugin)
-- [ ] 💥 Breaking change (fix or feature that would cause existing functionality to not work as expected)
-- [ ] 📝 Documentation update
-- [ ] 🔧 Configuration change
-- [ ] ♻️ Refactoring (no functional changes)
-- [ ] 🧪 Test improvement
-- [ ] 🎨 Style/formatting update
+<!-- Mark the relevant option with an "x" -->
+
+- [ ] Bug fix (non-breaking change that fixes an issue)
+- [ ] New feature (non-breaking change that adds functionality)
+- [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
+- [ ] Plugin contribution (new detection, scoring, or action plugin)
+- [ ] Documentation update
+- [ ] Code refactoring
+- [ ] Test improvement
+
+## Component
+
+<!-- Mark all that apply with an "x" -->
+
+- [ ] Core (models, plugin_manager, hookspecs)
+- [ ] Pipeline (sight, hearing, touch, taste, smell)
+- [ ] Action
+- [ ] Scoring
+- [ ] Tests
+- [ ] Documentation
+- [ ] CI/CD
 
 ## Changes Made
 
-<!-- List the specific changes in bullet points -->
-
-- 
-- 
-- 
-
-## Related Issues
-
-<!-- Link related issues using #issue_number -->
-
-Closes #
-Related to #
+<!-- Describe the changes in detail -->
 
 ## Testing
 
-<!-- How have you tested these changes? -->
+<!-- Describe how you tested your changes -->
 
-- [ ] All existing tests pass (`pytest`)
-- [ ] Added new tests for changes
-- [ ] Manual testing performed
-- [ ] Linting passes (`ruff check .`)
-- [ ] Formatting is correct (`ruff format .`)
+- [ ] Tests pass locally (`pytest -v --cov=reaper --cov=pipeline`)
+- [ ] New tests added for new functionality
+- [ ] Code follows linting rules (Ruff)
 
-### Test Results
+## Compliance Checklist
 
-```bash
-# Paste pytest output here
-```
+<!-- Ensure your changes follow REAPER guidelines -->
 
-## Plugin-Specific Checklist (if applicable)
+- [ ] Follows plugin-driven architecture principles
+- [ ] Uses Pydantic v2 models for data validation
+- [ ] Does NOT hard-code data sources
+- [ ] Maintains separation of concerns (doesn't mix pipeline roles)
+- [ ] Includes appropriate documentation/docstrings
+- [ ] No breaking changes to existing plugins (or clearly documented if unavoidable)
+- [ ] CI/CD workflows have explicit permissions blocks (if modified)
 
-- [ ] Uses `@hookimpl` decorator from Pluggy
-- [ ] No hard-coded sources (source parameter used)
-- [ ] Follows separation of concerns (no mixing roles)
-- [ ] Uses Pydantic models for data validation
-- [ ] Includes comprehensive docstrings
-- [ ] Added tests for plugin functionality
-- [ ] Updated example_runner.py if needed
+## Documentation
 
-## Code Quality Checklist
+- [ ] README updated (if needed)
+- [ ] Docstrings/comments added or updated
+- [ ] Roadmap updated (if this relates to a roadmap phase)
+- [ ] CONTRIBUTING.md updated (if adding new contributor guidelines)
 
-- [ ] Code follows project style guidelines (see `.github/copilot-instructions.md`)
-- [ ] Self-review of code completed
-- [ ] Comments added for complex or non-obvious code
-- [ ] Documentation updated (README, docstrings)
-- [ ] No new warnings introduced
-- [ ] Type hints included for all functions/methods
-- [ ] Error handling implemented where appropriate
+## Additional Context
 
-## Breaking Changes
-
-<!-- If this is a breaking change, describe the impact and migration path -->
+<!-- Add any other context about the PR here -->
 
 ## Screenshots (if applicable)
 
 <!-- Add screenshots for UI changes or visual improvements -->
 
-## Additional Context
-
-<!-- Add any other context about the pull request here -->
-
-## Checklist Before Requesting Review
-
-- [ ] Code is ready for review
-- [ ] All CI checks pass
-- [ ] Documentation is complete
-- [ ] Ready to merge (all comments addressed)
-
 ---
 
-**For Reviewers:**
-- Please review the code for correctness, style, and adherence to REAPER principles
-- Check that plugins don't hard-code sources and follow separation of concerns
-- Verify test coverage is adequate
-- Ensure Pydantic models are used correctly
+<!-- 
+For Copilot: This PR should align with REAPER's core principles.
+Check .github/copilot-instructions.md for code conventions.
+-->
