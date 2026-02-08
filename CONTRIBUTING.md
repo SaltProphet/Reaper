@@ -222,7 +222,7 @@ class MyActionPlugin:
     """Executes actions on scored signals."""
     
     @hookimpl
-    def reaper_execute_action(self, scored_signal: ScoredSignal):
+    def reaper_action_execute(self, scored_signal: ScoredSignal):
         """
         Execute action on a scored signal.
         
