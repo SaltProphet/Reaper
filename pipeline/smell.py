@@ -4,6 +4,7 @@ Smell Sense Pipeline Stub
 Pattern/anomaly detection of signals.
 Each sense = one job. Never mix pipeline roles.
 """
+
 from typing import List
 
 import pluggy
@@ -43,6 +44,6 @@ class SmellPlugin:
                     "description": "Stub pattern/anomaly signal detected",
                     "stub": True,
                 },
-                metadata={"plugin": "SmellPlugin"}
+                metadata={"plugin": "SmellPlugin"},
             )
         ]

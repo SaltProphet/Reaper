@@ -3,6 +3,7 @@ Tests for pipeline stub plugins.
 
 Validates that stub plugins implement hooks correctly.
 """
+
 from pipeline.action import ActionPlugin
 from pipeline.hearing import HearingPlugin
 from pipeline.scoring import ScoringPlugin

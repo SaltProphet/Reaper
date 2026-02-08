@@ -3,6 +3,7 @@ REAPER Core Models
 
 Pydantic v2 models for data validation across the 5-sense pipeline.
 """
+
 from datetime import datetime, timezone
 from enum import Enum
 from typing import Any, Dict, Optional
@@ -12,6 +13,7 @@ from pydantic import BaseModel, ConfigDict, Field
 
 class SenseType(str, Enum):
     """The five senses plus Action in the REAPER pipeline."""
+
     SIGHT = "sight"
     HEARING = "hearing"
     TOUCH = "touch"
@@ -26,6 +28,7 @@ class Signal(BaseModel):
 
     All plugins must accept and return Signal-compatible data.
     """
+
     model_config = ConfigDict(arbitrary_types_allowed=True)
 
     sense_type: SenseType = Field(..., description="Which sense detected this signal")
@@ -41,6 +44,7 @@ class ScoredSignal(BaseModel):
 
     Extends Signal with score and analysis results.
     """
+
     model_config = ConfigDict(arbitrary_types_allowed=True)
 
     signal: Signal
@@ -55,6 +59,7 @@ class ActionResult(BaseModel):
 
     Used by Action sense plugins to report what they did.
     """
+
     model_config = ConfigDict(arbitrary_types_allowed=True)
 
     signal: ScoredSignal

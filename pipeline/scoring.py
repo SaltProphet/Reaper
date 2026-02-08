@@ -4,6 +4,7 @@ Scoring Pipeline Stub
 Score detected signals for prioritization.
 Separate from detection - never mix pipeline roles.
 """
+
 import pluggy
 
 from reaper.models import ScoredSignal, Signal
