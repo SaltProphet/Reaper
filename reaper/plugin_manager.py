@@ -5,6 +5,7 @@ Manages plugin registration and discovery via Pluggy.
 Ensures no hard-coded sources or pipeline role mixing.
 """
 
+from itertools import chain
 from typing import List, Optional
 
 import pluggy
@@ -44,27 +45,27 @@ class PluginManager:
     def detect_sight(self, source: str) -> List[Signal]:
         """Detect signals via Sight sense plugins."""
         results = self.pm.hook.reaper_sight_detect(source=source)
-        return [signal for result in results for signal in (result or [])]
+        return list(chain.from_iterable(result or [] for result in results))
 
     def detect_hearing(self, source: str) -> List[Signal]:
         """Detect signals via Hearing sense plugins."""
         results = self.pm.hook.reaper_hearing_detect(source=source)
-        return [signal for result in results for signal in (result or [])]
+        return list(chain.from_iterable(result or [] for result in results))
 
     def detect_touch(self, source: str) -> List[Signal]:
         """Detect signals via Touch sense plugins."""
         results = self.pm.hook.reaper_touch_detect(source=source)
-        return [signal for result in results for signal in (result or [])]
+        return list(chain.from_iterable(result or [] for result in results))
 
     def detect_taste(self, source: str) -> List[Signal]:
         """Detect signals via Taste sense plugins."""
         results = self.pm.hook.reaper_taste_detect(source=source)
-        return [signal for result in results for signal in (result or [])]
+        return list(chain.from_iterable(result or [] for result in results))
 
     def detect_smell(self, source: str) -> List[Signal]:
         """Detect signals via Smell sense plugins."""
         results = self.pm.hook.reaper_smell_detect(source=source)
-        return [signal for result in results for signal in (result or [])]
+        return list(chain.from_iterable(result or [] for result in results))
 
     def score_signal(self, signal: Signal) -> List[ScoredSignal]:
         """Score a signal via scoring plugins."""
@@ -76,6 +77,10 @@ class PluginManager:
         results = self.pm.hook.reaper_action_execute(scored_signal=scored_signal)
         return [r for r in results if r is not None]
 
-    def list_plugins(self) -> List[tuple]:
-        """List all registered plugins."""
-        return self._registered_plugins.copy()
+    def list_plugins(self) -> tuple:
+        """Return immutable view of registered plugins."""
+        return tuple(self._registered_plugins)
+
+    def plugin_count(self) -> int:
+        """Return count of registered plugins (O(1) operation)."""
+        return len(self._registered_plugins)
