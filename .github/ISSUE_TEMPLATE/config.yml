@@ -1,0 +1,11 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 💬 GitHub Discussions
+    url: https://github.com/SaltProphet/Reaper/discussions
+    about: Ask questions, share ideas, and discuss architecture
+  - name: 📚 Documentation
+    url: https://github.com/SaltProphet/Reaper/tree/main/public_docs
+    about: Browse the complete documentation
+  - name: 🎯 Plugin Marketplace
+    url: https://github.com/SaltProphet/Reaper/issues?q=is%3Aissue+label%3Aplugin
+    about: Browse community plugins

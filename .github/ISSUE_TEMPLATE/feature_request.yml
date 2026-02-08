@@ -1,0 +1,162 @@
+name: Feature Request
+description: Suggest a new feature or enhancement
+title: "[Feature]: "
+labels: ["enhancement", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a feature! Please provide details to help us understand and evaluate your proposal.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem Statement
+      description: What problem does this feature solve? What friction does it address?
+      placeholder: Currently, when trying to X, I experience Y friction because...
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed Solution
+      description: Describe your proposed solution
+      placeholder: |
+        I propose adding a new plugin/feature that would...
+        
+        This would work by...
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: What alternative solutions have you considered?
+      placeholder: |
+        - Alternative 1: ...
+        - Alternative 2: ...
+    validations:
+      required: false
+
+  - type: dropdown
+    id: component
+    attributes:
+      label: Component
+      description: Which component would this feature affect?
+      options:
+        - New Plugin (Sense)
+        - Core Framework
+        - Plugin System
+        - Documentation
+        - Testing Infrastructure
+        - CLI/Operator Console
+        - Examples
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: sense-type
+    attributes:
+      label: Sense Type (if plugin)
+      description: If this is a plugin feature, which sense does it relate to?
+      options:
+        - Not applicable
+        - Sight (Visual detection)
+        - Hearing (Text/Audio detection)
+        - Touch (Interaction detection)
+        - Taste (Quality detection)
+        - Smell (Pattern detection)
+        - Scoring
+        - Action
+        - Multiple senses
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: architectural-alignment
+    attributes:
+      label: Architectural Alignment
+      description: Confirm this feature aligns with REAPER's principles
+      options:
+        - label: This feature maintains sense isolation (detection/scoring/action separation)
+          required: true
+        - label: This feature does not require hard-coding sources
+          required: true
+        - label: This feature uses or can use Pydantic models for data
+          required: true
+        - label: This feature can be implemented as a plugin (if applicable)
+          required: false
+
+  - type: textarea
+    id: example
+    attributes:
+      label: Usage Example
+      description: Show how this feature would be used
+      placeholder: |
+        ```python
+        # Example usage
+        from reaper import PluginManager
+        from my_new_feature import MyNewPlugin
+        
+        pm = PluginManager()
+        pm.register_plugin(MyNewPlugin(), name="new-feature")
+        
+        # Use the feature...
+        ```
+      render: python
+    validations:
+      required: false
+
+  - type: textarea
+    id: benefits
+    attributes:
+      label: Benefits
+      description: What are the benefits of this feature?
+      placeholder: |
+        - Reduces friction when...
+        - Improves developer experience by...
+        - Enables new use cases like...
+    validations:
+      required: false
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      description: How important is this feature to you?
+      options:
+        - Nice to have
+        - Would significantly improve my workflow
+        - Critical for my use case
+    validations:
+      required: true
+
+  - type: textarea
+    id: implementation
+    attributes:
+      label: Implementation Notes
+      description: Any technical details or considerations for implementation?
+      placeholder: This could be implemented by...
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Contribution
+      options:
+        - label: I would be willing to implement this feature
+        - label: I would be willing to help test this feature
+        - label: I can provide additional examples or use cases
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Any additional context, mockups, or references
+      placeholder: Links, screenshots, similar features in other projects...
+    validations:
+      required: false

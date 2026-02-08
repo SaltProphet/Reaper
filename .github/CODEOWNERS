@@ -1,0 +1,24 @@
+# REAPER Maintainers and Code Owners
+
+# Default owners for everything in the repo
+* @SaltProphet
+
+# Core framework
+/reaper/ @SaltProphet
+
+# Pipeline reference implementations
+/pipeline/ @SaltProphet
+
+# Tests
+/tests/ @SaltProphet
+
+# Documentation
+/public_docs/ @SaltProphet
+*.md @SaltProphet
+
+# CI/CD and automation
+/.github/ @SaltProphet
+
+# Configuration files
+pyproject.toml @SaltProphet
+.gitignore @SaltProphet

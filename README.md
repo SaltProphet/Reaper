@@ -1,8 +1,15 @@
 # REAPER
 
+[![CI](https://github.com/SaltProphet/Reaper/actions/workflows/ci.yml/badge.svg)](https://github.com/SaltProphet/Reaper/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/SaltProphet/Reaper/branch/main/graph/badge.svg)](https://codecov.io/gh/SaltProphet/Reaper)
+[![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 **Modular, biological pipeline for harvesting "problem friction" signals; plugin-driven and operator-ready.**
 
 REAPER is a Python 3.11+ plugin-driven system that detects, scores, and acts on signals via a 5-sense pipeline architecture inspired by biological systems.
+
+📚 **[Documentation](public_docs/)** | 🚀 **[Getting Started](public_docs/getting-started.md)** | 🔌 **[Plugin Guide](public_docs/how-to-create-plugins.md)** | 💬 **[Discussions](https://github.com/SaltProphet/Reaper/discussions)**
 
 ## Architecture
 
@@ -152,6 +159,35 @@ The stubs in `/pipeline/` are reference implementations. To add real functionali
 2. Register it with the PluginManager
 3. Never hard-code sources or mix pipeline roles
 4. Always use Pydantic models for data validation
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed development guidelines.
+
+## Contributing
+
+We welcome contributions! Here's how to get started:
+
+1. **Read the Docs**: Start with [Getting Started](public_docs/getting-started.md) and [Architect's Curse](public_docs/architects-curse.md)
+2. **Pick an Issue**: Browse [open issues](https://github.com/SaltProphet/Reaper/issues) or start a [discussion](https://github.com/SaltProphet/Reaper/discussions)
+3. **Submit a Plugin**: Share your plugin via [Plugin Submission](https://github.com/SaltProphet/Reaper/issues/new?template=plugin_submission.yml)
+4. **Improve Docs**: Help make REAPER more accessible
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for complete guidelines.
+
+## Community
+
+- 💬 **[Discussions](https://github.com/SaltProphet/Reaper/discussions)** - Ask questions, share ideas
+- 🐛 **[Issue Tracker](https://github.com/SaltProphet/Reaper/issues)** - Report bugs, request features
+- 🔌 **[Plugin Marketplace](https://github.com/SaltProphet/Reaper/issues?q=label%3Aplugin)** - Discover and share plugins
+- 📚 **[Documentation](public_docs/)** - Comprehensive guides and references
+
+## Quick Links
+
+- [Getting Started Guide](public_docs/getting-started.md) - Your first steps
+- [Plugin Development Guide](public_docs/how-to-create-plugins.md) - Create plugins
+- [Sense Isolation FAQ](public_docs/sense-isolation-faq.md) - Understand boundaries
+- [Operator Console Walkthrough](public_docs/operator-console-walkthrough.md) - Run pipelines
+- [Architect's Curse](public_docs/architects-curse.md) - Philosophy and vision
+- [Examples Directory](examples/) - Real-world examples
 
 ## License
 

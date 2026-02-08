@@ -1,0 +1,132 @@
+name: Bug Report
+description: Report a bug or unexpected behavior
+title: "[Bug]: "
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug! Please fill out the information below to help us diagnose and fix the issue.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Bug Description
+      description: A clear and concise description of what the bug is.
+      placeholder: When I do X, Y happens instead of Z...
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to Reproduce
+      description: Steps to reproduce the behavior
+      placeholder: |
+        1. Initialize PluginManager with...
+        2. Register SightPlugin...
+        3. Call detect_sight with source='...'
+        4. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What you expected to happen
+      placeholder: The plugin should return a list of Signal objects...
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+      description: What actually happened
+      placeholder: Instead, it raised a ValidationError...
+    validations:
+      required: true
+
+  - type: textarea
+    id: code
+    attributes:
+      label: Minimal Reproducible Code
+      description: Minimal code that reproduces the issue
+      placeholder: |
+        ```python
+        from reaper import PluginManager
+        # ... minimal reproduction code
+        ```
+      render: python
+    validations:
+      required: false
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Please provide your environment details
+      placeholder: |
+        - REAPER Version: 0.1.0
+        - Python Version: 3.11.5
+        - OS: Ubuntu 22.04
+        - Installation method: pip install -e .
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Error Messages / Logs
+      description: Any error messages, stack traces, or logs
+      placeholder: Paste error messages or logs here...
+      render: shell
+    validations:
+      required: false
+
+  - type: dropdown
+    id: component
+    attributes:
+      label: Component
+      description: Which component is affected?
+      options:
+        - Core (models, plugin_manager, hookspecs)
+        - Pipeline (sense stubs)
+        - Documentation
+        - Tests
+        - Build/Installation
+        - Other
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: sense-boundaries
+    attributes:
+      label: Sense Boundary Related?
+      description: Is this bug related to sense isolation or boundary violations?
+      options:
+        - label: This bug involves mixing of detection/scoring/action concerns
+        - label: This bug involves hard-coded sources
+        - label: This bug involves sense type confusion
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Any additional context, screenshots, or information
+      placeholder: Add any other context about the problem here...
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: I have searched existing issues to ensure this hasn't been reported
+          required: true
+        - label: I have provided a minimal reproducible example
+          required: false
+        - label: I have included relevant error messages/logs
+          required: false
