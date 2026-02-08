@@ -110,9 +110,9 @@ result = pm.execute_action(scored_signal)[0]
 
 if result.success:
     print(f"Action succeeded: {result.action_type}")
-    print(f"Details: {result.details}")
+    print(f"Details: {result.result_data}")
 else:
-    print(f"Action failed: {result.details}")
+    print(f"Action failed: {result.error}")
 ```
 
 ## Complete Pipeline Example
@@ -310,6 +310,10 @@ def timed_pipeline(pm: PluginManager, source: str):
 ### Graceful Degradation
 
 ```python
+import logging
+
+logger = logging.getLogger(__name__)
+
 def safe_pipeline(pm: PluginManager, source: str):
     """Pipeline with comprehensive error handling."""
     
@@ -338,7 +342,7 @@ def safe_pipeline(pm: PluginManager, source: str):
             try:
                 result = pm.execute_action(scored)[0]
                 if not result.success:
-                    logger.warning(f"Action failed: {result.details}")
+                    logger.warning(f"Action failed: {result.error}")
             except Exception as e:
                 logger.error(f"Action execution failed: {e}")
                 continue

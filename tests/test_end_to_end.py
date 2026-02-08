@@ -181,7 +181,7 @@ class TestEndToEndPipeline:
         for scored_signal in scored:
             assert hasattr(scored_signal, 'score')
             assert hasattr(scored_signal, 'signal')
-            # Original signal should be immutable
+            # Original signal should remain unscored (no score attribute added)
             assert not hasattr(scored_signal.signal, 'score')
 
     def test_batch_processing(self, plugin_manager):

@@ -6,7 +6,6 @@ This directory contains examples, sample configurations, and reference implement
 
 - **[simple_pipeline.py](#simple_pipelinepy)** - Basic pipeline example
 - **[multi_source_monitor.py](#multi_source_monitorpy)** - Monitor multiple sources
-- **[batch_processor.py](#batch_processorpy)** - Batch processing example
 - **[custom_plugin_example.py](#custom_plugin_examplepy)** - Create a custom plugin
 - **[mission_configs/](#mission-configs)** - Sample mission configurations
 - **[sample_signals/](#sample-signals)** - Sample signal data for testing
@@ -17,7 +16,6 @@ This directory contains examples, sample configurations, and reference implement
 # Run from the repository root
 python examples/simple_pipeline.py
 python examples/multi_source_monitor.py
-python examples/batch_processor.py
 python examples/custom_plugin_example.py
 ```
 
@@ -42,15 +40,15 @@ Monitor multiple sources across different senses simultaneously.
 - Source prioritization
 - Batch signal processing
 
-## batch_processor.py
+## multi_source_monitor.py
 
-Process large volumes of signals efficiently in batches.
+Monitor multiple sources across different senses simultaneously.
 
 **What it demonstrates:**
-- Batch processing patterns
-- Performance optimization
-- Memory management
-- Progress tracking
+- Multiple source monitoring
+- Multi-sense detection
+- Source prioritization
+- Batch signal processing
 
 ## custom_plugin_example.py
 
@@ -69,8 +67,6 @@ Sample mission configurations for different use cases:
 - **reddit_monitor.yaml** - Monitor Reddit for signals
 - **github_issues.yaml** - Track GitHub issues
 - **log_analyzer.yaml** - Analyze application logs
-- **metric_monitor.yaml** - Monitor quality metrics
-- **pattern_detector.yaml** - Detect patterns and anomalies
 
 ## Sample Signals
 
@@ -86,7 +82,7 @@ Pre-built signal datasets for testing:
 
 ```python
 import json
-from pathlib import Path
+from reaper.models import Signal
 
 # Load sample signals
 with open('examples/sample_signals/text_signals.json') as f:

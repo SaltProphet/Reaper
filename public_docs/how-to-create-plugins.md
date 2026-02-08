@@ -163,7 +163,7 @@ class MyCustomAction:
     """Executes custom actions on scored signals."""
     
     @hookimpl
-    def reaper_execute_action(self, scored_signal: ScoredSignal) -> ActionResult:
+    def reaper_action_execute(self, scored_signal: ScoredSignal) -> ActionResult:
         """
         Execute an action based on a scored signal.
         
@@ -178,9 +178,10 @@ class MyCustomAction:
             self._perform_action(scored_signal)
             
             return ActionResult(
+                signal=scored_signal,
                 success=True,
                 action_type="custom-action",
-                details={
+                result_data={
                     "signal_id": id(scored_signal.signal),
                     "score": scored_signal.score,
                     "action_taken": "notification_sent"
@@ -188,9 +189,10 @@ class MyCustomAction:
             )
         except Exception as e:
             return ActionResult(
+                signal=scored_signal,
                 success=False,
                 action_type="custom-action",
-                details={"error": str(e)}
+                error=str(e)
             )
     
     def _perform_action(self, scored_signal: ScoredSignal):
@@ -353,14 +355,14 @@ See [reaper/hookspecs.py](../reaper/hookspecs.py) for the complete list of avail
 - `reaper_taste_detect(source: str) -> List[Signal]`
 - `reaper_smell_detect(source: str) -> List[Signal]`
 - `reaper_score_signal(signal: Signal) -> ScoredSignal`
-- `reaper_execute_action(scored_signal: ScoredSignal) -> ActionResult`
+- `reaper_action_execute(scored_signal: ScoredSignal) -> ActionResult`
 
 ## Next Steps
 
 1. Review the [Sense Isolation FAQ](sense-isolation-faq.md) to understand sense boundaries
 2. Check out the [examples directory](../examples/) for complete plugin implementations
 3. Read the [Architect's Curse](architects-curse.md) for philosophical context
-4. Submit your plugin to the [Plugin Marketplace](https://github.com/SaltProphet/Reaper/issues/new?template=plugin-marketplace.md)
+4. Submit your plugin to the [Plugin Marketplace](https://github.com/SaltProphet/Reaper/issues/new?template=plugin_submission.yml)
 
 ## Getting Help
 

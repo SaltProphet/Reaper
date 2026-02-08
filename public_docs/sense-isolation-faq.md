@@ -105,7 +105,7 @@ class GoodScorer:
 
 class GoodAction:
     @hookimpl
-    def reaper_execute_action(self, scored_signal: ScoredSignal) -> ActionResult:
+    def reaper_action_execute(self, scored_signal: ScoredSignal) -> ActionResult:
         # Actions happen separately
         if scored_signal.score > 0.8:
             return self.send_alert(scored_signal)

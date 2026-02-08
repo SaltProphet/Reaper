@@ -67,7 +67,7 @@ class Scorer:
 # Action: Only acts, never senses or judges
 class Action:
     @hookimpl
-    def reaper_execute_action(self, scored: ScoredSignal) -> ActionResult:
+    def reaper_action_execute(self, scored: ScoredSignal) -> ActionResult:
         return self.alert_if_urgent(scored)
 ```
 
