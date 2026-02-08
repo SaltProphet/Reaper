@@ -1,0 +1,111 @@
+name: 🔌 Plugin Request
+description: Suggest a new plugin for REAPER
+title: "[Plugin]: "
+labels: ["enhancement", "plugin"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a new plugin! This will help expand REAPER's capabilities.
+  
+  - type: dropdown
+    id: sense-type
+    attributes:
+      label: Sense Type
+      description: Which sense should this plugin implement?
+      options:
+        - Sight (Visual Detection)
+        - Hearing (Audio/Text Detection)
+        - Touch (Interaction Detection)
+        - Taste (Quality/Sampling Detection)
+        - Smell (Pattern/Anomaly Detection)
+        - Scoring
+        - Action
+    validations:
+      required: true
+  
+  - type: input
+    id: plugin-name
+    attributes:
+      label: Plugin Name
+      description: Proposed name for the plugin
+      placeholder: "e.g., GitHubIssueDetector, SlackSentimentAnalyzer"
+    validations:
+      required: true
+  
+  - type: textarea
+    id: description
+    attributes:
+      label: Plugin Description
+      description: What should this plugin do?
+      placeholder: Describe the plugin's functionality in detail
+    validations:
+      required: true
+  
+  - type: textarea
+    id: use-case
+    attributes:
+      label: Use Case
+      description: Why is this plugin needed? What problem does it solve?
+      placeholder: Explain the business value or use case
+    validations:
+      required: true
+  
+  - type: textarea
+    id: data-source
+    attributes:
+      label: Data Source
+      description: Where will this plugin get data from?
+      placeholder: "e.g., GitHub API, Jira REST API, Slack Events API, Custom webhook"
+    validations:
+      required: true
+  
+  - type: textarea
+    id: sample-output
+    attributes:
+      label: Expected Output
+      description: What should the Signal/ScoredSignal/ActionResult look like?
+      placeholder: |
+        Signal(
+          sense_type=SenseType.SIGHT,
+          source="github-issues",
+          raw_data={"issue_number": 123, "title": "Bug", "labels": ["bug"]}
+        )
+      render: python
+  
+  - type: dropdown
+    id: complexity
+    attributes:
+      label: Complexity
+      description: How complex is this plugin to implement?
+      options:
+        - Low (simple API call)
+        - Medium (some logic required)
+        - High (complex processing)
+    validations:
+      required: true
+  
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies
+      description: Any external libraries or services required?
+      placeholder: "e.g., requests, PyGithub, slack-sdk"
+  
+  - type: checkboxes
+    id: willing-to-implement
+    attributes:
+      label: Implementation
+      description: Are you willing to implement this plugin?
+      options:
+        - label: I can implement this plugin myself
+        - label: I need help implementing this
+        - label: I'm just suggesting, can't implement
+  
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Any other relevant information

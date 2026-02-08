@@ -1,0 +1,72 @@
+[
+  {
+    "sense_type": "hearing",
+    "source": "reddit-r-programming",
+    "raw_data": {
+      "post_id": "abc123",
+      "title": "Why is async/await so confusing in JavaScript?",
+      "content": "I've been trying to understand async/await for weeks and it still doesn't make sense. The documentation is unclear and examples are inconsistent.",
+      "author": "confused_dev",
+      "upvotes": 234,
+      "comments": 45,
+      "created_utc": 1704067200,
+      "url": "https://reddit.com/r/programming/abc123",
+      "keywords": ["confusing", "unclear", "async", "javascript"]
+    }
+  },
+  {
+    "sense_type": "hearing",
+    "source": "slack-engineering",
+    "raw_data": {
+      "message_id": "msg456",
+      "text": "Anyone else finding the new deployment process really frustrating? Takes forever and fails randomly.",
+      "channel": "engineering",
+      "user": "alice",
+      "timestamp": 1704070800,
+      "reactions": {"thumbsup": 8, "eyes": 3},
+      "keywords": ["frustrating", "fails", "deployment"]
+    }
+  },
+  {
+    "sense_type": "hearing",
+    "source": "github-issues",
+    "raw_data": {
+      "issue_number": 789,
+      "title": "Documentation for configuration is missing key details",
+      "body": "The config documentation doesn't explain what half the options do. Had to read the source code to figure it out.",
+      "author": "github_user",
+      "labels": ["documentation", "needs-improvement"],
+      "comments": 12,
+      "reactions": {"+1": 15, "confused": 5},
+      "created_at": "2024-01-01T12:00:00Z",
+      "keywords": ["documentation", "missing", "unclear", "configuration"]
+    }
+  },
+  {
+    "sense_type": "hearing",
+    "source": "support-tickets",
+    "raw_data": {
+      "ticket_id": "SUPP-1234",
+      "subject": "Unable to complete checkout process",
+      "description": "The checkout button doesn't work on mobile. Tried multiple times, keeps timing out.",
+      "priority": "high",
+      "customer_tier": "enterprise",
+      "created_at": "2024-01-01T14:30:00Z",
+      "keywords": ["checkout", "timeout", "mobile", "button", "doesn't work"]
+    }
+  },
+  {
+    "sense_type": "hearing",
+    "source": "twitter-mentions",
+    "raw_data": {
+      "tweet_id": "tweet789",
+      "text": "Love the product but the onboarding is really difficult. Took me hours to figure out the basics.",
+      "author": "@techuser",
+      "likes": 42,
+      "retweets": 8,
+      "created_at": "2024-01-01T16:00:00Z",
+      "sentiment": "mixed",
+      "keywords": ["onboarding", "difficult", "hours"]
+    }
+  }
+]

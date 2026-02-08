@@ -1,0 +1,93 @@
+# Log Analyzer Mission Configuration
+
+mission:
+  name: "Application Log Error Detector"
+  description: "Detect error patterns and friction signals from application logs"
+
+senses:
+  hearing:
+    plugin: "log-stream-monitor"
+    sources:
+      - path: "/var/log/app/production.log"
+        enabled: true
+        tail: true
+      - path: "/var/log/app/api.log"
+        enabled: true
+        tail: true
+      - path: "/var/log/app/worker.log"
+        enabled: true
+        tail: true
+    
+    filters:
+      log_levels: ["ERROR", "CRITICAL", "WARNING"]
+      patterns:
+        - "Exception"
+        - "failed"
+        - "timeout"
+        - "connection refused"
+
+  smell:
+    plugin: "log-pattern-analyzer"
+    sources:
+      - path: "/var/log/app/production.log"
+        window: 3600  # 1 hour window
+      - path: "/var/log/app/api.log"
+        window: 3600
+    
+    patterns:
+      - type: "error-rate-spike"
+        baseline_window: 86400  # 24 hours
+        spike_threshold: 3.0
+      
+      - type: "repeated-error"
+        min_occurrences: 5
+        time_window: 300  # 5 minutes
+      
+      - type: "cascading-failure"
+        correlation_threshold: 0.8
+
+scoring:
+  plugin: "log-severity-scorer"
+  config:
+    weights:
+      log_level: 0.3
+      frequency: 0.3
+      user_impact: 0.2
+      service_criticality: 0.2
+    
+    level_scores:
+      "CRITICAL": 1.0
+      "ERROR": 0.8
+      "WARNING": 0.5
+    
+    service_criticality:
+      "production": 1.0
+      "api": 0.9
+      "worker": 0.7
+
+actions:
+  - type: "alert-oncall"
+    enabled: true
+    config:
+      threshold: 0.8
+      service: "pagerduty"
+  
+  - type: "create-incident"
+    enabled: true
+    config:
+      threshold: 0.85
+      severity: "high"
+  
+  - type: "log-to-metrics"
+    enabled: true
+    config:
+      threshold: 0.5
+      metrics_backend: "prometheus"
+  
+  - type: "trigger-runbook"
+    enabled: true
+    config:
+      threshold: 0.9
+      runbooks:
+        "database-timeout": "runbooks/db-timeout.md"
+        "api-overload": "runbooks/api-scale.md"
