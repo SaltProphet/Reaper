@@ -153,6 +153,43 @@ The stubs in `/pipeline/` are reference implementations. To add real functionali
 3. Never hard-code sources or mix pipeline roles
 4. Always use Pydantic models for data validation
 
+## Contributing
+
+We welcome contributions! Here's how to get started:
+
+### Quick Start
+
+**Use GitHub Codespaces** for instant setup:
+1. Click "Code" → "Create codespace"
+2. Everything is pre-configured (Python 3.11, dependencies, tools)
+3. Start coding immediately!
+
+**Or contribute locally**:
+- See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines
+- Check [Roadmap](Roadmap) for current priorities
+- Browse [open issues](https://github.com/SaltProphet/Reaper/issues) for tasks
+
+### Ways to Contribute
+
+- 🐛 **Report bugs**: Use our [bug report template](.github/ISSUE_TEMPLATE/bug_report.yml)
+- ✨ **Suggest features**: Use our [feature request template](.github/ISSUE_TEMPLATE/feature_request.yml)
+- 🔌 **Build plugins**: Use our [plugin submission template](.github/ISSUE_TEMPLATE/plugin_submission.yml)
+- 📖 **Improve docs**: Documentation PRs are always welcome
+- 💬 **Join discussions**: Share ideas in [GitHub Discussions](https://github.com/SaltProphet/Reaper/discussions)
+
+### Community & Collaboration
+
+- **Discussions**: Q&A, plugin marketplace, ideas
+- **GitHub Projects**: Track roadmap progress
+- **GitHub Spaces**: Collaborative design sessions
+- **Copilot Integration**: AI-assisted development with project-specific instructions
+
+See our guides:
+- [Projects Guide](.github/PROJECTS_GUIDE.md)
+- [Spaces Guide](.github/SPACES_GUIDE.md)
+- [Spark Automation Guide](.github/SPARK_AUTOMATION_GUIDE.md)
+- [Copilot Instructions](.github/copilot-instructions.md)
+
 ## License
 
 MIT
