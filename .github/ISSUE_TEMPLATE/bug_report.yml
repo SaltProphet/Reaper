@@ -1,0 +1,105 @@
+name: 🐛 Bug Report
+description: Report a bug in REAPER
+title: "[Bug]: "
+labels: ["bug"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report this bug! Please fill out the form below to help us investigate.
+  
+  - type: textarea
+    id: description
+    attributes:
+      label: Bug Description
+      description: A clear and concise description of the bug
+      placeholder: Tell us what you see!
+    validations:
+      required: true
+  
+  - type: dropdown
+    id: component
+    attributes:
+      label: Component
+      description: Which part of REAPER is affected?
+      options:
+        - Core Framework
+        - Plugin System
+        - Sight Pipeline
+        - Hearing Pipeline
+        - Touch Pipeline
+        - Taste Pipeline
+        - Smell Pipeline
+        - Scoring
+        - Actions
+        - Documentation
+        - Other
+    validations:
+      required: true
+  
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to Reproduce
+      description: How can we reproduce this bug?
+      placeholder: |
+        1. Install REAPER with `pip install -e .`
+        2. Run example_runner.py
+        3. See error
+      value: |
+        1. 
+        2. 
+        3. 
+    validations:
+      required: true
+  
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What should happen?
+      placeholder: Describe what you expected to happen
+    validations:
+      required: true
+  
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+      description: What actually happens?
+      placeholder: Describe what actually happened
+    validations:
+      required: true
+  
+  - type: input
+    id: python-version
+    attributes:
+      label: Python Version
+      description: Output of `python --version`
+      placeholder: "3.11.0"
+    validations:
+      required: true
+  
+  - type: input
+    id: os
+    attributes:
+      label: Operating System
+      placeholder: "Ubuntu 22.04, macOS 13, Windows 11"
+    validations:
+      required: true
+  
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: Relevant logs or error messages
+      placeholder: Paste any relevant logs here
+      render: shell
+  
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Any other relevant information (screenshots, environment details, etc.)

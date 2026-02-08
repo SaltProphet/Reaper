@@ -153,6 +153,25 @@ The stubs in `/pipeline/` are reference implementations. To add real functionali
 3. Never hard-code sources or mix pipeline roles
 4. Always use Pydantic models for data validation
 
+### 📚 Documentation
+
+- **[Quick Start Guide](QUICKSTART.md)** - Get productive with GitHub Copilot and Codespaces in 15 minutes
+- **[Advanced Tools Guide](GITHUB_ADVANCED_TOOLS.md)** - Comprehensive guide for Copilot, Codespaces, Spark, and automation
+- **[Contributing Guide](CONTRIBUTING.md)** - How to contribute to REAPER
+- **[Copilot Instructions](.github/copilot-instructions.md)** - Project-specific Copilot guidance
+
+### 🚀 GitHub Advanced Tools
+
+REAPER is optimized for modern GitHub development tools:
+
+- **GitHub Copilot**: AI-powered code suggestions and chat (see [setup guide](QUICKSTART.md))
+- **GitHub Codespaces**: Pre-configured cloud development environment
+- **GitHub Actions**: Automated CI/CD with linting, testing, and plugin validation
+- **Issue Templates**: Structured bug reports and feature requests
+- **PR Templates**: Comprehensive pull request checklists
+
+[Learn how to use these tools →](GITHUB_ADVANCED_TOOLS.md)
+
 ## License
 
 MIT

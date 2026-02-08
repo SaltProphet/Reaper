@@ -1,0 +1,111 @@
+name: Plugin Validator
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - 'pipeline/**'
+      - 'reaper/**'
+  pull_request:
+    branches: [ main, develop ]
+    paths:
+      - 'pipeline/**'
+      - 'reaper/**'
+
+jobs:
+  validate-plugins:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.11"
+    
+    - name: Install REAPER
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e ".[dev]"
+    
+    - name: Validate Plugin Structure
+      run: |
+        python -c "
+        from reaper import PluginManager
+        import sys
+        
+        print('🔍 Validating REAPER plugins...')
+        
+        # Test plugin loading
+        pm = PluginManager()
+        try:
+            from pipeline.sight import SightPlugin
+            from pipeline.hearing import HearingPlugin
+            from pipeline.touch import TouchPlugin
+            from pipeline.taste import TastePlugin
+            from pipeline.smell import SmellPlugin
+            from pipeline.scoring import ScoringPlugin
+            from pipeline.action import ActionPlugin
+            
+            # Register all plugins
+            pm.register_plugin(SightPlugin(), name='sight')
+            pm.register_plugin(HearingPlugin(), name='hearing')
+            pm.register_plugin(TouchPlugin(), name='touch')
+            pm.register_plugin(TastePlugin(), name='taste')
+            pm.register_plugin(SmellPlugin(), name='smell')
+            pm.register_plugin(ScoringPlugin(), name='scoring')
+            pm.register_plugin(ActionPlugin(), name='action')
+            
+            print('✅ All plugins loaded successfully')
+            print(f'✅ Registered plugins: {pm.list_plugins()}')
+        except Exception as e:
+            print(f'❌ Plugin validation failed: {e}')
+            import traceback
+            traceback.print_exc()
+            sys.exit(1)
+        "
+    
+    - name: Test Plugin Functionality
+      run: |
+        python -c "
+        from reaper import PluginManager
+        from pipeline.sight import SightPlugin
+        from pipeline.scoring import ScoringPlugin
+        from pipeline.action import ActionPlugin
+        from reaper.models import SenseType
+        import sys
+        
+        print('🧪 Testing basic plugin functionality...')
+        
+        try:
+            pm = PluginManager()
+            pm.register_plugin(SightPlugin(), name='sight')
+            pm.register_plugin(ScoringPlugin(), name='scoring')
+            pm.register_plugin(ActionPlugin(), name='action')
+            
+            # Test detection
+            signals = pm.detect_sight(source='test-source')
+            assert len(signals) > 0, 'No signals detected'
+            assert signals[0].sense_type == SenseType.SIGHT, 'Wrong sense type'
+            print(f'✅ Detection works: {len(signals)} signals')
+            
+            # Test scoring
+            scored = pm.score_signal(signals[0])
+            assert len(scored) > 0, 'No scored signals'
+            assert 0.0 <= scored[0].score <= 1.0, 'Score out of range'
+            print(f'✅ Scoring works: score={scored[0].score}')
+            
+            # Test action
+            result = pm.execute_action(scored[0])
+            assert len(result) > 0, 'No action results'
+            assert hasattr(result[0], 'success'), 'Missing success attribute'
+            print(f'✅ Action works: success={result[0].success}')
+            
+            print('✅ All plugin functionality tests passed')
+        except Exception as e:
+            print(f'❌ Plugin functionality test failed: {e}')
+            import traceback
+            traceback.print_exc()
+            sys.exit(1)
+        "
