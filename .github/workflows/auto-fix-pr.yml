@@ -67,10 +67,7 @@ jobs:
           git config user.name "reaper-autofix[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add -A
-          git commit -m "🤖 Auto-fix: Apply Ruff formatting and lint fixes
-
-Applied by auto-fix agent via /fix command
-Triggered by: @${{ github.actor }}"
+          git commit -m "🤖 Auto-fix: Apply Ruff formatting and lint fixes" -m "Applied by auto-fix agent via /fix command" -m "Triggered by: @${{ github.actor }}"
           git push
       
       - name: Comment result

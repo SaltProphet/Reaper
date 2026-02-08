@@ -87,27 +87,24 @@ jobs:
         with:
           script: |
             const failures = '${{ steps.quality.outputs.failures }}';
+            const body = '## ⛔ Quality Gate Failed\n\n' +
+              '**Failed Checks:** ' + failures + '\n\n' +
+              '**Actions Required:**\n' +
+              '1. For formatting/linting failures: Comment `/fix` to automatically apply Ruff fixes\n' +
+              '2. For test failures: Fix tests locally and push changes\n' +
+              '3. Run checks locally before pushing: `ruff check . && ruff format --check . && pytest`\n\n' +
+              '**Quality Standards:**\n' +
+              '- ✅ Ruff formatting compliance\n' +
+              '- ✅ Zero Ruff lint violations  \n' +
+              '- ✅ All tests passing\n' +
+              '- ✅ Sense isolation maintained\n\n' +
+              'This PR cannot be merged until all checks pass.';
             
             await github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `## ⛔ Quality Gate Failed
-
-**Failed Checks:** ${failures}
-
-**Actions Required:**
-1. For formatting/linting failures: Comment \`/fix\` to automatically apply Ruff fixes
-2. For test failures: Fix tests locally and push changes
-3. Run checks locally before pushing: \`ruff check . && ruff format --check . && pytest\`
-
-**Quality Standards:**
-- ✅ Ruff formatting compliance
-- ✅ Zero Ruff lint violations  
-- ✅ All tests passing
-- ✅ Sense isolation maintained
-
-This PR cannot be merged until all checks pass.`
+              body: body
             });
             
             core.setFailed('Quality gate failed');
