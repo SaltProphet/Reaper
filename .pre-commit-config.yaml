@@ -3,14 +3,19 @@ repos:
     rev: v0.6.0
     hooks:
       - id: ruff
-        args: [--fix]
+        args: [--fix, --exit-non-zero-on-fix]
+        stages: [commit]
       - id: ruff-format
+        stages: [commit]
 
   - repo: local
     hooks:
       - id: pytest-check
-        name: pytest
+        name: pytest (fast tests only)
         entry: pytest
         language: system
         pass_filenames: false
         always_run: true
+        args: [-x, --lf, -q]
+        stages: [push]
+

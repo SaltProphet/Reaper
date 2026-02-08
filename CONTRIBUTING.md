@@ -1,6 +1,47 @@
 # Contributing to REAPER
 
-Thank you for your interest in contributing to REAPER! This guide will help you get started.
+## ⚠️ MILSPEC QUALITY ENFORCEMENT
+
+REAPER maintains military-grade code quality standards. **All contributions must pass automated quality gates.**
+
+### Requirements (Non-Negotiable)
+
+1. **Pre-commit hooks installed**
+   ```bash
+   pip install pre-commit
+   pre-commit install
+   ```
+
+2. **All checks pass locally BEFORE pushing**
+   ```bash
+   ruff check .
+   ruff format --check .
+   pytest
+   ```
+
+3. **PR quality gates**
+   - ✅ Ruff formatting compliance
+   - ✅ Zero Ruff lint violations
+   - ✅ All tests passing (Python 3.11 + 3.12)
+   - ✅ Sense isolation maintained
+   - ✅ No hard-coded sources
+
+### If CI Fails
+
+**Auto-fix available:** Comment `/fix` on your PR to automatically apply Ruff fixes.
+
+**Manual fixes required if:**
+- Tests fail (fix locally first)
+- Sense isolation violated (architecture issue)
+- Hard-coded sources detected
+
+### Code Quality Commands
+
+Available on PRs:
+- `/fix` - Auto-apply Ruff fixes
+- Re-push triggers CI rerun
+
+---
 
 ## Code Quality Requirements
 
