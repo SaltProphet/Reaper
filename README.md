@@ -44,6 +44,35 @@ pip install -e ".[dev]"
 
 ## Quick Start
 
+### 1. Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/SaltProphet/Reaper.git
+cd Reaper
+
+# Install the package
+pip install -e .
+
+# Or install with dev dependencies (recommended for contributors)
+pip install -e ".[dev]"
+```
+
+### 2. Run the Example
+
+```bash
+# Run the complete pipeline example
+python example_runner.py
+```
+
+This demonstrates:
+- ✅ All 5 sense plugins detecting signals
+- ✅ Scoring plugin evaluating signals
+- ✅ Action plugin executing on signals
+- ✅ Complete end-to-end pipeline flow
+
+### 3. Create Your First Plugin
+
 ```python
 from reaper import PluginManager
 from pipeline.sight import SightPlugin
@@ -66,8 +95,104 @@ scored = pm.score_signal(signals[0])[0]
 
 # Execute actions
 result = pm.execute_action(scored)[0]
+# Execute actions
+result = pm.execute_action(scored)[0]
 print(f"Action {'succeeded' if result.success else 'failed'}")
 ```
+
+**What's happening here?**
+1. `PluginManager` coordinates all plugins
+2. Plugins implement hook specifications (detection, scoring, action)
+3. `source` parameter is plugin-specific (never hard-coded in core)
+4. Data flows through type-safe Pydantic models
+5. Multiple plugins can handle the same hook
+
+### 4. Verify Installation
+
+```bash
+# Run tests
+pytest
+
+# Run with coverage
+pytest --cov=reaper --cov=pipeline
+
+# Expected: 136 tests passing, 96%+ coverage
+```
+
+## Troubleshooting
+
+### Common Issues
+
+**Import Error: No module named 'reaper'**
+```bash
+# Solution: Install in editable mode
+pip install -e .
+```
+
+**Import Error: No module named 'pluggy' or 'pydantic'**
+```bash
+# Solution: Install dependencies
+pip install pluggy pydantic
+```
+
+**Tests Failing**
+```bash
+# Check if you're in the correct directory
+pwd  # Should show .../Reaper
+
+# Reinstall in editable mode
+pip uninstall -y reaper
+pip install -e .
+
+# Run tests
+pytest -v
+```
+
+**Coverage Not 96%+**
+```bash
+# Make sure all test files are included
+pytest --cov=reaper --cov=pipeline --cov-report=term-missing
+
+# Check which lines are missing coverage
+# Note: hookspecs.py will show some uncovered lines (pass statements) - this is expected
+```
+
+**Example Runner Not Working**
+```bash
+# Verify Python version (requires 3.11+)
+python --version
+
+# Reinstall dependencies
+pip install -e .
+
+# Run with verbose output
+python -v example_runner.py
+```
+
+**Ruff Linting Errors**
+```bash
+# Install ruff
+pip install ruff
+
+# Check formatting
+ruff format --check .
+
+# Auto-fix formatting
+ruff format .
+
+# Check linting
+ruff check .
+
+# Auto-fix linting issues
+ruff check --fix .
+```
+
+### Getting Help
+
+- 📖 **Documentation**: Check [public_docs/](public_docs/) for guides
+- 💬 **Discussions**: Ask in [GitHub Discussions](https://github.com/SaltProphet/Reaper/discussions)
+- 🐛 **Bugs**: Report using [bug report template](.github/ISSUE_TEMPLATE/bug_report.yml)
+- 🔌 **Plugin Help**: See [Plugin Development Guide](public_docs/how-to-create-plugins.md)
 
 ## Running the Example
 

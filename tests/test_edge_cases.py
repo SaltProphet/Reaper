@@ -89,7 +89,7 @@ class TestPluginEdgeCases:
         # FaultyPlugin doesn't have @hookimpl decorator, so it won't be called
         # This tests that plugins without proper decorators are silently ignored
         pm.register_plugin(FaultyPlugin(), name="faulty")
-        
+
         # Since FaultyPlugin lacks @hookimpl, it won't be called and returns empty list
         signals = pm.detect_sight(source="test")
         assert isinstance(signals, list)
@@ -159,9 +159,7 @@ class TestPluginEdgeCases:
     def test_signal_with_large_raw_data(self):
         """Test signals can handle large raw_data payloads."""
         large_data = {f"key_{i}": f"value_{i}" for i in range(1000)}
-        signal = Signal(
-            sense_type=SenseType.HEARING, source="large-data", raw_data=large_data
-        )
+        signal = Signal(sense_type=SenseType.HEARING, source="large-data", raw_data=large_data)
 
         assert len(signal.raw_data) == 1000
         assert signal.raw_data["key_500"] == "value_500"

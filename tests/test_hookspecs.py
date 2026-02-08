@@ -5,7 +5,6 @@ Tests that validate hook specifications and their implementations.
 """
 
 import pluggy
-import pytest
 
 from reaper.hookspecs import HookSpecs
 from reaper.models import ActionResult, ScoredSignal, SenseType, Signal

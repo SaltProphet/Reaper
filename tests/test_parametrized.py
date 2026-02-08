@@ -43,9 +43,7 @@ class TestParametrizedSenses:
             (SenseType.SMELL, "detect_smell", "pattern-source"),
         ],
     )
-    def test_sense_detection_parametrized(
-        self, plugin_manager, sense_type, detect_method, source
-    ):
+    def test_sense_detection_parametrized(self, plugin_manager, sense_type, detect_method, source):
         """Test detection for all sense types parametrically."""
         detect_func = getattr(plugin_manager, detect_method)
         signals = detect_func(source=source)
@@ -210,8 +208,7 @@ class TestParametrizedSenses:
     def test_batch_signal_creation(self, batch_size):
         """Test batch signal creation with various sizes."""
         signals_data = [
-            {"sense_type": SenseType.SIGHT, "source": f"source-{i}"}
-            for i in range(batch_size)
+            {"sense_type": SenseType.SIGHT, "source": f"source-{i}"} for i in range(batch_size)
         ]
         signals = Signal.create_batch(signals_data)
 
