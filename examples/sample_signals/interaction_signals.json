@@ -1,0 +1,76 @@
+[
+  {
+    "sense_type": "touch",
+    "source": "api-events",
+    "raw_data": {
+      "event_id": "evt001",
+      "endpoint": "/api/v1/checkout",
+      "method": "POST",
+      "status_code": 500,
+      "response_time_ms": 5234,
+      "user_id": "user123",
+      "timestamp": "2024-01-01T10:15:00Z",
+      "retry_count": 3,
+      "error_message": "Database connection timeout"
+    }
+  },
+  {
+    "sense_type": "touch",
+    "source": "click-analytics",
+    "raw_data": {
+      "event_id": "clk002",
+      "event_type": "rage_click",
+      "element": "button#submit-form",
+      "page": "/checkout",
+      "user_id": "user456",
+      "click_count": 12,
+      "time_span_seconds": 8,
+      "timestamp": "2024-01-01T11:00:00Z",
+      "session_id": "sess789"
+    }
+  },
+  {
+    "sense_type": "touch",
+    "source": "form-analytics",
+    "raw_data": {
+      "form_id": "signup-form",
+      "event_type": "abandonment",
+      "fields_completed": 4,
+      "total_fields": 8,
+      "time_on_form_seconds": 120,
+      "last_field": "credit-card-number",
+      "user_id": "user789",
+      "timestamp": "2024-01-01T12:30:00Z",
+      "session_id": "sess456"
+    }
+  },
+  {
+    "sense_type": "touch",
+    "source": "navigation-tracking",
+    "raw_data": {
+      "event_id": "nav003",
+      "event_type": "back_button",
+      "from_page": "/checkout",
+      "to_page": "/cart",
+      "time_on_page_seconds": 15,
+      "actions_taken": ["click_submit", "click_submit", "back"],
+      "user_id": "user321",
+      "timestamp": "2024-01-01T13:45:00Z"
+    }
+  },
+  {
+    "sense_type": "touch",
+    "source": "webhook-events",
+    "raw_data": {
+      "webhook_id": "hook004",
+      "source": "payment-processor",
+      "event_type": "payment.failed",
+      "reason": "insufficient_funds",
+      "amount": 99.99,
+      "currency": "USD",
+      "customer_id": "cust_123",
+      "retry_attempt": 2,
+      "timestamp": "2024-01-01T14:00:00Z"
+    }
+  }
+]

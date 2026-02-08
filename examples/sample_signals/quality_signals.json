@@ -1,0 +1,79 @@
+[
+  {
+    "sense_type": "taste",
+    "source": "performance-metrics",
+    "raw_data": {
+      "metric_id": "perf001",
+      "metric_name": "api_response_time",
+      "value": 3450,
+      "unit": "milliseconds",
+      "threshold": 1000,
+      "severity": "high",
+      "endpoint": "/api/v1/search",
+      "timestamp": "2024-01-01T10:00:00Z",
+      "p95": 4200,
+      "p99": 5800
+    }
+  },
+  {
+    "sense_type": "taste",
+    "source": "quality-metrics",
+    "raw_data": {
+      "metric_id": "qual002",
+      "metric_name": "error_rate",
+      "value": 0.08,
+      "unit": "percentage",
+      "threshold": 0.01,
+      "service": "checkout-service",
+      "timestamp": "2024-01-01T11:30:00Z",
+      "total_requests": 10000,
+      "failed_requests": 800
+    }
+  },
+  {
+    "sense_type": "taste",
+    "source": "user-experience-metrics",
+    "raw_data": {
+      "metric_id": "ux003",
+      "metric_name": "time_to_interactive",
+      "value": 5.2,
+      "unit": "seconds",
+      "threshold": 3.0,
+      "page": "/dashboard",
+      "timestamp": "2024-01-01T12:00:00Z",
+      "device_type": "mobile",
+      "network": "4g"
+    }
+  },
+  {
+    "sense_type": "taste",
+    "source": "database-metrics",
+    "raw_data": {
+      "metric_id": "db004",
+      "metric_name": "query_duration",
+      "value": 2800,
+      "unit": "milliseconds",
+      "threshold": 500,
+      "query_type": "SELECT",
+      "table": "orders",
+      "timestamp": "2024-01-01T13:15:00Z",
+      "rows_scanned": 1000000,
+      "rows_returned": 100
+    }
+  },
+  {
+    "sense_type": "taste",
+    "source": "business-metrics",
+    "raw_data": {
+      "metric_id": "biz005",
+      "metric_name": "cart_abandonment_rate",
+      "value": 0.72,
+      "unit": "percentage",
+      "threshold": 0.50,
+      "timestamp": "2024-01-01T14:00:00Z",
+      "period": "last_24h",
+      "sample_size": 1250,
+      "previous_value": 0.55
+    }
+  }
+]

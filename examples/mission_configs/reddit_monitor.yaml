@@ -1,0 +1,86 @@
+# Reddit Monitor Mission Configuration
+
+mission:
+  name: "Reddit Problem Friction Monitor"
+  description: "Monitor Reddit for problem friction signals in tech communities"
+  
+senses:
+  hearing:
+    plugin: "reddit-text-monitor"
+    sources:
+      - subreddit: "r/programming"
+        enabled: true
+        check_interval: 300  # 5 minutes
+      - subreddit: "r/Python"
+        enabled: true
+        check_interval: 300
+      - subreddit: "r/javascript"
+        enabled: true
+        check_interval: 600  # 10 minutes
+    
+    filters:
+      keywords:
+        - "frustrating"
+        - "annoying"
+        - "difficult"
+        - "problem"
+        - "issue"
+        - "why doesn't"
+        - "how do I"
+      min_upvotes: 10
+      min_comments: 5
+
+scoring:
+  plugin: "keyword-sentiment-scorer"
+  config:
+    weights:
+      upvote_count: 0.3
+      comment_count: 0.2
+      keyword_match: 0.3
+      recency: 0.2
+    
+    keyword_scores:
+      "frustrating": 0.9
+      "annoying": 0.8
+      "difficult": 0.7
+      "problem": 0.6
+      "issue": 0.5
+    
+    thresholds:
+      urgent: 0.8
+      high: 0.6
+      medium: 0.4
+
+actions:
+  - type: "log-to-file"
+    enabled: true
+    config:
+      file: "reddit_signals.log"
+      threshold: 0.5
+  
+  - type: "slack-notification"
+    enabled: true
+    config:
+      webhook_url: "${SLACK_WEBHOOK_URL}"
+      threshold: 0.7
+      channel: "#problem-friction"
+  
+  - type: "create-github-issue"
+    enabled: false
+    config:
+      repository: "org/repo"
+      threshold: 0.8
+      labels: ["community-signal", "needs-investigation"]
+
+monitoring:
+  dashboard: true
+  metrics:
+    - total_signals
+    - high_priority_count
+    - action_success_rate
+  
+  alerts:
+    - condition: "high_priority_count > 10"
+      action: "page-oncall"
+    - condition: "action_success_rate < 0.8"
+      action: "alert-ops"
