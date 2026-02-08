@@ -9,7 +9,7 @@
 
 REAPER is a Python 3.11+ plugin-driven system that detects, scores, and acts on signals via a 5-sense pipeline architecture inspired by biological systems.
 
-📚 **[Documentation](public_docs/)** | 🚀 **[Getting Started](public_docs/getting-started.md)** | 🔌 **[Plugin Guide](public_docs/how-to-create-plugins.md)** | 💬 **[Discussions](https://github.com/SaltProphet/Reaper/discussions)**
+📚 **[Documentation](public_docs/)** | 🚀 **[Getting Started](public_docs/getting-started.md)** | 🔌 **[Plugin Guide](public_docs/how-to-create-plugins.md)** | 💬 **[Discussions](https://github.com/SaltProphet/Reaper/discussions)** | 🗺️ **[Phase 2 Plan](PHASE_2_PLAN.md)**
 
 ## Architecture
 

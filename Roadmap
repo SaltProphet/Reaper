@@ -20,6 +20,8 @@ This roadmap outlines the development phases for REAPER, with integrated collabo
 
 ## Phase 2: Pipeline Completion ("Beta")
 
+📋 **[Detailed Phase 2 Plan](PHASE_2_PLAN.md)** | 🚀 **[Quick Reference](PHASE_2_QUICK_REF.md)**
+
 **Core Development:**
 - Complete stubs for all senses
 - Ensure each sense module is isolated and fully documented
