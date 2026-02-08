@@ -5,8 +5,8 @@ Execute actions based on scored signals.
 Each sense = one job. Never mix pipeline roles.
 """
 import pluggy
-from reaper.models import ScoredSignal, ActionResult
 
+from reaper.models import ActionResult, ScoredSignal
 
 hookimpl = pluggy.HookimplMarker("reaper")
 
@@ -14,21 +14,21 @@ hookimpl = pluggy.HookimplMarker("reaper")
 class ActionPlugin:
     """
     Stub plugin for Action sense (execute actions on signals).
-    
+
     This is a reference implementation. Real plugins should:
     - Never hard-code actions in core
     - Take appropriate actions based on scored signals
     - Return properly validated ActionResult objects
     """
-    
+
     @hookimpl
     def reaper_action_execute(self, scored_signal: ScoredSignal) -> ActionResult:
         """
         Execute action based on scored signal.
-        
+
         Args:
             scored_signal: Signal with score to act upon
-        
+
         Returns:
             Result of the action taken
         """
