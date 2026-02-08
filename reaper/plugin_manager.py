@@ -4,6 +4,7 @@ REAPER Plugin Manager
 Manages plugin registration and discovery via Pluggy.
 Ensures no hard-coded sources or pipeline role mixing.
 """
+
 from typing import List, Optional
 
 import pluggy
@@ -38,9 +39,7 @@ class PluginManager:
     def unregister_plugin(self, plugin: object) -> None:
         """Unregister a plugin."""
         self.pm.unregister(plugin)
-        self._registered_plugins = [
-            (p, n) for p, n in self._registered_plugins if p != plugin
-        ]
+        self._registered_plugins = [(p, n) for p, n in self._registered_plugins if p != plugin]
 
     def detect_sight(self, source: str) -> List[Signal]:
         """Detect signals via Sight sense plugins."""

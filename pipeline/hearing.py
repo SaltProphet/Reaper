@@ -4,6 +4,7 @@ Hearing Sense Pipeline Stub
 Audio/textual detection of signals.
 Each sense = one job. Never mix pipeline roles.
 """
+
 from typing import List
 
 import pluggy
@@ -43,6 +44,6 @@ class HearingPlugin:
                     "description": "Stub audio/textual signal detected",
                     "stub": True,
                 },
-                metadata={"plugin": "HearingPlugin"}
+                metadata={"plugin": "HearingPlugin"},
             )
         ]

@@ -4,6 +4,7 @@ Sight Sense Pipeline Stub
 Visual detection of signals.
 Each sense = one job. Never mix pipeline roles.
 """
+
 from typing import List
 
 import pluggy
@@ -43,6 +44,6 @@ class SightPlugin:
                     "description": "Stub visual signal detected",
                     "stub": True,
                 },
-                metadata={"plugin": "SightPlugin"}
+                metadata={"plugin": "SightPlugin"},
             )
         ]

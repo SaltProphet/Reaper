@@ -4,6 +4,7 @@ Action Sense Pipeline Stub
 Execute actions based on scored signals.
 Each sense = one job. Never mix pipeline roles.
 """
+
 import pluggy
 
 from reaper.models import ActionResult, ScoredSignal
