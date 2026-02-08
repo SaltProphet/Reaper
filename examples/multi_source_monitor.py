@@ -72,7 +72,7 @@ def main():
 
             # Tag signals with priority
             for signal in signals:
-                signal.raw_data['source_priority'] = priority
+                signal.raw_data["source_priority"] = priority
 
             all_signals.extend(signals)
 
@@ -113,6 +113,7 @@ def main():
     print("=" * 70)
 
     from collections import Counter
+
     sense_counts = Counter(s.signal.sense_type.value for s in scored_signals)
     for sense, count in sorted(sense_counts.items()):
         print(f"  {sense:12s}: {count:3d} signals")

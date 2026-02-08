@@ -4,6 +4,7 @@ Example REAPER Pipeline Runner
 Demonstrates how to use the plugin-driven system.
 Never hard-codes sources - everything is plugin-based.
 """
+
 from pipeline.action import ActionPlugin
 from pipeline.hearing import HearingPlugin
 from pipeline.scoring import ScoringPlugin
@@ -66,10 +67,7 @@ def main():
         print(f"     Data: {signal.raw_data}")
 
     # Collect all signals
-    all_signals = (
-        sight_signals + hearing_signals + touch_signals +
-        taste_signals + smell_signals
-    )
+    all_signals = sight_signals + hearing_signals + touch_signals + taste_signals + smell_signals
 
     # Score signals
     print("\n\n=== SCORING PHASE ===")

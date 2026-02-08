@@ -171,18 +171,18 @@ class TestEndToEndPipeline:
 
         # Signals should only have raw data, no scores
         for signal in signals:
-            assert not hasattr(signal, 'score')
-            assert not hasattr(signal, 'analysis')
+            assert not hasattr(signal, "score")
+            assert not hasattr(signal, "analysis")
 
         # Score
         scored = [plugin_manager.score_signal(s)[0] for s in signals]
 
         # Scored signals should have scores but original signal unchanged
         for scored_signal in scored:
-            assert hasattr(scored_signal, 'score')
-            assert hasattr(scored_signal, 'signal')
+            assert hasattr(scored_signal, "score")
+            assert hasattr(scored_signal, "signal")
             # Original signal should remain unscored (no score attribute added)
-            assert not hasattr(scored_signal.signal, 'score')
+            assert not hasattr(scored_signal.signal, "score")
 
     def test_batch_processing(self, plugin_manager):
         """Test pipeline can handle batch processing."""
@@ -241,7 +241,7 @@ class TestEndToEndPipeline:
     def test_full_pipeline_integration(self, plugin_manager):
         """
         Complete integration test simulating a real-world scenario.
-        
+
         Scenario: Monitor multiple sources, score all signals,
         and action on high-priority items.
         """

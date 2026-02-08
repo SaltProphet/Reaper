@@ -22,14 +22,14 @@ hookimpl = pluggy.HookimplMarker("reaper")
 class CustomNewsPlugin:
     """
     Custom plugin that detects news signals.
-    
+
     This is a Hearing plugin that monitors text-based news sources.
     """
 
     def __init__(self, keywords: List[str] = None):
         """
         Initialize with optional keyword filters.
-        
+
         Args:
             keywords: List of keywords to filter for (e.g., ["AI", "Python"])
         """
@@ -39,10 +39,10 @@ class CustomNewsPlugin:
     def reaper_hearing_detect(self, source: str) -> List[Signal]:
         """
         Detect news signals from a text source.
-        
+
         Args:
             source: The news source identifier
-            
+
         Returns:
             List of Signal objects
         """
@@ -73,9 +73,9 @@ class CustomNewsPlugin:
 
         # Filter by keywords
         filtered_news = [
-            item for item in mock_news
-            if any(kw.lower() in [k.lower() for k in item["keywords"]]
-                   for kw in self.keywords)
+            item
+            for item in mock_news
+            if any(kw.lower() in [k.lower() for k in item["keywords"]] for kw in self.keywords)
         ]
 
         # Convert to Signal objects
@@ -89,7 +89,7 @@ class CustomNewsPlugin:
                     "content": item["content"],
                     "url": item["url"],
                     "keywords": item["keywords"],
-                }
+                },
             )
             signals.append(signal)
 
@@ -104,7 +104,7 @@ class CustomPriorityScorer:
     def __init__(self, high_priority_keywords: List[str] = None):
         """
         Initialize with high-priority keywords.
-        
+
         Args:
             high_priority_keywords: Keywords that increase signal score
         """
@@ -114,10 +114,10 @@ class CustomPriorityScorer:
     def reaper_score_signal(self, signal: Signal) -> ScoredSignal:
         """
         Score a signal based on keyword matching.
-        
+
         Args:
             signal: The signal to score
-            
+
         Returns:
             ScoredSignal with calculated score
         """
@@ -148,7 +148,7 @@ class CustomPriorityScorer:
                 "method": "keyword-priority",
                 "matched_keywords": matches if "keywords" in signal.raw_data else [],
             },
-            tags=tags
+            tags=tags,
         )
 
 

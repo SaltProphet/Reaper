@@ -4,6 +4,7 @@ Smell Sense Pipeline Stub
 Pattern/anomaly detection of signals.
 Each sense = one job. Never mix pipeline roles.
 """
+
 from typing import List
 
 import pluggy

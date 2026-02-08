@@ -3,6 +3,7 @@ Tests for REAPER plugin manager.
 
 Validates Pluggy integration and plugin registration.
 """
+
 from pipeline.action import ActionPlugin
 from pipeline.hearing import HearingPlugin
 from pipeline.scoring import ScoringPlugin

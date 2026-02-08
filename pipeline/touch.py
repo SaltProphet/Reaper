@@ -4,6 +4,7 @@ Touch Sense Pipeline Stub
 Physical/interaction detection of signals.
 Each sense = one job. Never mix pipeline roles.
 """
+
 from typing import List
 
 import pluggy

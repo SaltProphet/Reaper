@@ -4,6 +4,7 @@ REAPER Plugin Hook Specifications
 Pluggy hook specifications for the 5-sense pipeline.
 Each sense = one job, implemented as a plugin.
 """
+
 from typing import List
 
 import pluggy

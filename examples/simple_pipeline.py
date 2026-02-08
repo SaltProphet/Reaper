@@ -50,7 +50,7 @@ def main():
     for i, signal in enumerate(signals):
         scored = pm.score_signal(signal)[0]
         scored_signals.append(scored)
-        print(f"    Signal {i+1}: score={scored.score:.2f}, tags={scored.tags}")
+        print(f"    Signal {i + 1}: score={scored.score:.2f}, tags={scored.tags}")
 
     # Step 5: Filter High-Priority Signals
     print("\n[5] Filtering high-priority signals...")
@@ -69,9 +69,9 @@ def main():
         result = pm.execute_action(scored_signal)[0]
         if result.success:
             success_count += 1
-            print(f"    ✓ Action {i+1}: {result.action_type} - {result.result_data}")
+            print(f"    ✓ Action {i + 1}: {result.action_type} - {result.result_data}")
         else:
-            print(f"    ✗ Action {i+1} failed: {result.result_data}")
+            print(f"    ✗ Action {i + 1} failed: {result.result_data}")
 
     # Step 7: Summary
     print("\n" + "=" * 60)

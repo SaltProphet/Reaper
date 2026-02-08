@@ -4,6 +4,7 @@ Taste Sense Pipeline Stub
 Quality/sampling detection of signals.
 Each sense = one job. Never mix pipeline roles.
 """
+
 from typing import List
 
 import pluggy
