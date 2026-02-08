@@ -95,8 +95,6 @@ scored = pm.score_signal(signals[0])[0]
 
 # Execute actions
 result = pm.execute_action(scored)[0]
-# Execute actions
-result = pm.execute_action(scored)[0]
 print(f"Action {'succeeded' if result.success else 'failed'}")
 ```
 
