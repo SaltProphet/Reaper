@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: GitHub Discussions
+    url: https://github.com/SaltProphet/Reaper/discussions
+    about: Ask questions, share ideas, or discuss plugin marketplace concepts
+  - name: Documentation
+    url: https://github.com/SaltProphet/Reaper/blob/main/README.md
+    about: Check the README and Roadmap for project information

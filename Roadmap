@@ -1,30 +1,116 @@
 # REAPER Roadmap
 
-## Phase 1: Core Architecture (“Alpha”)
+This roadmap outlines the development phases for REAPER, with integrated collaboration tools and automation to support contributors at every stage.
+
+## Phase 1: Core Architecture ("Alpha")
+
+**Core Development:**
 - Scaffold the 5-sense pipeline: Sight, Hearing, Touch, Taste, Smell, Action
 - Define `ReaperSignal` and connector contracts (pydantic models)
 - Implement Pluggy-based plugin loader ("Hot-Swap Chassis")
 - Create first example plugins (RedditIngestor, KeywordAnalyzer)
 - Publish Copilot and Philosophy docs
 
-## Phase 2: Pipeline Completion (“Beta”)
+**Collaboration & Automation:**
+- ✅ Set up issue templates (bug reports, feature requests, plugin submissions)
+- ✅ Create Copilot instructions for code generation alignment
+- ✅ Configure Codespaces for instant contributor onboarding
+- ✅ Establish pull request template and review process
+- Update Copilot instructions as core principles solidify
+
+## Phase 2: Pipeline Completion ("Beta")
+
+**Core Development:**
 - Complete stubs for all senses
 - Ensure each sense module is isolated and fully documented
 - Bootstrapped end-to-end pipeline test: run mock data through all senses
 - Expand plugin library: more ingestors (Discord, RSS...), analyzers, actions
 - Onboard contributors via Codespaces and clear Copilot/agent automation
 
+**Collaboration & Automation:**
+- Launch GitHub Discussions for Q&A and plugin ideation
+- Create GitHub Projects board to track Phase 2 progress
+- Use Spaces for collaborative plugin design sessions
+- Begin basic documentation automation (plugin docs)
+- Engage community through plugin marketplace discussions
+- Regular Copilot instruction updates based on patterns
+
 ## Phase 3: Learning & Operator Experience
+
+**Core Development:**
 - Implement the Ouroboros Protocol: self-improving filters based on PCI/feedback
 - Add pattern/trend detection (Smell), PCI/ROI scoring (Taste), and alert/export actions (Action)
 - Build operator console: CLI or basic web UI
 - Integrate realtime and batch signal handling
 
+**Collaboration & Automation:**
+- Host Spaces sessions for operator console design
+- Automate PR reviews with Copilot for consistency
+- Use Spark for test result analysis and failure diagnostics
+- Create Projects timeline view for milestone tracking
+- Expand contributor guides with advanced topics
+
 ## Phase 4: Quality, Automation, Community
+
+**Core Development:**
 - Expand test harness: unit, integration, e2e
 - Harden plugin API, add docs for authors/contributors
 - Advanced automation: Spark flows, Copilot-powered PR reviews, changelogs
 - Publicize roadmap, invite plugin/box submissions
 - Prepare for v1.0: security pass, performance tuning, usage docs, launch
 
-> See [README.md](README.md) and open Issues/Projects for live progress and next actions.
+**Collaboration & Automation:**
+- Full Spark automation suite (changelogs, docs, triage, reviews)
+- Weekly community updates via Discussions
+- Plugin marketplace showcase in Discussions
+- Comprehensive Spaces templates for design workshops
+- Codespaces optimizations for plugin development
+- Regular Copilot instruction refinements
+- Community recognition program
+
+---
+
+## Collaboration Tools & Resources
+
+### For Contributors
+- **[CONTRIBUTING.md](CONTRIBUTING.md)** - Complete contributor guide
+- **[Codespaces](.devcontainer/devcontainer.json)** - Pre-configured dev environment
+- **[Issue Templates](.github/ISSUE_TEMPLATE/)** - Bug reports, features, plugins
+- **[Pull Request Template](.github/pull_request_template.md)** - PR guidelines
+
+### For Copilot & Agents
+- **[Copilot Instructions](.github/copilot-instructions.md)** - Code generation guidelines
+- **Project philosophy and conventions** - Regularly updated
+- **Automation patterns** - Evolving with each phase
+
+### For Community Engagement
+- **[Discussions](https://github.com/SaltProphet/Reaper/discussions)** - Q&A, ideas, plugin marketplace
+- **[GitHub Spaces](.github/SPACES_GUIDE.md)** - Collaborative design sessions
+- **[GitHub Projects](.github/PROJECTS_GUIDE.md)** - Development tracking
+
+### For Automation
+- **[Spark Automation Guide](.github/SPARK_AUTOMATION_GUIDE.md)** - Documentation, changelogs, reviews
+- **GitHub Actions** - CI/CD, testing, automation workflows
+
+---
+
+## Tracking Progress
+
+- **Live progress**: Check [GitHub Projects](https://github.com/SaltProphet/Reaper/projects)
+- **Next actions**: Review [open issues](https://github.com/SaltProphet/Reaper/issues)
+- **Community discussions**: Join [Discussions](https://github.com/SaltProphet/Reaper/discussions)
+- **Documentation**: Start with [README.md](README.md)
+
+---
+
+## Philosophy Updates
+
+**Commitment to Continuous Improvement:**
+
+The Copilot instructions and project philosophy will be regularly updated as we:
+- Learn patterns from community contributions
+- Refine core principles based on real-world usage
+- Discover new automation opportunities
+- Expand the plugin ecosystem
+
+**Contributors and Copilot benefit at every phase** through clear guidelines, collaborative tools, and automated workflows that grow with the project.

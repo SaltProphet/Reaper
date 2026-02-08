@@ -1,0 +1,117 @@
+name: Plugin Submission
+description: Submit a new plugin for REAPER
+title: "[Plugin]: "
+labels: ["plugin", "contribution"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for contributing a plugin to REAPER! Please provide details below.
+
+  - type: input
+    id: plugin-name
+    attributes:
+      label: Plugin Name
+      description: What is the name of your plugin?
+      placeholder: "MyAwesomePlugin"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: plugin-type
+    attributes:
+      label: Plugin Type
+      description: What type of plugin is this?
+      options:
+        - Detection - Sight (visual signals)
+        - Detection - Hearing (audio/text signals)
+        - Detection - Touch (interaction signals)
+        - Detection - Taste (quality/sampling signals)
+        - Detection - Smell (pattern/anomaly signals)
+        - Scoring
+        - Action
+        - Other/Utility
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Plugin Description
+      description: Describe what your plugin does
+      placeholder: This plugin detects signals from...
+    validations:
+      required: true
+
+  - type: textarea
+    id: use-case
+    attributes:
+      label: Use Case
+      description: What problem does this plugin solve?
+    validations:
+      required: true
+
+  - type: input
+    id: data-source
+    attributes:
+      label: Data Source
+      description: What data source does this plugin integrate with?
+      placeholder: "Reddit API, Discord, RSS feeds, etc."
+    validations:
+      required: false
+
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: External Dependencies
+      description: List any external dependencies (Python packages, APIs, etc.)
+      placeholder: |
+        - praw (Reddit API wrapper)
+        - requests
+    validations:
+      required: false
+
+  - type: textarea
+    id: implementation
+    attributes:
+      label: Implementation Details
+      description: Link to code or describe the implementation
+      placeholder: |
+        PR: #123
+        Or paste key code snippets
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: compliance
+    attributes:
+      label: Plugin Compliance Checklist
+      description: Ensure your plugin follows REAPER guidelines
+      options:
+        - label: Uses pluggy.HookimplMarker("reaper") decorator
+          required: true
+        - label: Does NOT hard-code data sources (accepts source parameter)
+          required: true
+        - label: Uses Pydantic v2 models for data validation
+          required: true
+        - label: Includes appropriate tests
+          required: true
+        - label: Follows separation of concerns (doesn't mix pipeline roles)
+          required: true
+        - label: Documentation/docstrings included
+          required: true
+
+  - type: textarea
+    id: testing
+    attributes:
+      label: Testing Information
+      description: How can maintainers test your plugin?
+      placeholder: |
+        Run: pytest tests/test_my_plugin.py
+        Or provide manual testing steps
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Notes
+      description: Any other information about your plugin
