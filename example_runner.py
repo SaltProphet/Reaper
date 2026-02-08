@@ -85,8 +85,8 @@ def main():
         results = pm.execute_action(scored_signal)
         for result in results:
             status = "✓" if result.success else "✗"
-            sense = scored_signal.signal.sense_type.value
-            print(f"   {status} Action '{result.action_type}' on {sense}")
+            sense_type = scored_signal.signal.sense_type.value
+            print(f"   {status} Action '{result.action_type}' on {sense_type}")
             if result.error:
                 print(f"     Error: {result.error}")
             else:

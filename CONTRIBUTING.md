@@ -1,338 +1,339 @@
 # Contributing to REAPER
 
-## ⚠️ MILSPEC QUALITY ENFORCEMENT
+Thank you for your interest in contributing to REAPER! We welcome contributions from everyone.
 
-REAPER maintains military-grade code quality standards. **All contributions must pass automated quality gates.**
+## Table of Contents
 
-### Requirements (Non-Negotiable)
+- [Code of Conduct](#code-of-conduct)
+- [Getting Started](#getting-started)
+- [How to Contribute](#how-to-contribute)
+- [Development Setup](#development-setup)
+- [Contribution Guidelines](#contribution-guidelines)
+- [Architectural Principles](#architectural-principles)
+- [Pull Request Process](#pull-request-process)
+- [Community](#community)
 
-1. **Pre-commit hooks installed**
-   ```bash
-   pip install pre-commit
-   pre-commit install
-   ```
+## Code of Conduct
 
-2. **All checks pass locally BEFORE pushing**
-   ```bash
-   ruff check .
-   ruff format --check .
-   pytest
-   ```
+Be respectful, inclusive, and constructive. We're building something together.
 
-3. **PR quality gates**
-   - ✅ Ruff formatting compliance
-   - ✅ Zero Ruff lint violations
-   - ✅ All tests passing (Python 3.11 + 3.12)
-   - ✅ Sense isolation maintained
-   - ✅ No hard-coded sources
+## Getting Started
 
-### If CI Fails
+1. **Read the Documentation**
+   - [Getting Started Guide](public_docs/getting-started.md)
+   - [Architect's Curse](public_docs/architects-curse.md) - Philosophy and principles
+   - [Sense Isolation FAQ](public_docs/sense-isolation-faq.md) - Boundary rules
 
-**Auto-fix available:** Comment `/fix` on your PR to automatically apply Ruff fixes.
+2. **Explore the Codebase**
+   - Browse `reaper/` for core framework
+   - Check `pipeline/` for reference implementations
+   - Review `tests/` for testing patterns
+   - Look at `examples/` for real-world usage
 
-**Manual fixes required if:**
-- Tests fail (fix locally first)
-- Sense isolation violated (architecture issue)
-- Hard-coded sources detected
+3. **Pick an Issue**
+   - Browse [open issues](https://github.com/SaltProphet/Reaper/issues)
+   - Look for `good-first-issue` label
+   - Comment on the issue to claim it
 
-### Code Quality Commands
+## How to Contribute
 
-Available on PRs:
-- `/fix` - Auto-apply Ruff fixes
-- Re-push triggers CI rerun
+### Types of Contributions
 
-### Local vs CI Testing
+1. **Code Contributions**
+   - Bug fixes
+   - New features
+   - Performance improvements
+   - Test coverage
 
-**Pre-commit hooks** (local):
-- Run on `commit`: Ruff formatting and linting (with auto-fix)
-- Run on `push`: Fast pytest check (`-x --lf -q` for speed)
-  - `-x`: Stop at first failure
-  - `--lf`: Run only last failed tests
-  - `-q`: Quiet output
+2. **Plugin Contributions**
+   - New sense plugins
+   - Scoring algorithms
+   - Action handlers
+   - Submit via [Plugin Submission](https://github.com/SaltProphet/Reaper/issues/new?template=plugin_submission.yml)
 
-**CI workflows** (GitHub Actions):
-- Run full test suite on all Python versions (3.11, 3.12)
-- No auto-fixes applied
-- All tests run regardless of previous failures
-- Verbose output for debugging
+3. **Documentation**
+   - Fix typos or errors
+   - Add examples
+   - Improve explanations
+   - Create tutorials
 
-**Best Practice:** Run full checks locally before pushing:
-```bash
-ruff check . && ruff format --check . && pytest -v
-```
-
----
-
-## Code Quality Requirements
-
-REAPER's foundation is solid. All code must meet quality standards before submission.
-
-### Before Submitting a PR
-
-1. **Install pre-commit hooks** (one-time setup):
-   ```bash
-   pip install pre-commit
-   pre-commit install
-   ```
-
-2. **Run checks locally**:
-   ```bash
-   ruff check . --fix
-   ruff format .
-   pytest
-   ```
-
-3. **All commits must pass**:
-   - Ruff formatting (`ruff format --check .`)
-   - Ruff linting (`ruff check .`)
-   - All tests (`pytest`)
-
-**CI will reject PRs that don't meet these standards. Fix issues locally before pushing.**
+4. **Community Support**
+   - Answer questions in Discussions
+   - Review pull requests
+   - Share your use cases
+   - Report bugs
 
 ## Development Setup
 
-### Installation
+### Prerequisites
+
+- Python 3.11 or higher
+- Git
+- pip
+
+### Setup Steps
 
 ```bash
-# Clone the repository
-git clone https://github.com/SaltProphet/Reaper.git
+# Fork and clone the repository
+git clone https://github.com/YOUR_USERNAME/Reaper.git
 cd Reaper
 
-# Install in development mode with all dependencies
+# Create a virtual environment
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# Install in development mode with dev dependencies
 pip install -e ".[dev]"
 
-# Install pre-commit hooks
-pip install pre-commit
-pre-commit install
+# Run tests to ensure everything works
+pytest
+
+# Run linter
+ruff check .
 ```
 
-### Running Tests
+## Contribution Guidelines
+
+### Core Principles (Must Follow)
+
+1. **Sense Isolation**
+   - Never mix detection, scoring, and action
+   - Each sense handles only its specific signal type
+   - See [Sense Isolation FAQ](public_docs/sense-isolation-faq.md)
+
+2. **No Hard-Coding**
+   - Always parameterize sources
+   - Use constructor parameters for configuration
+   - Never hard-code URLs, paths, or credentials
+
+3. **Type Safety**
+   - Use Pydantic models for all data structures
+   - Add type hints to all functions
+   - Validate data at boundaries
+
+4. **Plugin Pattern**
+   - Use `@hookimpl` decorator
+   - Follow hook specifications in `reaper/hookspecs.py`
+   - Make plugins independently testable
+
+### Code Style
+
+We use [Ruff](https://docs.astral.sh/ruff/) for linting and formatting:
+
+```bash
+# Check code
+ruff check .
+
+# Auto-fix issues
+ruff check --fix .
+
+# Format code
+ruff format .
+```
+
+**Style Guidelines:**
+- Line length: 100 characters
+- Use descriptive variable names
+- Add docstrings to public methods
+- Include type hints
+- Follow PEP 8
+
+### Testing Requirements
+
+All code changes must include tests:
 
 ```bash
 # Run all tests
 pytest
 
 # Run with coverage
-pytest -v --cov=reaper --cov=pipeline --cov-report=term-missing
+pytest --cov=reaper --cov=pipeline
 
 # Run specific test file
 pytest tests/test_models.py
 ```
 
-### Code Style
+**Testing Guidelines:**
+- Write unit tests for new functions
+- Test edge cases and error conditions
+- Use descriptive test names
+- Keep tests isolated and independent
+- Mock external dependencies
 
-REAPER uses [Ruff](https://docs.astral.sh/ruff/) for linting and formatting:
+### Documentation Requirements
 
-```bash
-# Check formatting
-ruff format --check .
+- Add docstrings to all public methods
+- Update relevant documentation in `public_docs/`
+- Include usage examples for new features
+- Update README if adding major features
 
-# Format code
-ruff format .
+## Architectural Principles
 
-# Check for linting issues
-ruff check .
+Before contributing, understand these core principles:
 
-# Auto-fix linting issues
-ruff check . --fix
-```
+### 1. Functional Autonomy
+
+Each component should:
+- Have a single, well-defined responsibility
+- Operate independently
+- Not depend on implementation details of other components
+- Be swappable without breaking the system
+
+### 2. The Biological Worldview
+
+REAPER's architecture mirrors biological systems:
+- **Senses** detect signals (like eyes, ears, etc.)
+- **Scoring** evaluates importance (like a brain)
+- **Actions** respond to signals (like muscles)
+
+This isn't just a metaphor—it's an architectural constraint.
+
+### 3. Plugin-First Design
+
+Everything extends through plugins:
+- Core framework stays minimal
+- Plugins add functionality
+- No hard-coded implementations
+- Clean hook specifications
+
+### 4. Separation of Concerns
+
+**Detection** → **Scoring** → **Action**
+
+Never mix these phases:
+- ❌ Don't score in detection
+- ❌ Don't act in scoring
+- ❌ Don't detect in actions
+
+See [Sense Isolation FAQ](public_docs/sense-isolation-faq.md) for details.
+
+## Pull Request Process
+
+### Before Submitting
+
+1. **Test Your Changes**
+   ```bash
+   pytest
+   ruff check .
+   ```
+
+2. **Update Documentation**
+   - Add docstrings
+   - Update relevant docs
+   - Add examples if needed
+
+3. **Follow Commit Guidelines**
+   - Use clear, descriptive commit messages
+   - Reference issue numbers: `Fixes #123`
+   - Keep commits atomic and focused
+
+### Submitting a PR
+
+1. **Create a Branch**
+   ```bash
+   git checkout -b feature/my-feature
+   # or
+   git checkout -b fix/my-bugfix
+   ```
+
+2. **Make Your Changes**
+   - Write code
+   - Add tests
+   - Update docs
+
+3. **Push and Open PR**
+   ```bash
+   git push origin feature/my-feature
+   ```
+   Then open a PR on GitHub
+
+4. **Fill Out PR Template**
+   - Describe your changes
+   - Complete all checklists
+   - Link related issues
+   - Add screenshots if UI changes
+
+### PR Review Process
+
+- Maintainers will review your PR
+- Address feedback promptly
+- Keep discussions constructive
+- Be patient—reviews take time
+
+### Checklist for PRs
+
+- [ ] Tests pass
+- [ ] Linter passes
+- [ ] Documentation updated
+- [ ] Sense isolation respected
+- [ ] No hard-coded sources
+- [ ] Pydantic models used
+- [ ] Type hints added
+- [ ] Docstrings included
+
+## Community
+
+### Communication Channels
+
+- **GitHub Discussions**: Questions, ideas, architecture discussions
+- **Issues**: Bug reports, feature requests
+- **Pull Requests**: Code contributions
+
+### Getting Help
+
+- Check [documentation](public_docs/)
+- Search [existing issues](https://github.com/SaltProphet/Reaper/issues)
+- Ask in [Discussions](https://github.com/SaltProphet/Reaper/discussions)
+- Review [examples](examples/)
+
+### Becoming a Contributor
+
+We appreciate all contributions! Here's how to get more involved:
+
+1. **Start Small**: Fix a typo, improve docs, add a test
+2. **Contribute Regularly**: Small, consistent contributions are valued
+3. **Help Others**: Answer questions, review PRs
+4. **Share Knowledge**: Write blog posts, create tutorials
+5. **Maintain a Plugin**: Build and maintain a plugin
+
+### Recognition
+
+Contributors are recognized in:
+- GitHub contributors list
+- Release notes
+- Community showcases
+- Special thanks in major releases
 
 ## Plugin Development
 
-REAPER is plugin-driven. All functionality is implemented via [Pluggy](https://pluggy.readthedocs.io/) plugins.
+### Creating a Plugin
 
-### Core Principles
+See [How to Create Plugins](public_docs/how-to-create-plugins.md) for a comprehensive guide.
 
-1. **Plugin-Driven Everything**: Use `@hookimpl` decorator for all plugin implementations
-2. **No Hard-Coding**: Sources must always be passed as parameters (e.g., `source="my-source"`)
-3. **Strict Separation of Concerns**: Never mix pipeline roles (detection, scoring, action)
-4. **Type Safety**: All data structures use [Pydantic v2](https://docs.pydantic.dev/latest/) models
-5. **Extensibility First**: New plugins should be addable without modifying core code
+### Submitting a Plugin
 
-### Creating a Detection Plugin
+1. Develop your plugin in a separate repository
+2. Follow REAPER's plugin contract
+3. Add tests and documentation
+4. Submit via [Plugin Submission template](https://github.com/SaltProphet/Reaper/issues/new?template=plugin_submission.yml)
 
-```python
-import pluggy
-from reaper.models import Signal, SenseType
+### Plugin Guidelines
 
-hookimpl = pluggy.HookimplMarker("reaper")
+- Use `@hookimpl` decorator
+- Follow sense isolation rules
+- Parameterize all configuration
+- Use Pydantic models
+- Handle errors gracefully
+- Include comprehensive tests
+- Document usage clearly
 
-class MyCustomPlugin:
-    @hookimpl
-    def reaper_sight_detect(self, source: str):
-        # Your custom detection logic
-        # NEVER hard-code the source!
-        return [
-            Signal(
-                sense_type=SenseType.SIGHT,
-                source=source,  # Use the parameter
-                raw_data={"detected": "custom data"}
-            )
-        ]
-```
+## Questions?
 
-### Creating a Scoring Plugin
+- 📚 Check the [documentation](public_docs/)
+- 💬 Ask in [Discussions](https://github.com/SaltProphet/Reaper/discussions)
+- 🐛 Report bugs via [Issues](https://github.com/SaltProphet/Reaper/issues)
+- 📧 Contact maintainers (see repository)
 
-```python
-import pluggy
-from reaper.models import Signal, ScoredSignal
+---
 
-hookimpl = pluggy.HookimplMarker("reaper")
-
-class MyScorer:
-    @hookimpl
-    def reaper_score_signal(self, signal: Signal):
-        # Your custom scoring logic
-        score = self.calculate_score(signal)
-        return ScoredSignal(
-            signal=signal,
-            score=score,  # Must be 0.0-1.0
-            analysis={"method": "custom"},
-            tags=["custom-scored"]
-        )
-```
-
-### Creating an Action Plugin
-
-```python
-import pluggy
-from reaper.models import ScoredSignal, ActionResult
-
-hookimpl = pluggy.HookimplMarker("reaper")
-
-class MyActionPlugin:
-    @hookimpl
-    def reaper_action_execute(self, scored_signal: ScoredSignal):
-        # Your custom action logic
-        return ActionResult(
-            signal=scored_signal.signal,
-            action_type="custom_action",
-            success=True,
-            result_data={"executed": "custom action"}
-        )
-```
-
-## Submitting Changes
-
-### Pull Request Process
-
-1. **Fork the repository** and create a new branch
-2. **Make your changes** following the code quality requirements
-3. **Run all checks locally** before pushing:
-   ```bash
-   ruff format .
-   ruff check .
-   pytest
-   ```
-4. **Commit your changes** with clear, descriptive messages
-5. **Push to your fork** and submit a pull request
-
-### Pull Request Guidelines
-
-- Keep changes focused and minimal
-- Include tests for new functionality
-- Update documentation if needed
-- Ensure all CI checks pass
-
-### CI/CD Notes for Maintainers
-
-**Repository Secrets Required:**
-- `CODECOV_TOKEN` - Optional for code coverage uploads (CI continues if not configured)
-
-**Workflow Permissions:**
-- CI workflow: `contents: read` (validation only)
-- Auto-fix workflow: `contents: write, pull-requests: write` (modifies PRs)
-- Quality gate workflow: `pull-requests: write, statuses: write` (blocks merges)
-- Reference any related issues
-
-### Commit Messages
-
-Write clear, concise commit messages:
-
-```
-Add Reddit detection plugin for Sight sense
-
-- Implement reaper_sight_detect hook
-- Add Pydantic models for Reddit posts
-- Include tests with 100% coverage
-- Update documentation with usage example
-```
-
-## Testing Guidelines
-
-### Test Coverage
-
-- Maintain 100% test coverage for core modules
-- Write tests for all new functionality
-- Use pytest fixtures for common setup
-- Mock external dependencies
-
-### Test Structure
-
-```python
-import pytest
-from reaper.models import Signal, SenseType
-
-def test_signal_creation():
-    """Test that Signal can be created with valid data."""
-    signal = Signal(
-        sense_type=SenseType.SIGHT,
-        source="test-source",
-        raw_data={"key": "value"}
-    )
-    assert signal.sense_type == SenseType.SIGHT
-    assert signal.source == "test-source"
-```
-
-## Project Structure
-
-Understanding the codebase structure:
-
-```
-Reaper/
-├── reaper/              # Core framework (DO NOT modify lightly)
-│   ├── models.py        # Pydantic v2 models
-│   ├── hookspecs.py     # Pluggy hook specifications
-│   └── plugin_manager.py # Plugin management
-├── pipeline/            # Pipeline stubs (reference implementations)
-│   ├── sight.py         # Sight sense stub
-│   ├── hearing.py       # Hearing sense stub
-│   ├── touch.py         # Touch sense stub
-│   ├── taste.py         # Taste sense stub
-│   ├── smell.py         # Smell sense stub
-│   ├── action.py        # Action sense stub
-│   └── scoring.py       # Scoring stub
-├── tests/               # Test suite
-├── .github/             # GitHub configuration
-│   └── workflows/       # CI/CD workflows
-└── example_runner.py    # Example usage
-```
-
-## Anti-Patterns to Avoid
-
-❌ **DO NOT:**
-- Hard-code sources anywhere in code
-- Mix detection, scoring, and action logic in one plugin
-- Modify core without updating tests
-- Add business logic to the core framework
-- Skip Pydantic validation
-- Use `Any` type annotations when specific types exist
-
-✅ **DO:**
-- Accept sources as parameters
-- Keep plugins focused on one responsibility
-- Use type hints everywhere
-- Validate all inputs with Pydantic
-- Write tests for new functionality
-- Follow the stub implementations as templates
-
-## Getting Help
-
-- **Documentation**: See [README.md](README.md) for architecture and usage
-- **Examples**: Check [example_runner.py](example_runner.py) for complete examples
-- **Tests**: Review test files in `/tests/` for implementation patterns
-- **Issues**: Open an issue for bugs or feature requests
-
-## License
-
-By contributing to REAPER, you agree that your contributions will be licensed under the MIT License.
+**Thank you for contributing to REAPER! Together, we're building a robust, principled signal processing framework.** 🚀
