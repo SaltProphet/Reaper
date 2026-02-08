@@ -6,7 +6,6 @@ Run with: python benchmarks/benchmark_performance.py
 """
 
 import time
-from datetime import datetime
 
 from pipeline.action import ActionPlugin
 from pipeline.hearing import HearingPlugin
@@ -25,13 +24,13 @@ def benchmark_detection(num_iterations=1000):
 
     start = time.perf_counter()
     for _ in range(num_iterations):
-        signals = pm.detect_sight(source="benchmark-source")
+        pm.detect_sight(source="benchmark-source")
     end = time.perf_counter()
 
     elapsed = end - start
     throughput = num_iterations / elapsed
 
-    print(f"\n📊 Detection Benchmark:")
+    print("\n📊 Detection Benchmark:")
     print(f"   Iterations: {num_iterations:,}")
     print(f"   Time: {elapsed:.3f}s")
     print(f"   Throughput: {throughput:.0f} ops/sec")
@@ -59,7 +58,7 @@ def benchmark_full_pipeline(num_iterations=100):
     elapsed = end - start
     throughput = num_iterations / elapsed
 
-    print(f"\n📊 Full Pipeline Benchmark:")
+    print("\n📊 Full Pipeline Benchmark:")
     print(f"   Iterations: {num_iterations:,}")
     print(f"   Time: {elapsed:.3f}s")
     print(f"   Throughput: {throughput:.0f} ops/sec")
@@ -83,7 +82,7 @@ def benchmark_batch_creation(num_signals=1000):
 
     improvement = ((individual_time - batch_time) / individual_time) * 100
 
-    print(f"\n📊 Batch Creation Benchmark:")
+    print("\n📊 Batch Creation Benchmark:")
     print(f"   Signals: {num_signals:,}")
     print(f"   Individual: {individual_time:.4f}s")
     print(f"   Batch: {batch_time:.4f}s")
@@ -102,18 +101,18 @@ def benchmark_plugin_count(num_iterations=100000):
     # Using plugin_count()
     start = time.perf_counter()
     for _ in range(num_iterations):
-        count = pm.plugin_count()
+        pm.plugin_count()
     count_time = time.perf_counter() - start
 
     # Using len(list_plugins())
     start = time.perf_counter()
     for _ in range(num_iterations):
-        count = len(pm.list_plugins())
+        len(pm.list_plugins())
     list_time = time.perf_counter() - start
 
     improvement = ((list_time - count_time) / list_time) * 100
 
-    print(f"\n📊 Plugin Count Benchmark:")
+    print("\n📊 Plugin Count Benchmark:")
     print(f"   Iterations: {num_iterations:,}")
     print(f"   plugin_count(): {count_time:.4f}s")
     print(f"   len(list_plugins()): {list_time:.4f}s")
@@ -141,7 +140,7 @@ def benchmark_multi_sense_detection(num_iterations=100):
     elapsed = end - start
     throughput = (num_iterations * 5) / elapsed  # 5 senses per iteration
 
-    print(f"\n📊 Multi-Sense Detection Benchmark:")
+    print("\n📊 Multi-Sense Detection Benchmark:")
     print(f"   Iterations: {num_iterations:,} (x5 senses)")
     print(f"   Time: {elapsed:.3f}s")
     print(f"   Throughput: {throughput:.0f} detections/sec")
