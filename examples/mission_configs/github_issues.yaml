@@ -1,0 +1,81 @@
+# GitHub Issues Monitor Configuration
+
+mission:
+  name: "GitHub Issues Problem Friction Detector"
+  description: "Monitor GitHub issues for problem friction patterns"
+
+senses:
+  hearing:
+    plugin: "github-issues-monitor"
+    sources:
+      - repository: "python/cpython"
+        enabled: true
+        check_interval: 600
+      - repository: "microsoft/vscode"
+        enabled: true
+        check_interval: 300
+    
+    filters:
+      labels:
+        include: ["bug", "needs-investigation"]
+        exclude: ["wontfix", "duplicate"]
+      
+      states: ["open"]
+      
+      keywords:
+        - "confusing"
+        - "unclear"
+        - "difficult to use"
+        - "bad UX"
+        - "friction"
+
+  smell:
+    plugin: "github-pattern-detector"
+    sources:
+      - repository: "python/cpython"
+        lookback_days: 30
+      - repository: "microsoft/vscode"
+        lookback_days: 30
+    
+    patterns:
+      - type: "issue-clustering"
+        min_cluster_size: 3
+      - type: "spike-detection"
+        threshold: 2.0
+
+scoring:
+  plugin: "github-priority-scorer"
+  config:
+    weights:
+      reactions: 0.25
+      comments: 0.20
+      issue_age: 0.15
+      label_priority: 0.20
+      pattern_match: 0.20
+    
+    label_scores:
+      "critical": 0.9
+      "high-priority": 0.8
+      "bug": 0.6
+      "enhancement": 0.4
+
+actions:
+  - type: "aggregate-report"
+    enabled: true
+    config:
+      frequency: "daily"
+      output: "github_friction_report.md"
+      threshold: 0.5
+  
+  - type: "create-internal-issue"
+    enabled: true
+    config:
+      threshold: 0.7
+      assign_to: "product-team"
+  
+  - type: "add-to-roadmap"
+    enabled: true
+    config:
+      threshold: 0.85
+      board: "product-roadmap"
+      column: "needs-research"

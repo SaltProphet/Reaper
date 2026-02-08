@@ -3,14 +3,17 @@ Tests for REAPER core models.
 
 Validates Pydantic v2 models for the pipeline.
 """
-import pytest
+
 from datetime import datetime
-from reaper.models import Signal, ScoredSignal, ActionResult, SenseType
+
+import pytest
+
+from reaper.models import ActionResult, ScoredSignal, SenseType, Signal
 
 
 class TestSignal:
     """Test Signal model validation."""
-    
+
     def test_signal_creation(self):
         """Test creating a valid signal."""
         signal = Signal(
@@ -22,12 +25,12 @@ class TestSignal:
         assert signal.source == "test-source"
         assert signal.raw_data == {"key": "value"}
         assert isinstance(signal.timestamp, datetime)
-    
+
     def test_signal_requires_sense_and_source(self):
         """Test that sense_type and source are required."""
         with pytest.raises(Exception):
             Signal(raw_data={})
-    
+
     def test_all_sense_types(self):
         """Test all sense types are valid."""
         for sense in SenseType:
@@ -37,7 +40,7 @@ class TestSignal:
 
 class TestScoredSignal:
     """Test ScoredSignal model validation."""
-    
+
     def test_scored_signal_creation(self):
         """Test creating a valid scored signal."""
         signal = Signal(
@@ -53,16 +56,16 @@ class TestScoredSignal:
         assert scored.signal == signal
         assert scored.score == 0.75
         assert scored.tags == ["test", "valid"]
-    
+
     def test_score_validation_range(self):
         """Test that score must be between 0 and 1."""
         signal = Signal(sense_type=SenseType.TOUCH, source="test")
-        
+
         # Valid scores
         ScoredSignal(signal=signal, score=0.0)
         ScoredSignal(signal=signal, score=0.5)
         ScoredSignal(signal=signal, score=1.0)
-        
+
         # Invalid scores
         with pytest.raises(Exception):
             ScoredSignal(signal=signal, score=-0.1)
@@ -72,7 +75,7 @@ class TestScoredSignal:
 
 class TestActionResult:
     """Test ActionResult model validation."""
-    
+
     def test_action_result_success(self):
         """Test creating a successful action result."""
         signal = Signal(sense_type=SenseType.SMELL, source="test")
@@ -85,7 +88,7 @@ class TestActionResult:
         )
         assert result.success is True
         assert result.error is None
-    
+
     def test_action_result_failure(self):
         """Test creating a failed action result."""
         signal = Signal(sense_type=SenseType.TASTE, source="test")

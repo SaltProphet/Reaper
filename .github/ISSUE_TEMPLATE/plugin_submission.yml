@@ -1,0 +1,246 @@
+name: Plugin Submission
+description: Submit a new plugin to the REAPER ecosystem
+title: "[Plugin]: "
+labels: ["plugin", "community"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        🎉 Thanks for contributing a plugin to REAPER! 
+        
+        Please provide details about your plugin below. This helps the community discover and use your work.
+
+  - type: input
+    id: plugin-name
+    attributes:
+      label: Plugin Name
+      description: The name of your plugin
+      placeholder: MyAwesomePlugin
+    validations:
+      required: true
+
+  - type: dropdown
+    id: sense-type
+    attributes:
+      label: Plugin Type
+      description: What type of plugin is this?
+      options:
+        - Sight (Visual detection)
+        - Hearing (Text/Audio detection)
+        - Touch (Interaction detection)
+        - Taste (Quality detection)
+        - Smell (Pattern detection)
+        - Scoring
+        - Action
+        - Multi-sense
+        - Utility/Helper
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What does your plugin do?
+      placeholder: This plugin detects signals from X by monitoring Y and provides Z...
+    validations:
+      required: true
+
+  - type: textarea
+    id: use-cases
+    attributes:
+      label: Use Cases
+      description: What problems does this plugin solve? When should someone use it?
+      placeholder: |
+        - Use this when you need to...
+        - Ideal for monitoring...
+        - Helps detect...
+    validations:
+      required: true
+
+  - type: input
+    id: repository
+    attributes:
+      label: Repository URL
+      description: Link to your plugin's repository
+      placeholder: https://github.com/username/reaper-plugin-name
+    validations:
+      required: false
+
+  - type: input
+    id: package
+    attributes:
+      label: Package Name (if published)
+      description: PyPI package name if published
+      placeholder: reaper-plugin-name
+    validations:
+      required: false
+
+  - type: textarea
+    id: installation
+    attributes:
+      label: Installation Instructions
+      description: How to install your plugin
+      placeholder: |
+        ```bash
+        pip install reaper-plugin-name
+        # or
+        pip install git+https://github.com/username/reaper-plugin-name
+        ```
+      render: bash
+    validations:
+      required: true
+
+  - type: textarea
+    id: example
+    attributes:
+      label: Usage Example
+      description: Show how to use your plugin
+      placeholder: |
+        ```python
+        from reaper import PluginManager
+        from my_plugin import MyPlugin
+        
+        pm = PluginManager()
+        pm.register_plugin(MyPlugin(api_key="..."), name="my-plugin")
+        
+        signals = pm.detect_sight(source="my-source")
+        ```
+      render: python
+    validations:
+      required: true
+
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies
+      description: What dependencies does your plugin require?
+      placeholder: |
+        - requests>=2.28.0
+        - beautifulsoup4>=4.11.0
+    validations:
+      required: false
+
+  - type: textarea
+    id: configuration
+    attributes:
+      label: Configuration
+      description: What configuration options are available?
+      placeholder: |
+        - `api_key`: Your API key for service X
+        - `threshold`: Detection threshold (default: 0.5)
+        - `max_results`: Maximum results to return (default: 100)
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: compliance
+    attributes:
+      label: REAPER Compliance Checklist
+      description: Verify your plugin follows REAPER principles
+      options:
+        - label: Uses `@hookimpl` decorator for hooks
+          required: true
+        - label: Follows sense isolation (no mixing of detection/scoring/action)
+          required: true
+        - label: No hard-coded sources (all sources parameterized)
+          required: true
+        - label: Uses Pydantic models (Signal, ScoredSignal, ActionResult)
+          required: true
+        - label: Handles errors gracefully
+          required: true
+        - label: Includes docstrings and type hints
+          required: true
+        - label: Has tests
+          required: false
+
+  - type: checkboxes
+    id: documentation
+    attributes:
+      label: Documentation
+      options:
+        - label: README with installation instructions
+        - label: Usage examples
+        - label: API documentation
+        - label: Contributing guidelines
+
+  - type: dropdown
+    id: license
+    attributes:
+      label: License
+      description: What license is your plugin under?
+      options:
+        - MIT
+        - Apache 2.0
+        - GPL v3
+        - BSD 3-Clause
+        - Other Open Source
+        - Proprietary
+    validations:
+      required: true
+
+  - type: dropdown
+    id: maturity
+    attributes:
+      label: Maturity Level
+      description: How mature is this plugin?
+      options:
+        - Experimental (early development)
+        - Beta (feature complete, testing needed)
+        - Stable (production ready)
+        - Mature (battle-tested)
+    validations:
+      required: true
+
+  - type: textarea
+    id: roadmap
+    attributes:
+      label: Roadmap / Future Plans
+      description: What features are you planning to add?
+      placeholder: |
+        - [ ] Add support for X
+        - [ ] Improve performance for Y
+        - [ ] Integrate with Z
+    validations:
+      required: false
+
+  - type: textarea
+    id: maintainers
+    attributes:
+      label: Maintainers
+      description: Who maintains this plugin?
+      placeholder: |
+        - @github_username (Lead)
+        - @other_user (Contributor)
+    validations:
+      required: false
+
+  - type: textarea
+    id: support
+    attributes:
+      label: Support / Contact
+      description: How can users get help with your plugin?
+      placeholder: |
+        - Open issues on GitHub
+        - Email: support@example.com
+        - Discord: username#1234
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Information
+      description: Anything else we should know?
+      placeholder: Screenshots, performance metrics, comparison with alternatives...
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: showcase
+    attributes:
+      label: Showcase
+      options:
+        - label: I'd like this plugin featured in the REAPER showcase
+        - label: I'm available for community questions about this plugin
+        - label: I'm open to collaboration on this plugin

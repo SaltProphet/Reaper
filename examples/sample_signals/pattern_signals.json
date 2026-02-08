@@ -1,0 +1,81 @@
+[
+  {
+    "sense_type": "smell",
+    "source": "anomaly-detector",
+    "raw_data": {
+      "anomaly_id": "anom001",
+      "pattern_type": "spike",
+      "metric": "error_rate",
+      "baseline": 0.02,
+      "current_value": 0.15,
+      "deviation_score": 7.5,
+      "timestamp": "2024-01-01T10:00:00Z",
+      "duration_minutes": 15,
+      "affected_services": ["api", "checkout"]
+    }
+  },
+  {
+    "sense_type": "smell",
+    "source": "trend-analyzer",
+    "raw_data": {
+      "trend_id": "trend002",
+      "pattern_type": "declining_performance",
+      "metric": "api_response_time",
+      "trend_direction": "increasing",
+      "rate_of_change": 0.15,
+      "confidence": 0.92,
+      "timestamp": "2024-01-01T11:00:00Z",
+      "lookback_days": 7,
+      "predicted_threshold_breach": "2024-01-03T00:00:00Z"
+    }
+  },
+  {
+    "sense_type": "smell",
+    "source": "correlation-engine",
+    "raw_data": {
+      "correlation_id": "corr003",
+      "pattern_type": "correlated_failures",
+      "events": [
+        {"type": "database_slow", "timestamp": "2024-01-01T12:00:00Z"},
+        {"type": "api_timeout", "timestamp": "2024-01-01T12:01:00Z"},
+        {"type": "checkout_failure", "timestamp": "2024-01-01T12:02:00Z"}
+      ],
+      "correlation_score": 0.87,
+      "root_cause_hypothesis": "database_connection_pool_exhaustion",
+      "timestamp": "2024-01-01T12:05:00Z"
+    }
+  },
+  {
+    "sense_type": "smell",
+    "source": "pattern-matcher",
+    "raw_data": {
+      "pattern_id": "patt004",
+      "pattern_type": "recurring_issue",
+      "issue_signature": "checkout_timeout_mobile",
+      "occurrences": 23,
+      "first_seen": "2024-01-01T08:00:00Z",
+      "last_seen": "2024-01-01T13:00:00Z",
+      "frequency": "hourly",
+      "affected_users": 156,
+      "common_factors": ["mobile", "checkout", "slow_network"]
+    }
+  },
+  {
+    "sense_type": "smell",
+    "source": "cluster-detector",
+    "raw_data": {
+      "cluster_id": "clust005",
+      "pattern_type": "error_clustering",
+      "error_type": "TypeError",
+      "cluster_size": 47,
+      "common_attributes": {
+        "browser": "Safari",
+        "version": "15.0",
+        "page": "/checkout"
+      },
+      "timestamp": "2024-01-01T14:00:00Z",
+      "geographic_concentration": "North America",
+      "time_concentration": "afternoon"
+    }
+  }
+]

@@ -1,0 +1,90 @@
+[
+  {
+    "sense_type": "sight",
+    "source": "website-screenshots",
+    "raw_data": {
+      "screenshot_id": "shot001",
+      "url": "https://example.com/checkout",
+      "timestamp": "2024-01-01T10:00:00Z",
+      "viewport": "mobile",
+      "detected_issues": [
+        {
+          "type": "broken_button",
+          "element": "checkout-btn",
+          "description": "Button appears cut off on mobile viewport"
+        },
+        {
+          "type": "overlap",
+          "elements": ["form-field", "submit-button"],
+          "description": "Submit button overlaps form field"
+        }
+      ],
+      "visual_metrics": {
+        "layout_shift": 0.45,
+        "largest_contentful_paint": 3200
+      }
+    }
+  },
+  {
+    "sense_type": "sight",
+    "source": "error-monitoring",
+    "raw_data": {
+      "error_id": "err002",
+      "screenshot_url": "https://cdn.example.com/errors/err002.png",
+      "error_type": "javascript_error",
+      "message": "Cannot read property 'value' of null",
+      "stack_trace": "at handleSubmit (app.js:42)",
+      "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 15_0)",
+      "timestamp": "2024-01-01T11:30:00Z",
+      "frequency": 127
+    }
+  },
+  {
+    "sense_type": "sight",
+    "source": "ui-monitoring",
+    "raw_data": {
+      "recording_id": "rec003",
+      "session_url": "https://replay.example.com/sessions/rec003",
+      "detected_friction": [
+        {
+          "type": "rage_click",
+          "element": "submit-button",
+          "click_count": 8,
+          "time_span_seconds": 5
+        },
+        {
+          "type": "dead_click",
+          "element": "nav-menu",
+          "description": "User clicked but nothing happened"
+        }
+      ],
+      "session_duration": 180,
+      "user_frustrated": true,
+      "timestamp": "2024-01-01T13:00:00Z"
+    }
+  },
+  {
+    "sense_type": "sight",
+    "source": "a11y-scanner",
+    "raw_data": {
+      "scan_id": "a11y004",
+      "url": "https://example.com/dashboard",
+      "violations": [
+        {
+          "rule": "color-contrast",
+          "severity": "serious",
+          "element": ".btn-primary",
+          "description": "Insufficient color contrast ratio"
+        },
+        {
+          "rule": "button-name",
+          "severity": "critical",
+          "element": "#submit",
+          "description": "Button has no accessible name"
+        }
+      ],
+      "wcag_level": "AA",
+      "timestamp": "2024-01-01T15:00:00Z"
+    }
+  }
+]
