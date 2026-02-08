@@ -41,3 +41,6 @@ target-version = "py311"
 [tool.ruff.lint]
 select = ["E", "F", "I", "N", "W"]
 ignore = []
+
+[tool.ruff.lint.per-file-ignores]
+"reaper/hookspecs.py" = ["N805"]  # Hook specifications don't use self
