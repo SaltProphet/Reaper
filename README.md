@@ -1,5 +1,10 @@
 # REAPER
 
+> **⚠️ NO LONGER MAINTAINED**
+>
+> This repository is no longer actively maintained and not accepting contributions, pull requests, or issues.
+> Please do not submit new PRs as they will not be reviewed or merged. For more details about this status, see [ARCHIVE.md](ARCHIVE.md).
+
 **Modular, biological pipeline for harvesting "problem friction" signals; plugin-driven and operator-ready.**
 
 REAPER is a Python 3.11+ plugin-driven system that detects, scores, and acts on signals via a 5-sense pipeline architecture inspired by biological systems.
