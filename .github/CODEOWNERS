@@ -1,0 +1,24 @@
+# REAPER Code Ownership - Milspec Enforcement
+
+# Core architecture - requires owner review
+/reaper/                    @SaltProphet
+/pipeline/                  @SaltProphet
+
+# Tests require review
+/tests/                     @SaltProphet
+
+# CI/CD changes require owner approval
+/.github/workflows/         @SaltProphet
+/.github/                   @SaltProphet
+
+# Configuration requires review
+pyproject.toml              @SaltProphet
+.pre-commit-config.yaml     @SaltProphet
+
+# Documentation - can be community reviewed
+/docs/                      @SaltProphet
+/public_docs/               @SaltProphet
+*.md                        @SaltProphet
+
+# Examples - community can contribute
+/examples/                  @SaltProphet
