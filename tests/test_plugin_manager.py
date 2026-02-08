@@ -38,6 +38,25 @@ class TestPluginManager:
         pm.unregister_plugin(plugin)
         assert len(pm.list_plugins()) == 0
 
+    def test_plugin_count(self):
+        """Test plugin_count method returns correct count."""
+        pm = PluginManager()
+        assert pm.plugin_count() == 0
+
+        pm.register_plugin(SightPlugin())
+        assert pm.plugin_count() == 1
+
+        pm.register_plugin(HearingPlugin())
+        assert pm.plugin_count() == 2
+
+    def test_list_plugins_returns_tuple(self):
+        """Test that list_plugins returns an immutable tuple."""
+        pm = PluginManager()
+        pm.register_plugin(SightPlugin(), name="sight")
+        plugins = pm.list_plugins()
+        assert isinstance(plugins, tuple)
+        assert len(plugins) == 1
+
     def test_detect_sight(self):
         """Test sight detection via plugin."""
         pm = PluginManager()

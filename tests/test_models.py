@@ -37,6 +37,32 @@ class TestSignal:
             signal = Signal(sense_type=sense, source="test")
             assert signal.sense_type == sense
 
+    def test_signal_batch_creation(self):
+        """Test batch signal creation with shared timestamp."""
+        signals_data = [
+            {"sense_type": SenseType.SIGHT, "source": "cam1"},
+            {"sense_type": SenseType.SIGHT, "source": "cam2"},
+            {"sense_type": SenseType.HEARING, "source": "mic1"},
+        ]
+        signals = Signal.create_batch(signals_data)
+
+        assert len(signals) == 3
+        assert all(isinstance(s, Signal) for s in signals)
+        # All signals should have the same timestamp
+        assert signals[0].timestamp == signals[1].timestamp == signals[2].timestamp
+
+    def test_signal_batch_creation_with_custom_timestamp(self):
+        """Test batch signal creation with custom timestamp."""
+        custom_ts = datetime(2024, 1, 1, 12, 0, 0)
+        signals_data = [
+            {"sense_type": SenseType.SIGHT, "source": "test1"},
+            {"sense_type": SenseType.HEARING, "source": "test2"},
+        ]
+        signals = Signal.create_batch(signals_data, shared_timestamp=custom_ts)
+
+        assert len(signals) == 2
+        assert all(s.timestamp == custom_ts for s in signals)
+
 
 class TestScoredSignal:
     """Test ScoredSignal model validation."""

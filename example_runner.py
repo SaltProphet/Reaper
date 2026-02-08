@@ -5,6 +5,8 @@ Demonstrates how to use the plugin-driven system.
 Never hard-codes sources - everything is plugin-based.
 """
 
+from itertools import chain
+
 from pipeline.action import ActionPlugin
 from pipeline.hearing import HearingPlugin
 from pipeline.scoring import ScoringPlugin
@@ -31,7 +33,7 @@ def main():
     pm.register_plugin(ScoringPlugin(), name="scoring")
     pm.register_plugin(ActionPlugin(), name="action")
 
-    print(f"Registered {len(pm.list_plugins())} plugins\n")
+    print(f"Registered {pm.plugin_count()} plugins\n")
 
     # Detect signals from each sense (sources are plugin-specific, not hard-coded)
     print("=== DETECTION PHASE ===")
@@ -66,8 +68,10 @@ def main():
         print(f"   - Detected: {signal.sense_type.value} from {signal.source}")
         print(f"     Data: {signal.raw_data}")
 
-    # Collect all signals
-    all_signals = sight_signals + hearing_signals + touch_signals + taste_signals + smell_signals
+    # Collect all signals efficiently using itertools.chain
+    all_signals = list(
+        chain(sight_signals, hearing_signals, touch_signals, taste_signals, smell_signals)
+    )
 
     # Score signals
     print("\n\n=== SCORING PHASE ===")
@@ -93,7 +97,7 @@ def main():
                 print(f"     Result: {result.result_data}")
 
     print("\n\n=== PIPELINE COMPLETE ===")
-    print(f"Processed {len(all_signals)} signals from {len(pm.list_plugins())} plugins")
+    print(f"Processed {len(all_signals)} signals from {pm.plugin_count()} plugins")
 
 
 if __name__ == "__main__":
