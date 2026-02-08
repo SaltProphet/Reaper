@@ -41,6 +41,26 @@ Available on PRs:
 - `/fix` - Auto-apply Ruff fixes
 - Re-push triggers CI rerun
 
+### Local vs CI Testing
+
+**Pre-commit hooks** (local):
+- Run on `commit`: Ruff formatting and linting (with auto-fix)
+- Run on `push`: Fast pytest check (`-x --lf -q` for speed)
+  - `-x`: Stop at first failure
+  - `--lf`: Run only last failed tests
+  - `-q`: Quiet output
+
+**CI workflows** (GitHub Actions):
+- Run full test suite on all Python versions (3.11, 3.12)
+- No auto-fixes applied
+- All tests run regardless of previous failures
+- Verbose output for debugging
+
+**Best Practice:** Run full checks locally before pushing:
+```bash
+ruff check . && ruff format --check . && pytest -v
+```
+
 ---
 
 ## Code Quality Requirements
@@ -213,6 +233,16 @@ class MyActionPlugin:
 - Include tests for new functionality
 - Update documentation if needed
 - Ensure all CI checks pass
+
+### CI/CD Notes for Maintainers
+
+**Repository Secrets Required:**
+- `CODECOV_TOKEN` - Optional for code coverage uploads (CI continues if not configured)
+
+**Workflow Permissions:**
+- CI workflow: `contents: read` (validation only)
+- Auto-fix workflow: `contents: write, pull-requests: write` (modifies PRs)
+- Quality gate workflow: `pull-requests: write, statuses: write` (blocks merges)
 - Reference any related issues
 
 ### Commit Messages
