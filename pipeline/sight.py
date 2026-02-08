@@ -16,7 +16,7 @@ hookimpl = pluggy.HookimplMarker("reaper")
 class SightPlugin:
     """
     Stub plugin for Sight sense (visual detection).
-    
+
     This is a reference implementation. Real plugins should:
     - Never hard-code sources in core
     - Accept source as parameter
@@ -27,10 +27,10 @@ class SightPlugin:
     def reaper_sight_detect(self, source: str) -> List[Signal]:
         """
         Detect visual signals.
-        
+
         Args:
             source: Plugin-specific source identifier (e.g., "camera-1", "screen-capture")
-        
+
         Returns:
             List of detected signals with sense_type=SIGHT
         """
@@ -43,6 +43,6 @@ class SightPlugin:
                     "description": "Stub visual signal detected",
                     "stub": True,
                 },
-                metadata={"plugin": "SightPlugin"}
+                metadata={"plugin": "SightPlugin"},
             )
         ]

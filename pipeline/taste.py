@@ -16,7 +16,7 @@ hookimpl = pluggy.HookimplMarker("reaper")
 class TastePlugin:
     """
     Stub plugin for Taste sense (quality/sampling detection).
-    
+
     This is a reference implementation. Real plugins should:
     - Never hard-code sources in core
     - Accept source as parameter
@@ -27,10 +27,10 @@ class TastePlugin:
     def reaper_taste_detect(self, source: str) -> List[Signal]:
         """
         Detect quality/sampling signals.
-        
+
         Args:
             source: Plugin-specific source identifier (e.g., "quality-metric", "sampler")
-        
+
         Returns:
             List of detected signals with sense_type=TASTE
         """
@@ -43,6 +43,6 @@ class TastePlugin:
                     "description": "Stub quality/sampling signal detected",
                     "stub": True,
                 },
-                metadata={"plugin": "TastePlugin"}
+                metadata={"plugin": "TastePlugin"},
             )
         ]

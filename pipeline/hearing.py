@@ -16,7 +16,7 @@ hookimpl = pluggy.HookimplMarker("reaper")
 class HearingPlugin:
     """
     Stub plugin for Hearing sense (audio/textual detection).
-    
+
     This is a reference implementation. Real plugins should:
     - Never hard-code sources in core
     - Accept source as parameter
@@ -27,10 +27,10 @@ class HearingPlugin:
     def reaper_hearing_detect(self, source: str) -> List[Signal]:
         """
         Detect audio/textual signals.
-        
+
         Args:
             source: Plugin-specific source identifier (e.g., "microphone-1", "log-stream")
-        
+
         Returns:
             List of detected signals with sense_type=HEARING
         """
@@ -43,6 +43,6 @@ class HearingPlugin:
                     "description": "Stub audio/textual signal detected",
                     "stub": True,
                 },
-                metadata={"plugin": "HearingPlugin"}
+                metadata={"plugin": "HearingPlugin"},
             )
         ]

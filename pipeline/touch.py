@@ -16,7 +16,7 @@ hookimpl = pluggy.HookimplMarker("reaper")
 class TouchPlugin:
     """
     Stub plugin for Touch sense (physical/interaction detection).
-    
+
     This is a reference implementation. Real plugins should:
     - Never hard-code sources in core
     - Accept source as parameter
@@ -27,10 +27,10 @@ class TouchPlugin:
     def reaper_touch_detect(self, source: str) -> List[Signal]:
         """
         Detect physical/interaction signals.
-        
+
         Args:
             source: Plugin-specific source identifier (e.g., "sensor-1", "api-endpoint")
-        
+
         Returns:
             List of detected signals with sense_type=TOUCH
         """
@@ -43,6 +43,6 @@ class TouchPlugin:
                     "description": "Stub physical/interaction signal detected",
                     "stub": True,
                 },
-                metadata={"plugin": "TouchPlugin"}
+                metadata={"plugin": "TouchPlugin"},
             )
         ]

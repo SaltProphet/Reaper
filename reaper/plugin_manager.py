@@ -15,7 +15,7 @@ from reaper.models import ActionResult, ScoredSignal, Signal
 class PluginManager:
     """
     Central plugin manager for REAPER.
-    
+
     All plugins register via Pluggy. No hard-coding of sources allowed.
     """
 
@@ -27,7 +27,7 @@ class PluginManager:
     def register_plugin(self, plugin: object, name: Optional[str] = None) -> None:
         """
         Register a plugin with the manager.
-        
+
         Args:
             plugin: Plugin instance implementing one or more hookspecs
             name: Optional plugin name for tracking
