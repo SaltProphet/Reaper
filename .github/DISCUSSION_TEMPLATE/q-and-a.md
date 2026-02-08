@@ -1,8 +1,3 @@
----
-title: "[Q&A] "
-labels: ["question"]
----
-
 ## Question
 
 <!-- Ask your question clearly and concisely -->

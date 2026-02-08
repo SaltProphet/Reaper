@@ -1,8 +1,3 @@
----
-title: "[Idea] "
-labels: ["idea", "discussion"]
----
-
 ## Overview
 
 <!-- Briefly describe your idea -->

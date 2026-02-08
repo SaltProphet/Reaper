@@ -1,8 +1,3 @@
----
-title: "[Plugin Marketplace] "
-labels: ["plugin", "marketplace", "discussion"]
----
-
 ## Plugin Concept
 
 <!-- Name and brief description of the plugin idea -->
