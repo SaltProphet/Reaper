@@ -6,16 +6,16 @@
 Example:
     from reaper import PluginManager
     from [your_plugin_file] import [YourPlugin]
-    
+
     pm = PluginManager()
     pm.register_plugin([YourPlugin](), name="[plugin-name]")
-    
+
     # For detection plugins:
     signals = pm.detect_[sense](source="[your-source-identifier]")
-    
+
     # For scoring plugins:
     scored = pm.score_signal(signal)
-    
+
     # For action plugins:
     result = pm.execute_action(scored_signal)
 """
@@ -36,7 +36,7 @@ hookimpl = pluggy.HookimplMarker("reaper")
 class PluginConfig(BaseModel):
     """
     Configuration for [Plugin Name].
-    
+
     All sensitive values (API keys, tokens) should come from environment variables.
     """
 
@@ -65,18 +65,18 @@ class PluginConfig(BaseModel):
     def from_env(cls) -> "PluginConfig":
         """
         Load configuration from environment variables.
-        
+
         Required environment variables:
             [PLUGIN_NAME]_API_KEY: API key for authentication
-        
+
         Optional environment variables:
             [PLUGIN_NAME]_ENDPOINT: Override default endpoint
             [PLUGIN_NAME]_TIMEOUT: Override default timeout
             [PLUGIN_NAME]_RATE_LIMIT: Override default rate limit
-        
+
         Returns:
             PluginConfig instance
-        
+
         Raises:
             KeyError: If required environment variables are missing
             ValidationError: If configuration values are invalid
@@ -107,16 +107,16 @@ class PluginSpecificData(BaseModel):
 class DetectionPlugin:
     """
     [Plugin Name] detection plugin for REAPER.
-    
+
     Detects signals from [source description].
-    
+
     Implements: reaper_[sense]_detect hook
-    
+
     Environment Variables:
         [PLUGIN_NAME]_API_KEY: Required API key
         [PLUGIN_NAME]_ENDPOINT: Optional API endpoint override
         [PLUGIN_NAME]_TIMEOUT: Optional timeout override (seconds)
-    
+
     Example:
         >>> plugin = DetectionPlugin()
         >>> pm = PluginManager()
@@ -127,7 +127,7 @@ class DetectionPlugin:
     def __init__(self, config: PluginConfig | None = None):
         """
         Initialize the detection plugin.
-        
+
         Args:
             config: Optional PluginConfig. If None, loads from environment.
         """
@@ -137,21 +137,21 @@ class DetectionPlugin:
     def reaper_sight_detect(self, source: str) -> List[Signal]:
         """
         Detect visual signals from the specified source.
-        
+
         Change hook name to match your sense type:
         - reaper_sight_detect (visual)
         - reaper_hearing_detect (audio/text)
         - reaper_touch_detect (interaction)
         - reaper_taste_detect (quality/sampling)
         - reaper_smell_detect (pattern/anomaly)
-        
+
         Args:
             source: Source identifier (e.g., "channel-name", "feed-url", "topic-id")
                    NEVER hard-code this value!
-        
+
         Returns:
             List of Signal objects detected from the source
-        
+
         Raises:
             RuntimeError: If detection fails due to API errors
             ValidationError: If response data is invalid
@@ -193,13 +193,13 @@ class DetectionPlugin:
     def _fetch_from_source(self, source: str) -> List[Dict[str, Any]]:
         """
         Fetch raw data from external source.
-        
+
         Args:
             source: Source identifier
-        
+
         Returns:
             List of raw item dictionaries
-        
+
         Note:
             This is a placeholder. Implement actual API/data fetching here.
         """
@@ -229,11 +229,11 @@ class DetectionPlugin:
 class ScoringPlugin:
     """
     [Plugin Name] scoring plugin for REAPER.
-    
+
     Scores signals based on [scoring criteria description].
-    
+
     Implements: reaper_score_signal hook
-    
+
     Example:
         >>> plugin = ScoringPlugin()
         >>> pm = PluginManager()
@@ -249,13 +249,13 @@ class ScoringPlugin:
     def reaper_score_signal(self, signal: Signal) -> ScoredSignal:
         """
         Score a signal based on [criteria].
-        
+
         Args:
             signal: Raw signal to score
-        
+
         Returns:
             ScoredSignal with score (0.0-1.0) and analysis
-        
+
         Note:
             Score must be in range [0.0, 1.0] or Pydantic will raise ValidationError
         """
@@ -292,10 +292,10 @@ class ScoringPlugin:
     def _calculate_score(self, signal: Signal) -> float:
         """
         Calculate raw score for signal.
-        
+
         Args:
             signal: Signal to score
-        
+
         Returns:
             Raw score (may be outside [0.0, 1.0] range)
         """
@@ -311,10 +311,10 @@ class ScoringPlugin:
     def _analyze_signal(self, signal: Signal) -> Dict[str, Any]:
         """
         Perform detailed analysis of signal.
-        
+
         Args:
             signal: Signal to analyze
-        
+
         Returns:
             Analysis results dictionary
         """
@@ -328,11 +328,11 @@ class ScoringPlugin:
     def _generate_tags(self, signal: Signal, score: float) -> List[str]:
         """
         Generate classification tags for signal.
-        
+
         Args:
             signal: Signal being scored
             score: Calculated score
-        
+
         Returns:
             List of tag strings
         """
@@ -360,15 +360,15 @@ class ScoringPlugin:
 class ActionPlugin:
     """
     [Plugin Name] action plugin for REAPER.
-    
+
     Executes [action description] on scored signals.
-    
+
     Implements: reaper_action_execute hook
-    
+
     Environment Variables:
         [PLUGIN_NAME]_API_KEY: Required API key
         [PLUGIN_NAME]_ENDPOINT: Optional API endpoint override
-    
+
     Example:
         >>> plugin = ActionPlugin()
         >>> pm = PluginManager()
@@ -379,7 +379,7 @@ class ActionPlugin:
     def __init__(self, config: PluginConfig | None = None):
         """
         Initialize the action plugin.
-        
+
         Args:
             config: Optional PluginConfig. If None, loads from environment.
         """
@@ -389,10 +389,10 @@ class ActionPlugin:
     def reaper_action_execute(self, scored_signal: ScoredSignal) -> ActionResult:
         """
         Execute action on a scored signal.
-        
+
         Args:
             scored_signal: Scored signal to act upon
-        
+
         Returns:
             ActionResult indicating success/failure and details
         """
@@ -430,10 +430,10 @@ class ActionPlugin:
     def _should_act(self, scored_signal: ScoredSignal) -> bool:
         """
         Determine if action should be taken on this signal.
-        
+
         Args:
             scored_signal: Scored signal to evaluate
-        
+
         Returns:
             True if action should be taken, False otherwise
         """
@@ -449,13 +449,13 @@ class ActionPlugin:
     def _perform_action(self, scored_signal: ScoredSignal) -> Dict[str, Any]:
         """
         Perform the actual action.
-        
+
         Args:
             scored_signal: Scored signal to act on
-        
+
         Returns:
             Dictionary with action result details
-        
+
         Raises:
             RuntimeError: If action fails
         """
@@ -495,7 +495,7 @@ class ActionPlugin:
 if __name__ == "__main__":
     """
     Example of registering and using the plugin.
-    
+
     Run this file directly to test your plugin:
         python plugin_template.py
     """
