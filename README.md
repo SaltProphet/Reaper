@@ -9,7 +9,7 @@
 
 REAPER is a Python 3.11+ plugin-driven system that detects, scores, and acts on signals via a 5-sense pipeline architecture inspired by biological systems.
 
-📚 **[Documentation](public_docs/)** | 🚀 **[Getting Started](public_docs/getting-started.md)** | 🔌 **[Plugin Guide](public_docs/how-to-create-plugins.md)** | 💬 **[Discussions](https://github.com/SaltProphet/Reaper/discussions)** | 🗺️ **[Phase 2 Plan](PHASE_2_PLAN.md)** | 🤖 **[Copilot Prompts](COPILOT_PROMPTS_INDEX.md)**
+📚 **[Documentation](public_docs/)** | 🚀 **[Getting Started](public_docs/getting-started.md)** | 🔌 **[Plugin Guide](public_docs/how-to-create-plugins.md)** | 💬 **[Discussions](https://github.com/SaltProphet/Reaper/discussions)** | 🗺️ **[Phase 2 Plan](docs/planning/PHASE_2_PLAN.md)** | 🤖 **[Copilot Prompts](docs/planning/COPILOT_PROMPTS_INDEX.md)**
 
 ## Architecture
 
@@ -289,12 +289,12 @@ REAPER follows a phased development approach. Each phase has detailed planning d
 
 | Phase | Status | Focus | Documents |
 |-------|--------|-------|-----------|
-| **Phase 1** | ✅ Complete | Core Architecture | [Roadmap](Roadmap) |
-| **Phase 2** | 🏗️ In Progress | Pipeline Completion | Planning docs TBD |
-| **Phase 3** | 📋 Planned | Learning & Operator Tools | [Plan](PHASE_3_PLAN.md) \| [Quick Ref](PHASE_3_QUICK_REF.md) |
-| **Phase 4** | 📋 Planned | Quality, Automation, Community | [Plan](PHASE_4_PLAN.md) \| [Quick Ref](PHASE_4_QUICK_REF.md) |
+| **Phase 1** | ✅ Complete | Core Architecture | [Roadmap](ROADMAP.md) |
+| **Phase 2** | 🏗️ In Progress | Pipeline Completion | [Plan](docs/planning/PHASE_2_PLAN.md) |
+| **Phase 3** | 📋 Planned | Learning & Operator Tools | [Plan](docs/planning/PHASE_3_PLAN.md) \| [Quick Ref](docs/planning/PHASE_3_QUICK_REF.md) |
+| **Phase 4** | 📋 Planned | Quality, Automation, Community | [Plan](docs/planning/PHASE_4_PLAN.md) \| [Quick Ref](docs/planning/PHASE_4_QUICK_REF.md) |
 
-**📋 [Phase Index](PHASE_INDEX.md)** - Quick navigation to all phase documents
+**📋 [Phase Index](docs/planning/PHASE_INDEX.md)** - Quick navigation to all phase documents
 
 ### For AI-Assisted Development
 
@@ -304,7 +304,7 @@ Phase documents include copy-paste ready prompts for:
 - Configuration templates and examples
 - Timeline estimates and success criteria
 
-**Quick Start**: Copy a prompt from [PHASE_3_QUICK_REF.md](PHASE_3_QUICK_REF.md) or [PHASE_4_QUICK_REF.md](PHASE_4_QUICK_REF.md) and paste it to GitHub Copilot or your AI assistant.
+**Quick Start**: Copy a prompt from [PHASE_3_QUICK_REF.md](docs/planning/PHASE_3_QUICK_REF.md) or [PHASE_4_QUICK_REF.md](docs/planning/PHASE_4_QUICK_REF.md) and paste it to GitHub Copilot or your AI assistant.
 
 ## Contributing
 
@@ -318,8 +318,8 @@ We welcome contributions! Here's how to get started:
 3. Start coding immediately!
 
 **Or contribute locally**:
-- See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines
-- Check [Roadmap](Roadmap) for current priorities
+- See [CONTRIBUTING.md](docs/guides/CONTRIBUTING.md) for detailed guidelines
+- Check [Roadmap](ROADMAP.md) for current priorities
 - Browse [open issues](https://github.com/SaltProphet/Reaper/issues) for tasks
 
 ### Ways to Contribute

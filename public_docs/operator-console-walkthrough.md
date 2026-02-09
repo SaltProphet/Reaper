@@ -497,4 +497,4 @@ The following features are planned for future releases:
 - **Alert System**: Automated notifications for critical signals
 - **Historical Analytics**: Signal trend analysis over time
 
-Stay tuned to the [Roadmap](../Roadmap) for updates!
+Stay tuned to the [Roadmap](../ROADMAP.md) for updates!

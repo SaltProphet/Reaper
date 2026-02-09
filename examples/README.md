@@ -94,7 +94,7 @@ signals = [Signal(**data) for data in sample_data]
 
 ## Contributing Examples
 
-Have a useful example? Submit it via a [Pull Request](../CONTRIBUTING.md)!
+Have a useful example? Submit it via a [Pull Request](../docs/guides/CONTRIBUTING.md)!
 
 Examples should:
 - Be self-contained and runnable

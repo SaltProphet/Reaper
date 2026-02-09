@@ -59,8 +59,8 @@ Closes #
 
 - [ ] README updated (if needed)
 - [ ] Docstrings/comments added or updated
-- [ ] Roadmap updated (if this relates to a roadmap phase)
-- [ ] CONTRIBUTING.md updated (if adding new contributor guidelines)
+- [ ] ROADMAP.md updated (if this relates to a roadmap phase)
+- [ ] docs/guides/CONTRIBUTING.md updated (if adding new contributor guidelines)
 
 ## Additional Context
 
