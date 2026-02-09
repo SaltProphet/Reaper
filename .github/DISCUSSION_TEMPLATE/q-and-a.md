@@ -28,4 +28,4 @@
 
 ---
 
-**For Responders**: Please check the [README](../../README.md) and [Roadmap](../../Roadmap) before answering. Link to relevant documentation when possible.
+**For Responders**: Please check the [README](../../README.md) and [Roadmap](../../ROADMAP.md) before answering. Link to relevant documentation when possible.

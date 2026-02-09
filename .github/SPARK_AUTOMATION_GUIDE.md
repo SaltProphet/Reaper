@@ -389,7 +389,7 @@ When creating new Spark workflows:
 - [GitHub Actions Documentation](https://docs.github.com/en/actions)
 - [GitHub Copilot Documentation](https://docs.github.com/en/copilot)
 - [REAPER Copilot Instructions](./copilot-instructions.md)
-- [CI/CD Security Best Practices](../Roadmap)
+- [CI/CD Security Best Practices](../ROADMAP.md)
 
 ## Getting Started
 

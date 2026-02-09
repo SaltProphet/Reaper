@@ -170,5 +170,5 @@ Launch Codespaces directly from project items to start development quickly.
 ## Resources
 
 - [GitHub Projects Documentation](https://docs.github.com/en/issues/planning-and-tracking-with-projects)
-- [REAPER Roadmap](../Roadmap)
+- [REAPER Roadmap](../ROADMAP.md)
 - [Issue Templates](./ISSUE_TEMPLATE/)

@@ -155,7 +155,7 @@ Planned additions:
 - [ ] Video Tutorials
 - [ ] Plugin Marketplace Catalog
 
-See the main [Roadmap](../Roadmap) for overall project direction.
+See the main [Roadmap](../ROADMAP.md) for overall project direction.
 
 ---
 

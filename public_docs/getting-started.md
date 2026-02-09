@@ -272,7 +272,7 @@ Now that you're set up, here's what to explore next:
 
 ### For Contributing
 1. Check open [Issues](https://github.com/SaltProphet/Reaper/issues)
-2. Read [CONTRIBUTING.md](../CONTRIBUTING.md) (if available)
+2. Read [CONTRIBUTING.md](../docs/guides/CONTRIBUTING.md)
 3. Join [Discussions](https://github.com/SaltProphet/Reaper/discussions)
 4. Submit a [Pull Request](https://github.com/SaltProphet/Reaper/pulls)
 
@@ -325,7 +325,7 @@ print(pm.list_plugins())  # Should show your plugin
 ## Resources
 
 - [Main README](../README.md) - Project overview
-- [Roadmap](../Roadmap) - Future plans
+- [Roadmap](../ROADMAP.md) - Future plans
 - [LICENSE](../LICENSE) - MIT License
 - [Pluggy Docs](https://pluggy.readthedocs.io/) - Plugin framework
 - [Pydantic Docs](https://docs.pydantic.dev/latest/) - Data validation
