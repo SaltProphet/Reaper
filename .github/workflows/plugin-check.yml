@@ -12,6 +12,9 @@ on:
       - 'pipeline/**'
       - 'reaper/**'
 
+permissions:
+  contents: read
+
 jobs:
   validate-plugins:
     runs-on: ubuntu-latest
