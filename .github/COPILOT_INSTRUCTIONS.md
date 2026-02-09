@@ -1,5 +1,8 @@
 # 🧬 Reaper Project: Copilot & Agent Instructions
 
+> **Note:** This document covers agent roles, project vision, and solution-focused guidance.  
+> For technical code conventions, patterns, and implementation details, see [copilot-instructions.md](copilot-instructions.md).
+
 **Repo:** SaltProphet/Reaper  
 **Purpose:** Modular, plugin-driven, Python pipeline for detecting and solving "problem friction" — built for extensibility, type-safety, and actionable solutions.
 
