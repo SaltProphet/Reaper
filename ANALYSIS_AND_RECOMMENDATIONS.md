@@ -880,5 +880,5 @@ The recommendations in this document are **enhancements** rather than **fixes**.
 - [ROADMAP.md](ROADMAP.md) - Project phases and timeline
 - [CONTRIBUTING.md](docs/guides/CONTRIBUTING.md) - Contribution guidelines
 - [Phase 2 Plan](docs/planning/PHASE_2_PLAN.md) - Next phase details
-- [Copilot Instructions](. github/copilot-instructions.md) - Code conventions
+- [Copilot Instructions](.github/copilot-instructions.md) - Code conventions
 - [GitHub Actions Best Practices](https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions)
