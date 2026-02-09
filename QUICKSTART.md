@@ -136,8 +136,8 @@ Example:
 
 ## 🚀 Next Steps
 
-1. **Read Full Guide**: [GITHUB_ADVANCED_TOOLS.md](GITHUB_ADVANCED_TOOLS.md)
-2. **Contributing**: [CONTRIBUTING.md](CONTRIBUTING.md)
+1. **Read Full Guide**: [docs/guides/GITHUB_ADVANCED_TOOLS.md](docs/guides/GITHUB_ADVANCED_TOOLS.md)
+2. **Contributing**: [docs/guides/CONTRIBUTING.md](docs/guides/CONTRIBUTING.md)
 3. **Architecture**: [README.md](README.md)
 
 ## 💡 Example: Build a Complete Plugin in 10 Minutes
@@ -214,7 +214,7 @@ pytest -v
 - **Copilot Guide**: [docs.github.com/copilot](https://docs.github.com/en/copilot)
 - **Codespaces Guide**: [docs.github.com/codespaces](https://docs.github.com/en/codespaces)
 - **REAPER Architecture**: [README.md](README.md)
-- **Plugin Development**: [CONTRIBUTING.md](CONTRIBUTING.md)
+- **Plugin Development**: [docs/guides/CONTRIBUTING.md](docs/guides/CONTRIBUTING.md)
 
 ---
 
