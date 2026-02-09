@@ -310,6 +310,53 @@ Phase documents include copy-paste ready prompts for:
 
 We welcome contributions! Here's how to get started:
 
+### Getting Started as an Agent/Contributor
+
+REAPER uses specialized **agent roles** to organize development work. Whether you're a solo contributor or part of a team, understanding these roles helps you contribute effectively.
+
+#### 📋 Quick Start Paths
+
+**New Contributor? Start Here:**
+1. Read [CONTRIBUTING.md](CONTRIBUTING.md) for the contribution workflow
+2. Review [REAPER_AGENT_ROLES.md](REAPER_AGENT_ROLES.md) to understand the roles
+3. Pick a role that matches your interests:
+   - 🔌 **Plugin Implementer** - Build plugins (great starting point!)
+   - 📚 **Documentation Engineer** - Improve docs and guides
+   - ✅ **Quality Guardian** - Improve tests and CI/CD
+4. Find a "good-first-issue" in [Issues](https://github.com/SaltProphet/Reaper/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
+5. Follow the [plugin template](templates/plugin_template.py) for plugin work
+
+**Experienced Developer?**
+1. Review [REAPER_AGENT_ROLES.md](REAPER_AGENT_ROLES.md) for advanced roles
+2. Consider **Plugin Architect** or **Data Model Guardian** roles
+3. Check the [Roadmap](ROADMAP.md) for current phase priorities
+4. Review [CODE_QUALITY.md](CODE_QUALITY.md) for quality standards
+
+#### 🛠️ Development Resources
+
+- **[CONTRIBUTING.md](CONTRIBUTING.md)** - Complete contribution guide with role assignments
+- **[REAPER_AGENT_ROLES.md](REAPER_AGENT_ROLES.md)** - Detailed agent role definitions with day-in-the-life examples
+- **[CODE_QUALITY.md](CODE_QUALITY.md)** - Code quality standards and forbidden practices
+- **[docs/README_GUIDELINES.md](docs/README_GUIDELINES.md)** - Documentation writing standards
+- **[templates/](templates/)** - Plugin templates and scaffolds
+- **[.env.example](.env.example)** - Environment variable reference
+
+#### 🎯 Solo vs Team Workflow
+
+**Solo Contributors:**
+- Start as Plugin Implementer (70% time)
+- Add Quality Guardian responsibilities (20% time)
+- Maintain documentation (10% time)
+- See [CONTRIBUTING.md - Role Assignment](CONTRIBUTING.md#role-assignment-for-solo-contributors)
+
+**Teams (2-3 people):**
+- Split roles: Architecture Lead, Implementation Lead, Experience/Docs Lead
+- See [CONTRIBUTING.md - Team Roles](CONTRIBUTING.md#role-assignment-for-teams)
+
+**Larger Teams (4+):**
+- Dedicated roles with clear ownership
+- See [REAPER_AGENT_ROLES.md](REAPER_AGENT_ROLES.md) for team structure
+
 ### Quick Start
 
 **Use GitHub Codespaces** for instant setup:
@@ -318,9 +365,10 @@ We welcome contributions! Here's how to get started:
 3. Start coding immediately!
 
 **Or contribute locally**:
-- See [CONTRIBUTING.md](docs/guides/CONTRIBUTING.md) for detailed guidelines
+- See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines and role assignments
 - Check [Roadmap](ROADMAP.md) for current priorities
 - Browse [open issues](https://github.com/SaltProphet/Reaper/issues) for tasks
+- Review [CODE_QUALITY.md](CODE_QUALITY.md) for quality standards
 
 ### Ways to Contribute
 
