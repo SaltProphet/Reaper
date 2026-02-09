@@ -532,6 +532,6 @@ if __name__ == "__main__":
 
         # 3. Execute actions on high-scoring signals
         if scored.score >= 0.7:
-            print(f"   Executing action...")
+            print("   Executing action...")
             result = pm.execute_action(scored)[0]
             print(f"   Action {'succeeded' if result.success else 'failed'}\n")
