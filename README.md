@@ -283,6 +283,29 @@ The stubs in `/pipeline/` are reference implementations. To add real functionali
 3. Never hard-code sources or mix pipeline roles
 4. Always use Pydantic models for data validation
 
+## Development Roadmap
+
+REAPER follows a phased development approach. Each phase has detailed planning documents with AI-ready prompts for GitHub Copilot:
+
+| Phase | Status | Focus | Documents |
+|-------|--------|-------|-----------|
+| **Phase 1** | ✅ Complete | Core Architecture | [Roadmap](Roadmap) |
+| **Phase 2** | 🏗️ In Progress | Pipeline Completion | Planning docs TBD |
+| **Phase 3** | 📋 Planned | Learning & Operator Tools | [Plan](PHASE_3_PLAN.md) \| [Quick Ref](PHASE_3_QUICK_REF.md) |
+| **Phase 4** | 📋 Planned | Quality, Automation, Community | [Plan](PHASE_4_PLAN.md) \| [Quick Ref](PHASE_4_QUICK_REF.md) |
+
+**📋 [Phase Index](PHASE_INDEX.md)** - Quick navigation to all phase documents
+
+### For AI-Assisted Development
+
+Phase documents include copy-paste ready prompts for:
+- Implementing features with comprehensive requirements
+- Testing strategies and acceptance criteria
+- Configuration templates and examples
+- Timeline estimates and success criteria
+
+**Quick Start**: Copy a prompt from [PHASE_3_QUICK_REF.md](PHASE_3_QUICK_REF.md) or [PHASE_4_QUICK_REF.md](PHASE_4_QUICK_REF.md) and paste it to GitHub Copilot or your AI assistant.
+
 ## Contributing
 
 We welcome contributions! Here's how to get started:
