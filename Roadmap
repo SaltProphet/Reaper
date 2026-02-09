@@ -2,23 +2,33 @@
 
 This roadmap outlines the development phases for REAPER, with integrated collaboration tools and automation to support contributors at every stage.
 
-## Phase 1: Core Architecture ("Alpha")
+**🤖 [Copilot Prompts Index](COPILOT_PROMPTS_INDEX.md)** - Copy-paste ready prompts for AI-assisted development
+
+---
+
+## Phase 1: Core Architecture ("Alpha") ✅
+
+**Status**: Complete (v0.1.0)  
+🤖 **[Copilot Prompts](PHASE_1_COPILOT_PROMPTS.md)** - 10 prompts for Phase 1 tasks
 
 **Core Development:**
-- Scaffold the 5-sense pipeline: Sight, Hearing, Touch, Taste, Smell, Action
-- Define `ReaperSignal` and connector contracts (pydantic models)
-- Implement Pluggy-based plugin loader ("Hot-Swap Chassis")
-- Create first example plugins (RedditIngestor, KeywordAnalyzer)
-- Publish Copilot and Philosophy docs
+- ✅ Scaffold the 5-sense pipeline: Sight, Hearing, Touch, Taste, Smell, Action
+- ✅ Define `ReaperSignal` and connector contracts (pydantic models)
+- ✅ Implement Pluggy-based plugin loader ("Hot-Swap Chassis")
+- ✅ Create first example plugins (RedditIngestor, KeywordAnalyzer)
+- ✅ Publish Copilot and Philosophy docs
 
 **Collaboration & Automation:**
 - ✅ Set up issue templates (bug reports, feature requests, plugin submissions)
 - ✅ Create Copilot instructions for code generation alignment
 - ✅ Configure Codespaces for instant contributor onboarding
 - ✅ Establish pull request template and review process
-- Update Copilot instructions as core principles solidify
+- ✅ Update Copilot instructions as core principles solidify
 
 ## Phase 2: Pipeline Completion ("Beta")
+
+**Status**: Ready to Start (Target: v0.2.0)  
+📋 **[Detailed Phase 2 Plan](PHASE_2_PLAN.md)** | 🚀 **[Quick Reference](PHASE_2_QUICK_REF.md)** | 🤖 **[Copilot Prompts](PHASE_2_COPILOT_PROMPTS.md)** - 26 prompts across 6 milestones
 
 **Core Development:**
 - Complete stubs for all senses
@@ -37,6 +47,9 @@ This roadmap outlines the development phases for REAPER, with integrated collabo
 
 ## Phase 3: Learning & Operator Experience
 
+**Status**: Planned (Target: v0.3.0)  
+🤖 **[Copilot Prompts](PHASE_3_COPILOT_PROMPTS.md)** - 19 prompts for advanced features
+
 **Core Development:**
 - Implement the Ouroboros Protocol: self-improving filters based on PCI/feedback
 - Add pattern/trend detection (Smell), PCI/ROI scoring (Taste), and alert/export actions (Action)
@@ -51,6 +64,9 @@ This roadmap outlines the development phases for REAPER, with integrated collabo
 - Expand contributor guides with advanced topics
 
 ## Phase 4: Quality, Automation, Community
+
+**Status**: Planned (Target: v1.0.0)  
+🤖 **[Copilot Prompts](PHASE_4_COPILOT_PROMPTS.md)** - 24 prompts for production readiness
 
 **Core Development:**
 - Expand test harness: unit, integration, e2e
