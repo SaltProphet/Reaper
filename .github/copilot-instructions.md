@@ -1,5 +1,8 @@
 # Copilot Instructions for REAPER
 
+> **Note:** This document provides technical code conventions and patterns for REAPER development.  
+> For high-level agent roles, project vision, and solution-focused guidance, see [COPILOT_INSTRUCTIONS.md](COPILOT_INSTRUCTIONS.md).
+
 ## Project Philosophy
 
 REAPER is a modular, biological pipeline for harvesting "problem friction" signals. The system is plugin-driven, type-safe, and operator-ready.
